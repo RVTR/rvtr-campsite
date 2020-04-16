@@ -1,4 +1,5 @@
 env:
+  RVTR_REPOSITORY: 'rvtr/rvtr-app-campsite'
   WORKING_DIRECTORY: angular
 
 jobs:
@@ -78,7 +79,16 @@ jobs:
       - env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        name: sonar_scan
+        if: github.repository == ${{ env.RVTR_REPOSITORY }}
+        name: sonar_scan_internal
+        uses: sonarsource/sonarcloud-github-action@master
+        with:
+          projectBaseDir: ${{ env.WORKING_DIRECTORY }}
+      - env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ''
+        if: github.repository != ${{ env.RVTR_REPOSITORY }}
+        name: sonar_scan_external
         uses: sonarsource/sonarcloud-github-action@master
         with:
           projectBaseDir: ${{ env.WORKING_DIRECTORY }}
