@@ -6,10 +6,10 @@ jobs:
   echo:
     runs-on: ubuntu-18.04
     steps:
-      - if: github.repository == ${{ env.RVTR_REPOSITORY }}
+      - if: github.repository == env.RVTR_REPOSITORY
         run: |
           echo 'internal'
-      - if: github.repository != ${{ env.RVTR_REPOSITORY }}
+      - if: github.repository != env.RVTR_REPOSITORY
         run: |
           echo 'external'
   # build:
