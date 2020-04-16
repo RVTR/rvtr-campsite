@@ -1,14 +1,17 @@
 env:
-  RVTR_REPOSITORY: 'rvtr/rvtr-app-campsite'
+  RVTR_REPOSITORY: 'RVTR/rvtr-app-campsite'
   WORKING_DIRECTORY: angular
 
 jobs:
   echo:
     runs-on: ubuntu-18.04
     steps:
-      - run: |
-          echo $GITHUB_REPOSITORY
-          echo $GITHUB_REPOSITORY_OWNER
+      - if: github.repository == ${{ env.RVTR_REPOSITORY }}
+        run: |
+          echo 'internal'
+      - if: github.repository != ${{ env.RVTR_REPOSITORY }}
+        run: |
+          echo 'external'
   # build:
   #   name: build_angular
   #   runs-on: ubuntu-18.04
