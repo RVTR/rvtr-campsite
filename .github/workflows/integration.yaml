@@ -11,6 +11,7 @@ jobs:
           echo $GITHUB_REPOSITORY_OWNER
           echo $GITHUB_REF
           echo $GITHUB_HEAD_REF
+          echo $GITHUB_BASE_REF
   # build:
   #   name: build_angular
   #   runs-on: ubuntu-18.04
