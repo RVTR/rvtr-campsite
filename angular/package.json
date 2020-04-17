@@ -2,6 +2,7 @@
   "name": "rvtr-app-campsite",
   "version": "0.0.0",
   "scripts": {
+    "scan": "sonar-scanner",
     "build": "ng build",
     "e2e": "ng e2e",
     "lint": "ng lint",
@@ -43,6 +44,7 @@
     "karma-jasmine-html-reporter": "^1.4.2",
     "protractor": "~5.4.3",
     "puppeteer": "^2.1.1",
+    "sonarqube-scanner": "^2.6.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
     "typescript": "~3.8.3"

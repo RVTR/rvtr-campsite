@@ -3,109 +3,99 @@ env:
   WORKING_DIRECTORY: angular
 
 jobs:
-  echo:
+  build:
+    name: build_angular
     runs-on: ubuntu-18.04
     steps:
-      - if: github.repository == env.RVTR_REPOSITORY
-        run: |
-          echo 'internal'
-          npm install --global sonarqube-scanner
+      - name: actions_checkout
+        uses: actions/checkout@v2.1.0
+      - name: npm_cache
+        uses: actions/cache@v1.1.2
+        with:
+          path: ~/.npm
+          key: angular-${{ hashFiles('**/package-lock.json') }}
+      - name: npm_install
+        run: npm clean-install
+        working-directory: ${{ env.WORKING_DIRECTORY }}
+      - name: npm_lint
+        run: npm run lint
+        working-directory: ${{ env.WORKING_DIRECTORY }}
+      - name: npm_build
+        run: npm run build
+        working-directory: ${{ env.WORKING_DIRECTORY }}
+
+  test:
+    name: test_angular
+    needs: build
+    runs-on: ubuntu-18.04
+    steps:
+      - name: actions_checkout
+        uses: actions/checkout@v2.1.0
+      - name: npm_cache
+        uses: actions/cache@v1.1.2
+        with:
+          path: ~/.npm
+          key: angular-${{ hashFiles('**/package-lock.json') }}
+      - name: npm_install
+        run: npm clean-install
+        working-directory: ${{ env.WORKING_DIRECTORY }}
+      - name: npm_update
+        run: npm run update
+        working-directory: ${{ env.WORKING_DIRECTORY }}
+      - name: npm_test
+        run: npm run test
+        working-directory: ${{ env.WORKING_DIRECTORY }}
+      - name: npm_e2e
+        run: npm run e2e
+        working-directory: ${{ env.WORKING_DIRECTORY }}
+      - name: lcov_upload
+        uses: actions/upload-artifact@v1.0.0
+        with:
+          name: test_coverage
+          path: ${{ env.WORKING_DIRECTORY }}/test_coverage
+
+  analyze:
+    name: analyze_angular
+    needs: [build, test]
+    runs-on: ubuntu-18.04
+    steps:
+      - name: actions_checkout
+        uses: actions/checkout@v2.1.0
+      - name: git_fetch
+        run: git fetch --unshallow
+      - name: lcov_download
+        uses: actions/download-artifact@v1.0.0
+        with:
+          name: test_coverage
+          path: ${{ env.WORKING_DIRECTORY }}/test_coverage
+      - name: npm_cache
+        uses: actions/cache@v1.1.2
+        with:
+          path: ~/.npm
+          key: angular-${{ hashFiles('**/package-lock.json') }}
+      - name: npm_install
+        run: npm clean-install
+        working-directory: ${{ env.WORKING_DIRECTORY }}
+      - env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        if: github.repository == env.RVTR_REPOSITORY
+        name: sonar_scan
+        uses: sonarsource/sonarcloud-github-action@master
+        with:
+          projectBaseDir: ${{ env.WORKING_DIRECTORY }}
       - if: github.repository != env.RVTR_REPOSITORY
-        run: echo 'external'
-  # build:
-  #   name: build_angular
-  #   runs-on: ubuntu-18.04
-  #   steps:
-  #     - name: actions_checkout
-  #       uses: actions/checkout@v2.1.0
-  #     - name: npm_cache
-  #       uses: actions/cache@v1.1.2
-  #       with:
-  #         path: ~/.npm
-  #         key: angular-${{ hashFiles('**/package-lock.json') }}
-  #     - name: npm_install
-  #       run: npm clean-install
-  #       working-directory: ${{ env.WORKING_DIRECTORY }}
-  #     - name: npm_lint
-  #       run: npm run lint
-  #       working-directory: ${{ env.WORKING_DIRECTORY }}
-  #     - name: npm_build
-  #       run: npm run build
-  #       working-directory: ${{ env.WORKING_DIRECTORY }}
-  # test:
-  #   name: test_angular
-  #   needs: build
-  #   runs-on: ubuntu-18.04
-  #   steps:
-  #     - name: actions_checkout
-  #       uses: actions/checkout@v2.1.0
-  #     - name: npm_cache
-  #       uses: actions/cache@v1.1.2
-  #       with:
-  #         path: ~/.npm
-  #         key: angular-${{ hashFiles('**/package-lock.json') }}
-  #     - name: npm_install
-  #       run: npm clean-install
-  #       working-directory: ${{ env.WORKING_DIRECTORY }}
-  #     - name: npm_update
-  #       run: npm run update
-  #       working-directory: ${{ env.WORKING_DIRECTORY }}
-  #     - name: npm_test
-  #       run: npm run test
-  #       working-directory: ${{ env.WORKING_DIRECTORY }}
-  #     - name: npm_e2e
-  #       run: npm run e2e
-  #       working-directory: ${{ env.WORKING_DIRECTORY }}
-  #     - name: lcov_upload
-  #       uses: actions/upload-artifact@v1.0.0
-  #       with:
-  #         name: test_coverage
-  #         path: ${{ env.WORKING_DIRECTORY }}/test_coverage
-  # analyze:
-  #   name: analyze_angular
-  #   needs: [build, test]
-  #   runs-on: ubuntu-18.04
-  #   steps:
-  #     - name: actions_checkout
-  #       uses: actions/checkout@v2.1.0
-  #     - name: git_fetch
-  #       run: git fetch --unshallow
-  #     - name: lcov_download
-  #       uses: actions/download-artifact@v1.0.0
-  #       with:
-  #         name: test_coverage
-  #         path: ${{ env.WORKING_DIRECTORY }}/test_coverage
-  #     - name: npm_cache
-  #       uses: actions/cache@v1.1.2
-  #       with:
-  #         path: ~/.npm
-  #         key: angular-${{ hashFiles('**/package-lock.json') }}
-  #     - name: npm_install
-  #       run: npm clean-install
-  #       working-directory: ${{ env.WORKING_DIRECTORY }}
-  #     - env:
-  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  #         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-  #       if: github.repository == env.RVTR_REPOSITORY
-  #       name: sonar_scan_internal
-  #       uses: sonarsource/sonarcloud-github-action@master
-  #       with:
-  #         projectBaseDir: ${{ env.WORKING_DIRECTORY }}
-  #     - env:
-  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  #         SONAR_TOKEN: ''
-  #       if: github.repository != env.RVTR_REPOSITORY
-  #       name: sonar_scan_external
-  #       uses: sonarsource/sonarcloud-github-action@master
-  #       with:
-  #         projectBaseDir: ${{ env.WORKING_DIRECTORY }}
-  # pack:
-  #   name: pack_job
-  #   needs: [analyze]
-  #   runs-on: ubuntu-18.04
-  #   steps:
-  #     - name: pack_script
-  #       run: echo 'pack script'
+        name: npm_scan
+        run: npm run scan
+        working-directory: ${{ env.WORKING_DIRECTORY }}
+
+  pack:
+    name: pack_job
+    needs: [analyze]
+    runs-on: ubuntu-18.04
+    steps:
+      - name: pack_script
+        run: echo 'pack script'
 
 name: integration
 

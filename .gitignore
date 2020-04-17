@@ -8,3 +8,6 @@ test_result/
 
 # nodejs
 node_modules/
+
+# sonarqube
+.scannerwork/
