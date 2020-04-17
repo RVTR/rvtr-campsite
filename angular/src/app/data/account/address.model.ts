@@ -1,5 +1,8 @@
 import { Hash } from 'crypto';
 
+/**
+ * Object model for customer address.
+ */
 export class Address {
   addressID: Hash;
   streetAddress1: string;

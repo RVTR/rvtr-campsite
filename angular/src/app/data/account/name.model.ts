@@ -1,5 +1,8 @@
 import { Hash } from 'crypto';
 
+/**
+ * Object model for customer name. 
+ */
 export class Name {
   nameID: Hash;
   commonName: string;
