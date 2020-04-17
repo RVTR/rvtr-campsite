@@ -13,6 +13,8 @@ jobs:
           echo $GITHUB_HEAD_REF
           echo $GITHUB_BASE_REF
           echo $GITHUB_EVENT_PATH
+          echo $GITHUB_EVENT_NAME
+          echo $GITHUB_ACTOR
   # build:
   #   name: build_angular
   #   runs-on: ubuntu-18.04
