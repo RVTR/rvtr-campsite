@@ -76,15 +76,7 @@ jobs:
       - name: npm_install
         run: npm clean-install
         working-directory: ${{ env.WORKING_DIRECTORY }}
-      - env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        name: sonar_scan
-        uses: sonarsource/sonarcloud-github-action@master
-        with:
-          projectBaseDir: ${{ env.WORKING_DIRECTORY }}
-      - if: failure()
-        name: npm_scan
+      - name: npm_scan
         run: npm run scan
         working-directory: ${{ env.WORKING_DIRECTORY }}
   pack:
