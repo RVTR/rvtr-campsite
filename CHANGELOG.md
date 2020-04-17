@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning][semver].
 
 - setup the project directory structure
 
+### fixed
+
+- fix the integration workflow support for external pull request
+
 ## [0.0.0] :: 2020-04-14
 
 ### added
