@@ -80,7 +80,7 @@ jobs:
         run: npm run scan
         working-directory: ${{ env.WORKING_DIRECTORY }}
       - name: codecov_upload
-        uses: codecov/codecov-action@vmaster
+        uses: codecov/codecov-action@master
         with:
           file: ${{ env.WORKING_DIRECTORY }}/test_coverage/lccov.info
       - name: coveralls_upload
