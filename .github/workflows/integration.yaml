@@ -87,7 +87,7 @@ jobs:
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          path-to-lcov: ${{ env.WORKING_DIRECTORY }}/test_coverage/lccov.info
+          path-to-lcov: ${{ env.WORKING_DIRECTORY }}/test_coverage/lcov.info
   pack:
     name: pack_job
     needs: [analyze]
