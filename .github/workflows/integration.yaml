@@ -88,6 +88,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           parallel: true
+          path-to-lcov: ${{ env.WORKING_DIRECTORY }}/test_coverage/lcov.info
       - name: Coveralls Finished
         uses: coverallsapp/github-action@master
         with:
