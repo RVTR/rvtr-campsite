@@ -82,7 +82,7 @@ jobs:
       - name: codecov_upload
         uses: codecov/codecov-action@master
         with:
-          file: ${{ env.WORKING_DIRECTORY }}/test_coverage/lccov.info
+          file: ${{ env.WORKING_DIRECTORY }}/test_coverage/lcov.info
       - name: coveralls_upload
         uses: coverallsapp/github-action@master
         with:
