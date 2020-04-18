@@ -87,7 +87,13 @@ jobs:
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          parallel: true
           path-to-lcov: ${{ env.WORKING_DIRECTORY }}/test_coverage/lcov.info
+      - name: coveralls_upload
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          parallel-finished: true
 
   pack:
     name: pack_job
