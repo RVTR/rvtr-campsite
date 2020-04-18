@@ -13,6 +13,8 @@ describe('Account Service Testing', () => {
   let httpTestingController: HttpTestingController;
   let config: Configuration
 
+  // Debug
+  // console.log(JSON.stringify(mockAccounts)); // MOCK ACCOUNT DATA IS SUCCESFULLY IMPORTED
 
     beforeEach(() => {
       // Configure Testing Module
@@ -41,7 +43,7 @@ describe('Account Service Testing', () => {
     });
     
     // Now begin Account Service Test Suites...
-    // Get Accounts
+    // Get Accounts -----------------------------------------------
     describe('getAccounts', () => {
       it('should return mock accounts', () => {
         accountService.getAccounts().subscribe(
@@ -55,6 +57,46 @@ describe('Account Service Testing', () => {
         req.flush(this.mockAccounts);
       });
     });
+
+    // Add Accounts ------------------------------------------------
+    describe('addAccount', () => {
+
+      it('should add a single Account, () => {
+        // spyOn(accountService, 'handleError').and.callThrough();
+        // spyOn(accountService, 'log').and.callThrough();
+  
+        // accountService.addAccount(this.mockAccount).subscribe(
+        //   response => expect(response).toEqual(this.mockAccount),
+        //   fail
+        // );
+        // Receive GET request
+        const req = httpTestingController.expectOne(`${accountService.accountsUrl}`);
+        expect(req.request.method).toEqual('POST');
+        // Respond with the mock heroes
+        req.flush(this.mockHero);
+
+        expect(accountService.log).toHaveBeenCalledTimes(1);
+      });
+  
+      it('should fail gracefully on error', () => {
+        // spyOn(accountService, 'handleError').and.callThrough();
+        // spyOn(accountService, 'log').and.callThrough();
+  
+        accountService.addAccount(this.mockAccount).subscribe(
+          response => expect(response).toBeUndefined(),
+          fail
+        );
+        // Receive GET request
+        const req = httpTestingController.expectOne(`${accountService.accountsUrl}`);
+        expect(req.request.method).toEqual('POST');
+        // Respond with the mock heroes
+        req.flush('Invalid request parameters', { status: 404, statusText: 'Bad Request' });
+  
+        expect(accountService.handleError).toHaveBeenCalledTimes(1);
+        expect(accountService.log).toHaveBeenCalledTimes(1);
+      });
+    });
+  
   });
 
 

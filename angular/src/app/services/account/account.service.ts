@@ -59,7 +59,7 @@ export class AccountService {
       );
   }
 
-  getAccountNo404<Data>(id: number): Observable<Account> {
+  getAccountNo404<Data>(id: number): Observable<Account> { // Fail gradefully
     const url = `${this.accountsUrl}/?id=${id}`;
     return this.http.get<Account[]>(url)
       .pipe(
@@ -74,15 +74,20 @@ export class AccountService {
 
 
   // Post methods --------------------------------------------
-
-  post(){
-    this.http.post(this.config.url, Account).toPromise().then((res) => {
-      // some logic here 
-    });
+  addAccount(account: Account): Observable<Account> {
+    return this.http.post<Account>(this.accountsUrl, account, this.httpOptions).pipe(
+      tap((newAccount: Account) => this.log(`added new account with id=${newAccount.accountID}`)),
+      catchError(this.handleError<Account>('addAccount'))
+    );
   }
+  // post(){
+  //   this.http.post(this.config.url, Account).toPromise().then((res) => {
+  //     // some logic here 
+  //   });
+  // }
 
   // Update Account ------------------------------------------
-  updateHero(account: Account): Observable<any> {
+  updateAccount(account: Account): Observable<any> {
     return this.http.put(this.accountsUrl, account, this.httpOptions).pipe(
       tap(_ => this.log(`updated hero id=${account.accountID}`)),
       catchError(this.handleError<any>('updateHero'))
@@ -90,7 +95,7 @@ export class AccountService {
   }
 
   // Delete Account ------------------------------------------
-  deleteHero(account: Account | number): Observable<Account> {
+  deleteAccount(account: Account | number): Observable<Account> {
     const id = typeof account === 'number' ? account : account.accountID;
     const url = `${this.accountsUrl}/${id}`;
 
