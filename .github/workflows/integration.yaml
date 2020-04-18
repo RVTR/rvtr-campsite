@@ -76,9 +76,9 @@ jobs:
       - name: npm_install
         run: npm clean-install
         working-directory: ${{ env.WORKING_DIRECTORY }}
-      - name: npm_scan
-        run: npm run scan
-        working-directory: ${{ env.WORKING_DIRECTORY }}
+      # - name: npm_scan
+      #   run: npm run scan
+      #   working-directory: ${{ env.WORKING_DIRECTORY }}
       # - name: codecov_upload
       #   uses: codecov/codecov-action@master
       #   with:
