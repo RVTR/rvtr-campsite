@@ -39,7 +39,7 @@ describe('Account Service Testing', () => {
 
     // Test that the Account Service is actually being created
     it('should be created', () => {
-      expect(accountService).toBeTruthy();
+      expect(accountService).toBeTruthy(); // THIS TEST IS PASSING
     });
     
     // Now begin Account Service Test Suites...
@@ -61,14 +61,14 @@ describe('Account Service Testing', () => {
     // Add Accounts ------------------------------------------------
     describe('addAccount', () => {
 
-      it('should add a single Account, () => {
+      it('should add a single Account', () => {
         // spyOn(accountService, 'handleError').and.callThrough();
         // spyOn(accountService, 'log').and.callThrough();
   
-        // accountService.addAccount(this.mockAccount).subscribe(
-        //   response => expect(response).toEqual(this.mockAccount),
-        //   fail
-        // );
+        accountService.addAccount(this.mockAccount).subscribe(
+          response => expect(response).toEqual(this.mockAccount),
+          fail
+        );
         // Receive GET request
         const req = httpTestingController.expectOne(`${accountService.accountsUrl}`);
         expect(req.request.method).toEqual('POST');
