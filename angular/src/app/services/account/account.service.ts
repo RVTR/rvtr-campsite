@@ -12,15 +12,17 @@ import { Configuration } from './config';
 })
 export class AccountService {
 
+  accountsUrl = 'api/accounts';  // URL to web api
+
   constructor(private http: HttpClient, private config: Configuration) { }
 
-  get(): Observable<Account[]> { 
+  getAccounts(): Observable<Account[]> { 
     return this.http.get<Account[]>(this.config.url);
   }
 
   post(){
     this.http.post(this.config.url, Account).toPromise().then((res) => {
-      // some logic here
+      // some logic here 
     });
   }
 
