@@ -68,14 +68,14 @@ jobs:
         with:
           name: test_coverage
           path: ${{ env.WORKING_DIRECTORY }}/test_coverage
-      - name: npm_cache
-        uses: actions/cache@v1.1.2
-        with:
-          path: ~/.npm
-          key: angular-${{ hashFiles('**/package-lock.json') }}
-      - name: npm_install
-        run: npm clean-install
-        working-directory: ${{ env.WORKING_DIRECTORY }}
+      # - name: npm_cache
+      #   uses: actions/cache@v1.1.2
+      #   with:
+      #     path: ~/.npm
+      #     key: angular-${{ hashFiles('**/package-lock.json') }}
+      # - name: npm_install
+      #   run: npm clean-install
+      #   working-directory: ${{ env.WORKING_DIRECTORY }}
       # - name: npm_scan
       #   run: npm run scan
       #   working-directory: ${{ env.WORKING_DIRECTORY }}
@@ -83,13 +83,12 @@ jobs:
       #   uses: codecov/codecov-action@master
       #   with:
       #     file: ${{ env.WORKING_DIRECTORY }}/test_coverage/lcov.info
-      - name: coveralls_upload
+      - name: Coveralls Parallel
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           parallel: true
-          path-to-lcov: ${{ env.WORKING_DIRECTORY }}/test_coverage/lcov.info
-      - name: coveralls_upload
+      - name: Coveralls Finished
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
