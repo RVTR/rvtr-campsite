@@ -14,25 +14,27 @@ describe('Account Service Testing', () => {
   let config: Configuration
 
 
-  beforeEach(() => {
-    // Configure Testing Module
-    TestBed.configureTestingModule({
-      imports: [ HttpClientTestingModule ],
-        providers: [
-          AccountService,
-          Configuration
-        ]
-    });
-    // Setup Mock Accounts and get the Account Service from the test bed
-    this.mockAccounts = [...mockAccounts];
+    beforeEach(() => {
+      // Configure Testing Module
+      TestBed.configureTestingModule({
+        imports: [ HttpClientTestingModule ],
+          providers: [
+            AccountService,
+            Configuration
+          ]
+      });
+      // Setup Mock Accounts and get the Account Service from the test bed
+      this.mockAccounts = mockAccounts;
       this.mockAccount = this.mockAccounts[0];
       this.mockId = this.mockAccount.id;
       accountService = TestBed.get(AccountService);
     });
+
     // Verify after each test
     afterEach(() => {
       httpTestingController.verify();
     });
+
     // Test that the Account Service is actually being created
     it('should be created', () => {
       expect(accountService).toBeTruthy();
