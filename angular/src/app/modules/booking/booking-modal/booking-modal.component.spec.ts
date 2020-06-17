@@ -103,6 +103,6 @@ describe('BookingModalComponent', () => {
     component.removeGuestItem(0);
     // * Assert
     const resultNumGuestFormGroups = (component.bookingForm.controls['guests'] as FormArray).length;
-    expect(resultNumGuestFormGroups).toBe(numToAdd - 1);
+    expect(resultNumGuestFormGroups).toBe(numToAdd);
   });
 });

@@ -16,8 +16,7 @@ const mockLocations: Location[] = [
       country: 'USA',
       postalCode: '90210',
       stateProvince: 'CA',
-      street: '7421 Something Dr',
-      unit: '40',
+      street: '7421 Something Dr'
     },
     latitude: '34.0522',
     locale: 'N/A',
@@ -31,13 +30,12 @@ const mockLocations: Location[] = [
       country: 'USA',
       postalCode: '90210',
       stateProvince: 'TX',
-      street: '7421 Something Dr',
-      unit: '40',
+      street: '7421 Something Dr'
     },
     latitude: '30.2672',
     locale: 'N/A',
     longitude: '97.7431',
-  },
+  }
 ];
 
 const mockRentals: Rental[] = [
