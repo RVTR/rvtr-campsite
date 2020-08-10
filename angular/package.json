@@ -16,6 +16,7 @@
     "@fortawesome/fontawesome-free": "^5.13.0",
     "@sentry/browser": "^5.15.5",
     "bulma": "^0.8.1",
+    "runtypes": "^5.0.1",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
