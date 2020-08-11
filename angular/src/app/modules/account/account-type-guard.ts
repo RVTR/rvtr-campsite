@@ -31,6 +31,6 @@ const Account = Record({
   payments: Array(Payment),
   profiles: Array(Profile),
 });
-const TypeGuard = (el: Account | Acct | {}) => Account.guard(el);
+const AccountTypeGuard = (el: Account | Acct | {}) => Account.guard(el);
 
-export default TypeGuard;
+export default AccountTypeGuard;

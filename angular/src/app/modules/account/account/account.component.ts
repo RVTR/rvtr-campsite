@@ -8,7 +8,6 @@ import { Payment } from '../../../data/payment.model';
 import { Profile } from '../../../data/profile.model';
 import { Review } from '../../../data/review.model';
 import { AccountService } from '../../../services/account/account.service';
-import TypeGuard from '../typeguard';
 
 @Component({
   selector: 'uic-account',
@@ -25,8 +24,7 @@ export class AccountComponent implements OnInit {
   constructor(private readonly accountService: AccountService) {}
 
   ngOnInit(): void {
-    this.account$ = this.accountService.get('100').pipe(filter((account) => TypeGuard(account)));
-
+    this.account$ = this.accountService.get('100');
     this.bookings$ = of([
       {
         id: '100',
