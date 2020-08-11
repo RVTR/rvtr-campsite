@@ -1,8 +1,8 @@
-import TypeGuard from './typeguard';
+import AccountTypeGuard from './account-type-guard';
 import { Account } from '../../data/account.model';
 describe('TypeGuardFunction', () => {
   it('should reject invalid object', () => {
-    expect(TypeGuard({})).toBe(false);
+    expect(AccountTypeGuard.guard({})).toBe(false);
   });
   it('should accept ', () => {
     const account: Account = {
@@ -18,6 +18,6 @@ describe('TypeGuardFunction', () => {
       payments: [],
       profiles: [],
     };
-    expect(TypeGuard(account)).toBeTruthy();
+    expect(AccountTypeGuard.guard(account)).toBeTruthy();
   });
 });

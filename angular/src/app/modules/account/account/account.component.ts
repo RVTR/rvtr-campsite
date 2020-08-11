@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { map, filter } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { Account } from '../../../data/account.model';
 import { Address } from '../../../data/address.model';
 import { Booking } from '../../../data/booking.model';

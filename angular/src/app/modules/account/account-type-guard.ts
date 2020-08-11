@@ -31,6 +31,5 @@ const Account = Record({
   payments: Array(Payment),
   profiles: Array(Profile),
 });
-const AccountTypeGuard = (el: Account | Acct | {}) => Account.guard(el);
-
+const AccountTypeGuard = Account;
 export default AccountTypeGuard;
