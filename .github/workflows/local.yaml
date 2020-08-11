@@ -19,8 +19,6 @@ jobs:
       - name: npm_install
         run: npm clean-install
         working-directory: ${{ env.WORKING_DIRECTORY }}
-      - name: prettier
-        run: npx prettier --check ${{ env.WORKING_DIRECTORY }}
       - name: npm_lint
         run: npm run lint
         working-directory: ${{ env.WORKING_DIRECTORY }}
@@ -47,6 +45,8 @@ jobs:
       - name: npm_install
         run: npm clean-install
         working-directory: ${{ env.WORKING_DIRECTORY }}
+      - name: prettier
+        run: npx prettier --check ${{ env.WORKING_DIRECTORY }}
       - name: npm_test
         run: npm run test
         working-directory: ${{ env.WORKING_DIRECTORY }}
@@ -92,12 +92,14 @@ jobs:
         run: npm clean-install
         working-directory: ${{ env.WORKING_DIRECTORY }}
       - name: npm_scan
-        run: npm run scan
+        run: npm run scan --
+          -Dsonar.organization=${{ github.event.pull_request.base.user.login }}
+          -Dsonar.projectKey=${{ github.event.pull_request.base.user.login }}_${{ github.event.pull_request.base.repo.name }}
         working-directory: ${{ env.WORKING_DIRECTORY }}
 
 name: build
 
 on:
   pull_request:
-    branches:
+    branches-ignore:
       - master

@@ -1,0 +1,114 @@
+$shadow-color: rgba(0, 0, 0, 0.3);
+
+.result-image {
+  $result-shadow: 0 7px 15px 0 $shadow-color;
+  -webkit-box-shadow: $result-shadow;
+  box-shadow: $result-shadow;
+}
+
+.title-is-vertical ul {
+  padding-left: 20px;
+}
+
+.card-image {
+  float: left;
+  display: flexbox;
+  width: 200px;
+  padding: 32px 30px 0px 30px;
+}
+
+.card {
+  $card-shadow: 0 5px 10px 0 $shadow-color;
+  -webkit-box-shadow: $card-shadow;
+  box-shadow: $card-shadow;
+  max-width: 100%;
+  margin-top: 20px;
+  transition: all 0.3s ease-in-out;
+}
+
+.card:hover {
+  $card-hover-shadow: 0 25px 50px 0 $shadow-color;
+  -webkit-box-shadow: $card-hover-shadow;
+  box-shadow: $card-hover-shadow;
+  background-color: #10d1b4;
+  color: white;
+  transform: scale(1.05);
+}
+.card:hover .is-4 {
+  color: white;
+}
+
+.card:hover .discountedPrice {
+  color: white;
+}
+
+.cover:hover .card-content .subtitle {
+  color: white;
+}
+
+.card:hover .orignalPrice {
+  color: rgb(73, 73, 73);
+}
+
+.card:hover button {
+  background-color: white;
+  color: #10d1b4;
+}
+
+.card:hover button:hover {
+  background-color: #007a68;
+  color: white;
+}
+
+.card:hover .checked {
+  color: #006858;
+}
+.card:hover .unchecked {
+  color: white;
+}
+.is-4 {
+  color: #00aa91;
+}
+
+.is-2 {
+  color: rgb(136, 136, 136);
+}
+
+.end-of-card {
+  float: right;
+}
+
+.stars {
+  width: 16em;
+}
+
+.fa-star {
+  color: lightgray;
+  font-size: 16px;
+}
+
+.checked {
+  color: #00a88f;
+}
+
+.card-content .subtitle {
+  color: rgb(116, 116, 116);
+}
+
+.originalPrice {
+  text-decoration: line-through;
+  display: inline;
+  margin-left: 1.5rem;
+  font-weight: bold;
+  color: gray;
+}
+.discountedPrice {
+  display: inline;
+  font-weight: bold;
+  color: #00aa91;
+}
+
+.content button {
+  float: right;
+  margin-bottom: 4rem;
+}

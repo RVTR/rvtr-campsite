@@ -1,7 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { AccountBookingComponent } from './account-booking.component';
+import { Booking } from 'src/app/data/booking.model';
 describe('AccountBookingComponent', () => {
-  const booking = {
+  const booking: Booking = {
     id: 'string',
     accountId: 'string',
     lodgingId: 'string',
@@ -21,21 +22,16 @@ describe('AccountBookingComponent', () => {
       {
         id: 'string',
         name: 'string',
+        status: 'string',
+        price: 0.0,
+        discountedPrice: 0.0,
         rentalUnit: {
           id: 'string',
-          bathrooms: [
-            {
-              id: 'string',
-              fixture: 2,
-            },
-          ],
-          bedrooms: [
-            {
-              id: 'string',
-              count: 2,
-              type: 'string',
-            },
-          ],
+          bedroom: {
+            id: 'string',
+            count: 2,
+            type: 'string',
+          },
           name: 'string',
           occupancy: 2,
           type: 'string',
@@ -49,7 +45,6 @@ describe('AccountBookingComponent', () => {
       dateCreated: new Date(),
       dateModified: new Date(),
     },
-    status: 'string',
   };
   let component: AccountBookingComponent;
   let fixture: ComponentFixture<AccountBookingComponent>;

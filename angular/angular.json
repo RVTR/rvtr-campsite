@@ -20,6 +20,8 @@
             "aot": true,
             "assets": [
               "src/api.account.json",
+              "src/api.booking.json",
+              "src/api.lodging.json",
               "src/app.config.json",
               "src/favicon.ico",
               "src/netlify.toml"

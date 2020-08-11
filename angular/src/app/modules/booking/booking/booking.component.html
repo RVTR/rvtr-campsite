@@ -1,7 +1,7 @@
 <section class="hero is-fullheight-with-navbar">
   <div class="hero-head">
     <div class="container">
-      <br>
+      <br />
       <h1 class="title is-2">booking</h1>
 
       <div class="tile is-ancestor">
@@ -12,7 +12,7 @@
                 <div class="field">
                   <label for="location" class="label">location</label>
                   <div class="control">
-                    <input class="input" id="location" name="location" placeholder="Add the destination" type="text">
+                    <input class="input" id="location" name="location" placeholder="Add the destination" type="text" />
                   </div>
                 </div>
               </div>
@@ -21,11 +21,12 @@
                 <label for="check-in" class="label">check-in / check-out</label>
                 <div class="field has-addons">
                   <div class="control is-expanded">
-                    <input class="input" id="check-in" name="check-in" placeholder="Add the traveling date" type="date">
+                    <input class="input" id="check-in" name="check-in" placeholder="Add the traveling date"
+                      type="date" />
                   </div>
                   <div class="control is-expanded">
                     <input class="input" id="check-out" name="check-out" placeholder="Add the returning date"
-                      type="date">
+                      type="date" />
                   </div>
                 </div>
               </div>
@@ -34,10 +35,10 @@
                 <label for="adults" class="label">guests</label>
                 <div class="field has-addons">
                   <div class="control">
-                    <input class="input" id="adults" name="adults" placeholder="Adults" type="number">
+                    <input class="input" id="adults" name="adults" placeholder="Adults" type="number" />
                   </div>
                   <div class="control">
-                    <input class="input" id="children" name="children" placeholder="Children" type="number">
+                    <input class="input" id="children" name="children" placeholder="Children" type="number" />
                   </div>
                   <div class="control">
                     <button class="button is-primary" type="button">search</button>
@@ -47,11 +48,13 @@
             </div>
           </form>
 
+          <uic-search-results [lodgings]="lodgings$ | async" *ngIf="!isSearched"></uic-search-results>
+
           <div class="tile">
             <div class="tile is-parent">
               <div class="tile is-child">
                 <figure class="image is-16by9">
-                  <img alt="placeholder image" src="https://bulma.io/images/placeholders/1280x960.png">
+                  <img class="feature-image" alt="placeholder image" src="https://bulma.io/images/placeholders/1280x960.png" />
                 </figure>
               </div>
             </div>
@@ -59,7 +62,7 @@
             <div class="tile is-parent">
               <div class="tile is-child">
                 <figure class="image is-16by9">
-                  <img alt="placeholder image" src="https://bulma.io/images/placeholders/1280x960.png">
+                  <img class="feature-image" alt="placeholder image" src="https://bulma.io/images/placeholders/1280x960.png" />
                 </figure>
               </div>
             </div>
@@ -67,7 +70,7 @@
             <div class="tile is-parent">
               <div class="tile is-child">
                 <figure class="image is-16by9">
-                  <img alt="placeholder image" src="https://bulma.io/images/placeholders/1280x960.png">
+                  <img class="feature-image" alt="placeholder image" src="https://bulma.io/images/placeholders/1280x960.png" />
                 </figure>
               </div>
             </div>
@@ -78,7 +81,7 @@
               <div class="columns">
                 <div class="column is-4">
                   <figure class="image is-16by9">
-                    <img alt="placeholder image" src="https://bulma.io/images/placeholders/1280x960.png">
+                    <img alt="placeholder image" src="https://bulma.io/images/placeholders/1280x960.png" />
                   </figure>
                 </div>
 
@@ -86,18 +89,18 @@
                   <div class="content has-text-light">
                     <p class="title has-text-light is-4">spotlight</p>
                     <p>
-                      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatum quis sapiente sed laudantium
-                      necessitatibus, reiciendis atque quae provident exercitationem eaque ullam quas fugit error.
-                      Necessitatibus labore dolore incidunt omnis possimus.
-                      Temporibus quis, dolorem omnis nulla, impedit illo a aperiam sapiente culpa velit animi saepe eum
-                      fuga at odio hic modi quia sequi repellendus. A, expedita assumenda esse dicta incidunt atque.
-                      Temporibus, vel fugiat amet adipisci nam veritatis dolore, accusamus nemo laboriosam assumenda in
-                      blanditiis ullam aut id velit debitis, doloremque aliquam laudantium at. Natus incidunt officiis,
-                      officia sapiente doloremque debitis.
-                      Modi similique, accusamus nam nobis voluptas eius commodi officiis maxime quibusdam, aliquid
-                      distinctio, provident ut porro odio ducimus soluta et molestiae. Error, autem ipsa quis
-                      dignissimos
-                      commodi voluptas maxime quo.
+                      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatum quis
+                      sapiente sed laudantium necessitatibus, reiciendis atque quae provident
+                      exercitationem eaque ullam quas fugit error. Necessitatibus labore dolore
+                      incidunt omnis possimus. Temporibus quis, dolorem omnis nulla, impedit illo a
+                      aperiam sapiente culpa velit animi saepe eum fuga at odio hic modi quia sequi
+                      repellendus. A, expedita assumenda esse dicta incidunt atque. Temporibus, vel
+                      fugiat amet adipisci nam veritatis dolore, accusamus nemo laboriosam assumenda
+                      in blanditiis ullam aut id velit debitis, doloremque aliquam laudantium at.
+                      Natus incidunt officiis, officia sapiente doloremque debitis. Modi similique,
+                      accusamus nam nobis voluptas eius commodi officiis maxime quibusdam, aliquid
+                      distinctio, provident ut porro odio ducimus soluta et molestiae. Error, autem
+                      ipsa quis dignissimos commodi voluptas maxime quo.
                     </p>
                   </div>
                 </div>

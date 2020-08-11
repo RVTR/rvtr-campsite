@@ -26,7 +26,6 @@ describe('BookingService', () => {
         dateCreated: new Date(),
         dateModified: new Date(),
       },
-      status: '',
     },
   ];
 

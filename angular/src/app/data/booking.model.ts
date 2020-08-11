@@ -12,7 +12,6 @@ import { Stay } from './stay.model';
  * guests: Profile[];
  * rentals: Rental[];
  * stay: Stay;
- * status: string;
  * ```
  */
 export interface Booking {
@@ -22,5 +21,4 @@ export interface Booking {
   guests: Profile[];
   rentals: Rental[];
   stay: Stay;
-  status: string;
 }

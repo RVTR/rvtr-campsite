@@ -51,9 +51,6 @@ jobs:
       - name: npm_install
         run: npm clean-install
         working-directory: ${{ env.WORKING_DIRECTORY }}
-      - name: npm_update
-        run: npm run update
-        working-directory: ${{ env.WORKING_DIRECTORY }}
       - name: npm_test
         run: npm run test
         working-directory: ${{ env.WORKING_DIRECTORY }}

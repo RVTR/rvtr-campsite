@@ -17,10 +17,10 @@
     "sourceMap": true,
     "strictNullChecks": true,
     "target": "es2015",
-    "lib": ["es2018", "dom"],
+    "lib": ["es2018", "dom"]
   },
   "angularCompilerOptions": {
     "strictInjectionParameters": true,
-    "strictTemplates": true,
+    "strictTemplates": true
   }
 }
