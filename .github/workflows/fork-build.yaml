@@ -8,6 +8,7 @@ jobs:
       SENTRY_DRY_RUN: true
     name: build_angular
     runs-on: ubuntu-18.04
+    if: github.event.repository.fork
     steps:
       - name: actions_checkout
         uses: actions/checkout@v2.1.0
@@ -34,6 +35,7 @@ jobs:
   test:
     name: test_angular
     runs-on: ubuntu-18.04
+    if: github.event.repository.fork
     steps:
       - name: actions_checkout
         uses: actions/checkout@v2.1.0
@@ -68,6 +70,7 @@ jobs:
     name: analyze_angular
     needs: [build, test]
     runs-on: ubuntu-18.04
+    if: github.event.repository.fork
     steps:
       - name: actions_checkout
         uses: actions/checkout@v2.1.0
@@ -97,9 +100,9 @@ jobs:
           -Dsonar.projectKey=${{ github.event.pull_request.base.user.login }}_${{ github.event.pull_request.base.repo.name }}
         working-directory: ${{ env.WORKING_DIRECTORY }}
 
-name: build
+name: fork-build
 
 on:
   pull_request:
-    branches-ignore:
-      - master
+    branches:
+      - '**'
