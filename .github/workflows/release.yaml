@@ -27,11 +27,11 @@ jobs:
         working-directory: ${{ env.WORKING_DIRECTORY }}
       - if: startsWith(github.ref, 'refs/heads/main')
         name: npm_build_head
-        run: npm run build -- --configuration=DEV
+        run: npm run build -- --configuration=development
         working-directory: ${{ env.WORKING_DIRECTORY }}
       - if: startsWith(github.ref, 'refs/tags/')
         name: npm_build
-        run: npm run build -- --configuration=PROD
+        run: npm run build -- --configuration=production
         working-directory: ${{ env.WORKING_DIRECTORY }}
       - name: drop_upload
         uses: actions/upload-artifact@v1.0.0
