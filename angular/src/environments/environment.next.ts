@@ -1,8 +1,10 @@
+import { Environment } from '../environment';
 import * as manifest from '../../package.json';
+import * as config from '../../angular.json';
 
-export const environment = {
+export const environment: Environment = {
   config: 'app.config.json',
   name: 'DEV',
   production: true,
-  release: `rvtr-app-campsite@${manifest.version}`,
+  release: `${config.defaultProject}@${manifest.version}`,
 };
