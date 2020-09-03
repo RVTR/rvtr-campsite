@@ -28,8 +28,8 @@ describe('BookingService', () => {
     get(): Observable<Config> {
       const config: Config = {
         api: {
-          account: { base: 'test', uri: { account: '', profile: '', payment: '' } },
-          booking: { base: 'test', uri: { booking: '', stay: '' } },
+          account: { base: 'test', uri: { account: '', address: '', profile: '', payment: '' } },
+          booking: { base: 'test', uri: { booking: '' } },
           lodging: { base: 'test', uri: { lodging: '', rental: '', review: '' } },
           monitoring: 'test',
         },

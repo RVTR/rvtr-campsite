@@ -10,7 +10,6 @@ import { Booking } from '../../data/booking.model';
 })
 export class BookingService {
   private readonly bookingsUrl$: Observable<string>;
-  private readonly staysUrl$: Observable<string>;
 
   /**
    * Represents the _Booking Service_ `constructor` method
@@ -22,9 +21,6 @@ export class BookingService {
     const config$ = config.get();
     this.bookingsUrl$ = config$.pipe(
       map((cfg) => `${cfg.api.booking.base}${cfg.api.booking.uri.booking}`)
-    );
-    this.staysUrl$ = config$.pipe(
-      map((cfg) => `${cfg.api.booking.base}${cfg.api.booking.uri.stay}`)
     );
   }
 

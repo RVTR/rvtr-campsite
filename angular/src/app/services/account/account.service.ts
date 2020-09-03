@@ -11,6 +11,7 @@ import { PostPayment } from '../../data/payment.model';
 })
 export class AccountService {
   private readonly accountsUrl$: Observable<string>;
+  private readonly addressesUrl$: Observable<string>;
   private readonly profilesUrl$: Observable<string>;
   private readonly paymentsUrl$: Observable<string>;
 
@@ -24,6 +25,9 @@ export class AccountService {
     const config$ = config.get();
     this.accountsUrl$ = config$.pipe(
       map((cfg) => `${cfg.api.account.base}${cfg.api.account.uri.account}`)
+    );
+    this.addressesUrl$ = config$.pipe(
+      map((cfg) => `${cfg.api.account.base}${cfg.api.account.uri.address}`)
     );
     this.profilesUrl$ = config$.pipe(
       map((cfg) => `${cfg.api.account.base}${cfg.api.account.uri.profile}`)

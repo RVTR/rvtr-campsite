@@ -3,16 +3,16 @@
     "account": {
       "base": "http://localhost:8000/rest/account/0/",
       "uri": {
-        "account": "Account",
-        "profile": "Profile",
-        "payment": "Payment"
+        "account": "account",
+        "address": "address",
+        "profile": "profile",
+        "payment": "payment"
       }
     },
     "booking": {
       "base": "http://localhost:8001/rest/booking/0/",
       "uri": {
-        "booking": "booking",
-        "stay": "stay"
+        "booking": "booking"
       }
     },
     "lodging": {

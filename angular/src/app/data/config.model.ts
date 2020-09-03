@@ -14,6 +14,7 @@ export interface Config {
       base: string;
       uri: {
         account: string;
+        address: string;
         profile: string;
         payment: string;
       };
@@ -22,7 +23,6 @@ export interface Config {
       base: string;
       uri: {
         booking: string;
-        stay: string;
       };
     };
     lodging: {
