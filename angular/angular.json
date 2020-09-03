@@ -39,11 +39,11 @@
             "scripts": ["src/assets/js/main.js"]
           },
           "configurations": {
-            "development": {
+            "production": {
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.dev.ts"
+                  "with": "src/environments/environment.stable.ts"
                 }
               ],
               "optimization": true,
@@ -67,31 +67,19 @@
                 }
               ]
             },
-            "production": {
+            "stable": {
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "with": "src/environments/environment.stable.ts"
                 }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "budgets": [
+              ]
+            },
+            "next": {
+              "fileReplacements": [
                 {
-                  "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.next.ts"
                 }
               ]
             }
@@ -103,11 +91,14 @@
             "browserTarget": "rvtr-app-campsite:build"
           },
           "configurations": {
-            "development": {
-              "browserTarget": "rvtr-app-campsite:build:development"
-            },
             "production": {
               "browserTarget": "rvtr-app-campsite:build:production"
+            },
+            "stable": {
+              "browserTarget": "rvtr-app-campsite:build:stable"
+            },
+            "next": {
+              "browserTarget": "rvtr-app-campsite:build:next"
             }
           }
         },
@@ -148,11 +139,14 @@
             "devServerTarget": "rvtr-app-campsite:serve"
           },
           "configurations": {
-            "development": {
-              "devServerTarget": "rvtr-app-campsite:serve:development"
-            },
             "production": {
               "devServerTarget": "rvtr-app-campsite:serve:production"
+            },
+            "stable": {
+              "devServerTarget": "rvtr-app-campsite:serve:stable"
+            },
+            "next": {
+              "devServerTarget": "rvtr-app-campsite:serve:next"
             }
           }
         }
