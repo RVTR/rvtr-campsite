@@ -48,4 +48,9 @@ export class LodgingDetailsComponent implements OnInit {
       }
     });
   }
+
+  // Unsubscribes from the observable and stops the update interval
+  ngOnDestroy(){
+    this.update.unsubscribe();
+  }
 }
