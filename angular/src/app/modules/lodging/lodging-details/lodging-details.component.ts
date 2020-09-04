@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Lodging } from '../../../data/lodging.model';
 import { ActivatedRoute } from '@angular/router';
 import { LodgingService } from '../../../services/lodging/lodging.service';
+import { Subscription, interval } from 'rxjs';
 
 @Component({
   selector: 'uic-lodging-details',
@@ -12,6 +13,7 @@ export class LodgingDetailsComponent implements OnInit {
    * fields used in this component
    */
   lodging: Lodging | null = null;
+  update: Subscription = new Subscription();
 
   /**
    * provide activated route to get route parameters and lodging service to get lodging
@@ -28,6 +30,9 @@ export class LodgingDetailsComponent implements OnInit {
    */
   ngOnInit(): void {
     this.getLodgingById();
+
+    const timer = interval(1000);
+    this.update = timer.subscribe(x => this.getLodgingById());
   }
 
   /**
