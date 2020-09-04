@@ -98,7 +98,7 @@ describe('RentalComponent', () => {
       status: 'available',
       price: 100,
     };
-    const newRentals = rentals;
+    const newRentals = <Rental[]> JSON.parse(JSON.stringify(rentals));
     newRentals.push(rental);
     component.rentals = newRentals;
     component.ngOnChanges();
