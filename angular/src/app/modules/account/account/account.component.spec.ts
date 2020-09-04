@@ -1,6 +1,6 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { of, Observable } from 'rxjs';
 import { AccountComponent } from './account.component';
 import { Account } from '../../../data/account.model';
@@ -37,20 +37,22 @@ describe('AccountComponent', () => {
   let component: AccountComponent;
   let fixture: ComponentFixture<AccountComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [AccountComponent],
-      imports: [HttpClientTestingModule],
-      providers: [
-        {
-          provide: ACCOUNT_EDITING_SERVICE,
-          useValue: mockEditingService,
-        },
-        { provide: AccountService, useValue: accountServiceStub },
-      ],
-      schemas: [NO_ERRORS_SCHEMA],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [AccountComponent],
+        imports: [HttpClientTestingModule],
+        providers: [
+          {
+            provide: ACCOUNT_EDITING_SERVICE,
+            useValue: mockEditingService,
+          },
+          { provide: AccountService, useValue: accountServiceStub },
+        ],
+        schemas: [NO_ERRORS_SCHEMA],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AccountComponent);

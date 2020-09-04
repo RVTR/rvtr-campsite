@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { FormControl, FormsModule } from '@angular/forms';
 import { NewAddressFormComponent } from './new-address-form.component';
@@ -8,12 +8,14 @@ describe('NewAddressFormComponent', () => {
   let component: NewAddressFormComponent;
   let fixture: ComponentFixture<NewAddressFormComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [NewAddressFormComponent],
-      imports: [FormsModule],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [NewAddressFormComponent],
+        imports: [FormsModule],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(NewAddressFormComponent);

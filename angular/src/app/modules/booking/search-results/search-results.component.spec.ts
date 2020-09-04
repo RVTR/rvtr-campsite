@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { SearchResultsComponent } from './search-results.component';
 import { Lodging } from 'src/app/data/lodging.model';
 import { HttpClient } from '@angular/common/http';
@@ -54,16 +54,18 @@ describe('SearchResultsComponent', () => {
   let component: SearchResultsComponent;
   let fixture: ComponentFixture<SearchResultsComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
-      declarations: [SearchResultsComponent],
-      providers: [{ provide: BookingService, useValue: bookingService }],
-    }).compileComponents();
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [HttpClientTestingModule],
+        declarations: [SearchResultsComponent],
+        providers: [{ provide: BookingService, useValue: bookingService }],
+      }).compileComponents();
 
-    TestBed.inject(HttpClient);
-    TestBed.inject(HttpTestingController);
-  }));
+      TestBed.inject(HttpClient);
+      TestBed.inject(HttpTestingController);
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SearchResultsComponent);

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RentalComponent } from './rental.component';
 import { Rental } from 'src/app/data/rental.model';
 
@@ -41,16 +41,18 @@ describe('RentalComponent', () => {
     },
   ];
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [RentalComponent],
-    }).compileComponents();
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [RentalComponent],
+      }).compileComponents();
 
-    fixture = TestBed.createComponent(RentalComponent);
-    component = fixture.componentInstance;
-    component.rentals = rentals;
-    fixture.detectChanges();
-  }));
+      fixture = TestBed.createComponent(RentalComponent);
+      component = fixture.componentInstance;
+      component.rentals = rentals;
+      fixture.detectChanges();
+    })
+  );
 
   it('should create', () => {
     expect(component).toBeTruthy();

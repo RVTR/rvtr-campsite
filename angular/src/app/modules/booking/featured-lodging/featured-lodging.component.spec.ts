@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FeaturedLodgingComponent } from './featured-lodging.component';
 import { Lodging } from 'src/app/data/lodging.model';
 
@@ -38,11 +38,13 @@ describe('FeaturedLodgingComponent', () => {
     },
   ];
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [FeaturedLodgingComponent],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [FeaturedLodgingComponent],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(FeaturedLodgingComponent);

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BookingComponent } from './booking.component';
 import { LodgingService } from 'src/app/services/lodging/lodging.service';
 import { of, Observable } from 'rxjs';
@@ -55,14 +55,16 @@ describe('BookingComponent', () => {
     },
   };
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [BookingComponent],
-      imports: [HttpClientTestingModule, FormsModule],
-      providers: [{ provide: LodgingService, useValue: lodgingServiceStub }],
-      schemas: [NO_ERRORS_SCHEMA],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [BookingComponent],
+        imports: [HttpClientTestingModule, FormsModule],
+        providers: [{ provide: LodgingService, useValue: lodgingServiceStub }],
+        schemas: [NO_ERRORS_SCHEMA],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(BookingComponent);

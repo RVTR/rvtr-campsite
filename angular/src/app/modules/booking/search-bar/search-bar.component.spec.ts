@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { SearchBarComponent } from './search-bar.component';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { HttpClient } from '@angular/common/http';
@@ -97,19 +97,21 @@ describe('SearchBarComponent', () => {
   lodgingService.getAvailable.and.returnValue(of(lodgings));
   bookingService.getByDateRange.and.returnValue(of(bookings));
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, FormsModule],
-      declarations: [SearchBarComponent],
-      providers: [
-        { provide: LodgingService, useValue: lodgingService },
-        { provide: BookingService, useValue: bookingService },
-      ],
-    }).compileComponents();
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [HttpClientTestingModule, FormsModule],
+        declarations: [SearchBarComponent],
+        providers: [
+          { provide: LodgingService, useValue: lodgingService },
+          { provide: BookingService, useValue: bookingService },
+        ],
+      }).compileComponents();
 
-    TestBed.inject(HttpClient);
-    TestBed.inject(HttpTestingController);
-  }));
+      TestBed.inject(HttpClient);
+      TestBed.inject(HttpTestingController);
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SearchBarComponent);

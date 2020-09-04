@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NewPaymentFormComponent } from './new-payment-form.component';
 import { FormControl } from '@angular/forms';
 import { Payment } from 'src/app/data/payment.model';
@@ -7,11 +7,13 @@ describe('NewpaymentformComponent', () => {
   let component: NewPaymentFormComponent;
   let fixture: ComponentFixture<NewPaymentFormComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [NewPaymentFormComponent],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [NewPaymentFormComponent],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(NewPaymentFormComponent);

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { LodgingDetailsComponent } from './lodging-details.component';
 import { Lodging } from 'src/app/data/lodging.model';
 import { of } from 'rxjs';
@@ -28,31 +28,33 @@ describe('LodgingDetailsComponent', () => {
     reviews: [],
     bathrooms: 1,
   };
-  beforeEach(async(() => {
-    const lodgingService = jasmine.createSpyObj('LodgingService', ['getById']);
-    lodgingService.getById.and.returnValue(of(lodging));
+  beforeEach(
+    waitForAsync(() => {
+      const lodgingService = jasmine.createSpyObj('LodgingService', ['getById']);
+      lodgingService.getById.and.returnValue(of(lodging));
 
-    TestBed.configureTestingModule({
-      declarations: [LodgingDetailsComponent],
-      providers: [
-        { provide: LodgingService, useValue: lodgingService },
-        {
-          provide: ActivatedRoute,
-          useValue: {
-            paramMap: of({
-              get(id: string): string {
-                return '1';
-              },
-            }),
+      TestBed.configureTestingModule({
+        declarations: [LodgingDetailsComponent],
+        providers: [
+          { provide: LodgingService, useValue: lodgingService },
+          {
+            provide: ActivatedRoute,
+            useValue: {
+              paramMap: of({
+                get(id: string): string {
+                  return '1';
+                },
+              }),
+            },
           },
-        },
-      ],
-      schemas: [NO_ERRORS_SCHEMA],
-    }).compileComponents();
-    fixture = TestBed.createComponent(LodgingDetailsComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  }));
+        ],
+        schemas: [NO_ERRORS_SCHEMA],
+      }).compileComponents();
+      fixture = TestBed.createComponent(LodgingDetailsComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    })
+  );
   it('should create', () => {
     expect(component).toBeTruthy();
   });

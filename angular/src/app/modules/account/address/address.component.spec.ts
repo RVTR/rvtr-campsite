@@ -1,5 +1,5 @@
 import { of, Observable } from 'rxjs';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { AddressComponent } from './address.component';
 import { ACCOUNT_EDITING_SERVICE } from '../account-editing.token';
 import { Account } from '../../../data/account.model';
@@ -45,12 +45,14 @@ describe('AddressComponent', () => {
     editMode = false;
   }
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [AddressComponent, EditableStubComponent],
-      providers: [{ provide: ACCOUNT_EDITING_SERVICE, useValue: undefined }],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [AddressComponent, EditableStubComponent],
+        providers: [{ provide: ACCOUNT_EDITING_SERVICE, useValue: undefined }],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AddressComponent);

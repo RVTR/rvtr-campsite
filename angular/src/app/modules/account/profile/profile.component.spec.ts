@@ -1,5 +1,5 @@
 import { Component, Input, NO_ERRORS_SCHEMA } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { of, Observable } from 'rxjs';
 import { Account } from '../../../data/account.model';
 import { ProfileComponent } from './profile.component';
@@ -31,13 +31,15 @@ describe('ProfileComponent', () => {
     @Input() editMode = false;
   }
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ProfileComponent, EditableStubComponent],
-      providers: [{ provide: ACCOUNT_EDITING_SERVICE, useValue: editingService }],
-      schemas: [NO_ERRORS_SCHEMA],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [ProfileComponent, EditableStubComponent],
+        providers: [{ provide: ACCOUNT_EDITING_SERVICE, useValue: editingService }],
+        schemas: [NO_ERRORS_SCHEMA],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ProfileComponent);

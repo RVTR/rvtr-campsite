@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { LodgingComponent } from './lodging.component';
 import { of } from 'rxjs';
 import { Lodging } from 'src/app/data/lodging.model';
@@ -36,20 +36,22 @@ describe('LodgingComponent', () => {
   const lodgingService = jasmine.createSpyObj('LodgingService', ['get']);
   lodgingService.get.and.returnValue(of(lodgings));
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [LodgingComponent],
-      imports: [HttpClientTestingModule],
-      providers: [{ provide: LodgingService, useValue: lodgingService }],
-      schemas: [NO_ERRORS_SCHEMA],
-    }).compileComponents();
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [LodgingComponent],
+        imports: [HttpClientTestingModule],
+        providers: [{ provide: LodgingService, useValue: lodgingService }],
+        schemas: [NO_ERRORS_SCHEMA],
+      }).compileComponents();
 
-    fixture = TestBed.createComponent(LodgingComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+      fixture = TestBed.createComponent(LodgingComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
 
-    TestBed.inject(HttpTestingController);
-  }));
+      TestBed.inject(HttpTestingController);
+    })
+  );
 
   /**
    * tests the whole lodging component
