@@ -41,7 +41,7 @@
     "karma-sonarqube-unit-reporter": "0.0.21",
     "netlify-cli": "^2.59.3",
     "protractor": "~7.0.0",
-    "puppeteer": "~2.1.1",
+    "puppeteer": "^2.1.1",
     "sonarqube-scanner": "^2.7.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
