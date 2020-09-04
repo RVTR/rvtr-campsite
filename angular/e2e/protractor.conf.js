@@ -1,6 +1,7 @@
 // @ts-check
-process.env.CHROMIUM_BIN = require('puppeteer').executablePath();
+
 const { SpecReporter, StacktraceOption } = require('jasmine-spec-reporter');
+process.env.CHROMIUM_BIN = require('puppeteer').executablePath();
 
 /**
  * @type { import("protractor").Config }
@@ -11,13 +12,10 @@ exports.config = {
   capabilities: {
     browserName: 'chrome',
     chromeOptions: {
-      binary: process.env.CHROMIUM_BIN,
       args: ['--disable-gpu', '--headless'],
+      binary: `${process.env.CHROMIUM_BIN}${process.platform === 'win32' ? '.exe' : ''}`,
     },
   },
-  chromeDriver:
-    '../node_modules/protractor/node_modules/webdriver-manager/selenium/chromedriver_80.0.3987.106' +
-    (process.platform === 'win32' ? '.exe' : ''),
   directConnect: true,
   baseUrl: 'http://localhost:4200/',
   framework: 'jasmine',
