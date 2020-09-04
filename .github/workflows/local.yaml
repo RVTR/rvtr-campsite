@@ -7,12 +7,12 @@ jobs:
     env:
       SENTRY_DRY_RUN: true
     name: build_angular
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
       - name: actions_checkout
-        uses: actions/checkout@v2.1.0
+        uses: actions/checkout@v2.3.2
       - name: npm_cache
-        uses: actions/cache@v1.1.2
+        uses: actions/cache@v2.1.1
         with:
           path: ~/.npm
           key: ${{ env.CACHE_KEY_PREFIX }}-${{ hashFiles('**/package-lock.json') }}
@@ -28,19 +28,19 @@ jobs:
         run: npm run build
         working-directory: ${{ env.WORKING_DIRECTORY }}
       - name: drop_upload
-        uses: actions/upload-artifact@v1.0.0
+        uses: actions/upload-artifact@v2
         with:
           name: drop
           path: ${{ env.WORKING_DIRECTORY }}/dist/rvtr-app-campsite
 
   test:
     name: test_angular
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
       - name: actions_checkout
-        uses: actions/checkout@v2.1.0
+        uses: actions/checkout@v2.3.2
       - name: npm_cache
-        uses: actions/cache@v1.1.2
+        uses: actions/cache@v2.1.1
         with:
           path: ~/.npm
           key: ${{ env.CACHE_KEY_PREFIX }}-${{ hashFiles('**/package-lock.json') }}
@@ -54,12 +54,12 @@ jobs:
         run: npm run e2e
         working-directory: ${{ env.WORKING_DIRECTORY }}
       - name: lcov_upload
-        uses: actions/upload-artifact@v1.0.0
+        uses: actions/upload-artifact@v2
         with:
           name: code_coverage
           path: ${{ env.WORKING_DIRECTORY }}/code_coverage
       - name: report_upload
-        uses: actions/upload-artifact@v1.0.0
+        uses: actions/upload-artifact@v2
         with:
           name: test_coverage
           path: ${{ env.WORKING_DIRECTORY }}/test_coverage
@@ -67,24 +67,24 @@ jobs:
   analyze:
     name: analyze_angular
     needs: [build, test]
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
       - name: actions_checkout
-        uses: actions/checkout@v2.1.0
+        uses: actions/checkout@v2.3.2
       - name: git_fetch
         run: git fetch --unshallow
       - name: lcov_download
-        uses: actions/download-artifact@v1.0.0
+        uses: actions/download-artifact@v2
         with:
           name: code_coverage
           path: ${{ env.WORKING_DIRECTORY }}/code_coverage
       - name: report_download
-        uses: actions/download-artifact@v1.0.0
+        uses: actions/download-artifact@v2
         with:
           name: test_coverage
           path: ${{ env.WORKING_DIRECTORY }}/test_coverage
       - name: npm_cache
-        uses: actions/cache@v1.1.2
+        uses: actions/cache@v2.1.1
         with:
           path: ~/.npm
           key: ${{ env.CACHE_KEY_PREFIX }}-${{ hashFiles('**/package-lock.json') }}
