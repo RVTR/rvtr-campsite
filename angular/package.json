@@ -1,7 +1,7 @@
 {
   "author": "fred belotte",
   "license": "MIT",
-  "name": "@rvtr/rvtr-app-campsite",
+  "name": "@rvtrx/campground",
   "private": true,
   "version": "0.6.0",
   "dependencies": {
@@ -39,9 +39,9 @@
     "karma-jasmine": "~3.3.0",
     "karma-jasmine-html-reporter": "^1.5.0",
     "karma-sonarqube-unit-reporter": "0.0.21",
-    "netlify-cli": "^2.59.3",
+    "netlify-cli": "^2.61.0",
     "protractor": "~7.0.0",
-    "puppeteer": "~2.1.1",
+    "puppeteer": "^5.2.1",
     "sonarqube-scanner": "^2.7.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
@@ -53,7 +53,6 @@
     "e2e": "ng e2e",
     "lint": "ng lint",
     "start": "ng serve",
-    "test": "ng test --code-coverage",
-    "postinstall": "webdriver-manager update --versions.chrome 80.0.3987.106 --standalone false --gecko false"
+    "test": "ng test --code-coverage"
   }
 }
