@@ -98,11 +98,19 @@ describe('RentalComponent', () => {
       status: 'available',
       price: 100,
     };
-    const newRentals = <Rental[]> JSON.parse(JSON.stringify(rentals));
+    const newRentals = JSON.parse(JSON.stringify(rentals)) as Rental[];
     newRentals.push(rental);
     component.rentals = newRentals;
     component.ngOnChanges();
     expect(component.availabilityCount.get('tent')).toEqual(3);
+  });
+
+  it('should remove rental', () => {
+    const newRentals = JSON.parse(JSON.stringify(rentals)) as Rental[];
+    newRentals.splice(0, 1);
+    component.rentals = newRentals;
+    component.ngOnChanges();
+    expect(component.availabilityCount.get('tent')).toEqual(1);
   });
 
 });

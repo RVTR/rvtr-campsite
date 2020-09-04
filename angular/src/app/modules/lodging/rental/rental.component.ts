@@ -1,7 +1,7 @@
 /**
  * importing the necessary modules, services and models.
  */
-import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, OnChanges } from '@angular/core';
 import { Rental } from '../../../data/rental.model';
 
 /**
@@ -16,7 +16,7 @@ import { Rental } from '../../../data/rental.model';
 /**
  * This class represents the Rental component
  */
-export class RentalComponent implements OnInit {
+export class RentalComponent implements OnInit, OnChanges {
   /**
    * rentals taken from the lodging-details lodging.rentals
    */
@@ -35,7 +35,7 @@ export class RentalComponent implements OnInit {
   }
 
   // Whenever changes are made in the @Input, rerun setRentalTypes again to update the information
-  ngOnChanges(changes?: SimpleChanges){
+  ngOnChanges(changes?: SimpleChanges): void{
     this.setRentalTypes(this.rentals);
   }
 
