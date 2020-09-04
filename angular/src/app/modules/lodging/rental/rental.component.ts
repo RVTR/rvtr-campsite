@@ -35,7 +35,7 @@ export class RentalComponent implements OnInit {
   }
 
   // Whenever changes are made in the @Input, rerun setRentalTypes again to update the information
-  ngOnChanges(changes: SimpleChanges){
+  ngOnChanges(changes?: SimpleChanges){
     this.setRentalTypes(this.rentals);
   }
 
