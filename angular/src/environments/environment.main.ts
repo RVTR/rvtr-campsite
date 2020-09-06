@@ -1,4 +1,4 @@
-import { Environment } from '../environment';
+import { Environment } from './data/environment.model';
 import * as manifest from '../../package.json';
 import * as config from '../../angular.json';
 
@@ -11,7 +11,7 @@ export const environment: Environment = {
     redirectUri: `${location.protocol}//${location.host}/oauth2/authorize`,
     scopes: ['openid', 'profile', 'email'],
   },
-  name: 'PROD',
+  name: 'DEV',
   production: true,
   release: `${config.defaultProject}@${manifest.version}`,
 };

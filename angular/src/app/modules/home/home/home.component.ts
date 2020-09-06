@@ -8,7 +8,7 @@ import { from, Observable } from 'rxjs';
   styleUrls: [],
 })
 export class HomeComponent implements OnInit {
-  isAuthenticated$!: Observable<boolean>;
+  isAuthenticated$: Observable<boolean>;
 
   constructor(private readonly identity: OktaAuthService) {
     this.isAuthenticated$ = identity.$authenticationState;

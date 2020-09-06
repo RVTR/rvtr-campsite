@@ -31,7 +31,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: drop
-          path: ${{ env.WORKING_DIRECTORY }}/dist/rvtr-app-campsite
+          path: ${{ env.WORKING_DIRECTORY }}/dist/rvtrx-campground
 
   test:
     name: test_angular

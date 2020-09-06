@@ -1,6 +1,8 @@
+import { Environment } from './data/environment.model';
 import * as manifest from '../../package.json';
+import * as config from '../../angular.json';
 
-export const environment = {
+export const environment: Environment = {
   config: 'app.config.json',
   identity: {
     clientId: '0oa5empza950mqdtw357',
@@ -9,7 +11,7 @@ export const environment = {
     redirectUri: `${location.protocol}//${location.host}/oauth2/authorize`,
     scopes: ['openid', 'profile', 'email'],
   },
-  name: 'DEV',
+  name: 'PROD',
   production: true,
-  release: `rvtr-app-campsite@${manifest.version}`,
+  release: `${config.defaultProject}@${manifest.version}`,
 };
