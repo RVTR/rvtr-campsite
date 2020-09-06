@@ -1,13 +1,12 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { OktaAuthService, OKTA_CONFIG } from '@okta/okta-angular';
 import { of } from 'rxjs';
-
 import { HomeComponent } from './home.component';
 
 describe('HomeComponent', () => {
   const oktaAuthServiceMock = {
     $authenticateState: of(false),
-    isAuthenticated() {
+    isAuthenticated(): Promise<boolean> {
       return new Promise<boolean>(() => {
         return false;
       });

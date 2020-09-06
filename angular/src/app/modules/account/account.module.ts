@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { AccountRoutingModule } from './account-routing.module';
+import { AccountRoutingModule } from '@modules/account/account-routing.module';
 
 @NgModule({
   imports: [AccountRoutingModule],

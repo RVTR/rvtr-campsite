@@ -13,7 +13,10 @@
     "noImplicitReturns": true,
     "outDir": "./dist/out-tsc",
     "paths": {
-      "@environment": ["src/environments/environment"]
+      "@environment": ["src/environments/environment"],
+      "@data/*": ["src/app/data/*"],
+      "@modules/*": ["src/app/modules/*"],
+      "@services/*": ["src/app/services/*"]
     },
     "resolveJsonModule": true,
     "sourceMap": true,

@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
+import { GenericEditingService } from '@services/editable/generic-editing.service';
 import { AccountComponent } from './account/account.component';
 import { AccountBookingComponent } from './account-booking/account-booking.component';
 import { AddressComponent } from './address/address.component';
@@ -10,9 +12,7 @@ import { AccountReviewComponent } from './account-review/account-review.componen
 import { NewAddressFormComponent } from './new-address-form/new-address-form.component';
 import { NewPaymentFormComponent } from './new-payment-form/new-payment-form.component';
 import { EditableComponent } from './editable/editable.component';
-import { ReactiveFormsModule } from '@angular/forms';
 import { ACCOUNT_EDITING_SERVICE } from './account-editing.token';
-import { GenericEditingService } from 'src/app/services/editable/generic-editing.service';
 
 const routes: Routes = [{ component: AccountComponent, path: '' }];
 

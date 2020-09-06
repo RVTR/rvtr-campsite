@@ -1,14 +1,14 @@
 import { Component, OnInit, Inject } from '@angular/core';
+import { Account } from '@data/account.model';
+import { Address } from '@data/address.model';
+import { Booking } from '@data/booking.model';
+import { Payment } from '@data/payment.model';
+import { Profile } from '@data/profile.model';
+import { Review } from '@data/review.model';
+import { AccountService } from '@services/account/account.service';
+import { GenericEditingService } from '@services/editable/generic-editing.service';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Account } from 'src/app/data/account.model';
-import { Address } from 'src/app/data/address.model';
-import { Booking } from 'src/app/data/booking.model';
-import { Payment } from 'src/app/data/payment.model';
-import { Profile } from 'src/app/data/profile.model';
-import { Review } from 'src/app/data/review.model';
-import { AccountService } from 'src/app/services/account/account.service';
-import { GenericEditingService } from 'src/app/services/editable/generic-editing.service';
 import { ACCOUNT_EDITING_SERVICE } from '../account-editing.token';
 
 @Component({
