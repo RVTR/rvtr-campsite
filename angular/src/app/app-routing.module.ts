@@ -1,7 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { OktaCallbackComponent } from '@okta/okta-angular';
 
 const routes: Routes = [
+  {
+    component: OktaCallbackComponent,
+    path: 'oauth2/authorize',
+  },
   {
     loadChildren: () => import('./modules/home/home.module').then((module) => module.HomeModule),
     path: '',

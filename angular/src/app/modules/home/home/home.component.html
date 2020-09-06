@@ -7,6 +7,18 @@
       <p class="subtitle is-3 is-italic">
         for your next adventure, camp with us!
       </p>
+
+      <div>
+        <div *ngIf="!(isAuthenticated$ | async); then thenBlock else elseBlock"></div>
+
+        <ng-template #thenBlock>
+          <button (click)="signIn()" class="button">Sign In</button>
+        </ng-template>
+
+        <ng-template #elseBlock>
+          <button (click)="signOut()" class="button">Sign Out</button>
+        </ng-template>
+      </div>
     </div>
   </div>
 </section>
