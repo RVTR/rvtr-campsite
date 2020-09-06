@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { OktaCallbackComponent } from '@okta/okta-angular';
+import { OktaAuthGuard, OktaCallbackComponent } from '@okta/okta-angular';
 
 const routes: Routes = [
   {
@@ -8,18 +8,20 @@ const routes: Routes = [
     path: 'oauth2/authorize',
   },
   {
-    loadChildren: () => import('@modules/home/home.module').then((module) => module.HomeModule),
-    path: '',
-  },
-  {
+    canActivate: [OktaAuthGuard],
     loadChildren: () =>
       import('@modules/account/account.module').then((module) => module.AccountModule),
     path: 'account',
   },
   {
+    canActivate: [OktaAuthGuard],
     loadChildren: () =>
       import('@modules/booking/booking.module').then((module) => module.BookingModule),
     path: 'booking',
+  },
+  {
+    loadChildren: () => import('@modules/home/home.module').then((module) => module.HomeModule),
+    path: '',
   },
   {
     loadChildren: () =>
