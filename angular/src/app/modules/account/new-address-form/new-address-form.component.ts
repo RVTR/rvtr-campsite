@@ -89,7 +89,6 @@ export class NewAddressFormComponent implements OnInit {
       id: '',
     } as Address;
     this.newAddress.emit(payload);
-    console.warn(this.AddressForm.value);
   }
 
   ngOnInit(): void {}

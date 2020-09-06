@@ -9,7 +9,7 @@
       </p>
 
       <div>
-        <div *ngIf="!(isAuthenticated$ | async); then thenBlock else elseBlock"></div>
+        <div *ngIf="(isAuthenticated$ | async) === false; then thenBlock else elseBlock"></div>
 
         <ng-template #thenBlock>
           <button (click)="signIn()" class="button">Sign In</button>

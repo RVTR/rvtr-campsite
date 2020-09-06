@@ -36,8 +36,6 @@ export class SearchResultsComponent {
   }
 
   makeReservation(lodging: Lodging): void {
-    alert(`Reserved: ${lodging.name}`);
-
     this.reservation = {
       id: '1',
       lodgingId: lodging.id,

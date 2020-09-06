@@ -1,4 +1,4 @@
-import { Environment } from './data/environment.model';
+import { Environment } from './types/environment.type';
 import * as manifest from '../../package.json';
 import * as config from '../../angular.json';
 

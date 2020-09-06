@@ -1,6 +1,6 @@
 export interface Environment {
   readonly config: string;
-  readonly identity: any;
+  readonly identity: object;
   readonly name: string;
   readonly production: boolean;
   readonly release: string;

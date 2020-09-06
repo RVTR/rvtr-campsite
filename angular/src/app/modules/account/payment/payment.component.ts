@@ -36,6 +36,5 @@ export class PaymentComponent {
         }),
       (e) => console.error(e)
     );
-    console.log(newCard);
   }
 }
