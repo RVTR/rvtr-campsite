@@ -7,7 +7,9 @@ and this project adheres to [Semantic Versioning][semver].
 
 ## [unreleased]
 
-- launch the account component and service
+### added
+
+- configure the project definition to support identity management
 
 ## [0.5.0] :: 2020-06-24
 
