@@ -49,10 +49,11 @@
     "typescript": "~3.9.7"
   },
   "scripts": {
-    "scan": "sonar-scanner",
     "build": "ng build",
     "e2e": "ng e2e",
+    "format": "npx prettier --config ../.prettierrc.yaml --check ./ --ignore-path ../.prettierignore",
     "lint": "ng lint",
+    "scan": "sonar-scanner",
     "start": "ng serve",
     "test": "ng test --code-coverage"
   }

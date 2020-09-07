@@ -3,7 +3,10 @@ env:
   WORKING_DIRECTORY: angular
 
 jobs:
-  build:
+  build_angular:
+    defaults:
+      run:
+        working-directory: ${{ env.WORKING_DIRECTORY }}
     env:
       SENTRY_DRY_RUN: true
     name: build_angular
@@ -18,22 +21,22 @@ jobs:
           key: ${{ env.CACHE_KEY_PREFIX }}-${{ hashFiles('**/package-lock.json') }}
       - name: npm_install
         run: npm clean-install
-        working-directory: ${{ env.WORKING_DIRECTORY }}
-      - name: prettier
-        run: npx prettier --check ${{ env.WORKING_DIRECTORY }}
+      - name: npm_format
+        run: npm run format
       - name: npm_lint
         run: npm run lint
-        working-directory: ${{ env.WORKING_DIRECTORY }}
       - name: npm_build
         run: npm run build
-        working-directory: ${{ env.WORKING_DIRECTORY }}
       - name: drop_upload
         uses: actions/upload-artifact@v2
         with:
           name: drop
           path: ${{ env.WORKING_DIRECTORY }}/dist/rvtrx-campground
 
-  test:
+  test_angular:
+    defaults:
+      run:
+        working-directory: ${{ env.WORKING_DIRECTORY }}
     name: test_angular
     runs-on: ubuntu-20.04
     steps:
@@ -46,13 +49,10 @@ jobs:
           key: ${{ env.CACHE_KEY_PREFIX }}-${{ hashFiles('**/package-lock.json') }}
       - name: npm_install
         run: npm clean-install
-        working-directory: ${{ env.WORKING_DIRECTORY }}
       - name: npm_test
         run: npm run test
-        working-directory: ${{ env.WORKING_DIRECTORY }}
       - name: npm_e2e
         run: npm run e2e
-        working-directory: ${{ env.WORKING_DIRECTORY }}
       - name: lcov_upload
         uses: actions/upload-artifact@v2
         with:
@@ -64,9 +64,12 @@ jobs:
           name: test_coverage
           path: ${{ env.WORKING_DIRECTORY }}/test_coverage
 
-  analyze:
+  analyze_angular:
+    defaults:
+      run:
+        working-directory: ${{ env.WORKING_DIRECTORY }}
     name: analyze_angular
-    needs: [build, test]
+    needs: [build_angular, test_angular]
     runs-on: ubuntu-20.04
     steps:
       - name: actions_checkout
@@ -90,10 +93,8 @@ jobs:
           key: ${{ env.CACHE_KEY_PREFIX }}-${{ hashFiles('**/package-lock.json') }}
       - name: npm_install
         run: npm clean-install
-        working-directory: ${{ env.WORKING_DIRECTORY }}
       - name: npm_scan
         run: npm run scan
-        working-directory: ${{ env.WORKING_DIRECTORY }}
 
 name: build
 
