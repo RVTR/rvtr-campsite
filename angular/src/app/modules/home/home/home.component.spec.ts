@@ -11,8 +11,8 @@ describe('HomeComponent', () => {
         return false;
       });
     },
-    loginRedirect(path: string) {},
-    logout() {},
+    loginRedirect(path: string): void {},
+    logout(): void {},
   };
 
   let component: HomeComponent;
@@ -38,14 +38,14 @@ describe('HomeComponent', () => {
   });
 
   it('should sign in', () => {
-    let loginSpy = spyOn(oktaAuthServiceMock, 'loginRedirect');
+    const loginSpy = spyOn(oktaAuthServiceMock, 'loginRedirect');
 
     component.signIn();
     expect(loginSpy).toHaveBeenCalled();
   });
 
   it('should sign out', () => {
-    let logoutSpy = spyOn(oktaAuthServiceMock, 'logout');
+    const logoutSpy = spyOn(oktaAuthServiceMock, 'logout');
 
     component.signOut();
     expect(logoutSpy).toHaveBeenCalled();
