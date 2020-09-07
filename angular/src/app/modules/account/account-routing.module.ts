@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { GenericEditingService } from '@services/editable/generic-editing.service';
+import { GenericEditingService } from 'services/editable/generic-editing.service';
 import { AccountComponent } from './account/account.component';
 import { AccountBookingComponent } from './account-booking/account-booking.component';
 import { AddressComponent } from './address/address.component';

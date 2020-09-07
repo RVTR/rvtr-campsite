@@ -10,22 +10,22 @@ const routes: Routes = [
   {
     canActivate: [OktaAuthGuard],
     loadChildren: () =>
-      import('@modules/account/account.module').then((module) => module.AccountModule),
+      import('modules/account/account.module').then((module) => module.AccountModule),
     path: 'account',
   },
   {
     canActivate: [OktaAuthGuard],
     loadChildren: () =>
-      import('@modules/booking/booking.module').then((module) => module.BookingModule),
+      import('modules/booking/booking.module').then((module) => module.BookingModule),
     path: 'booking',
   },
   {
-    loadChildren: () => import('@modules/home/home.module').then((module) => module.HomeModule),
+    loadChildren: () => import('modules/home/home.module').then((module) => module.HomeModule),
     path: '',
   },
   {
     loadChildren: () =>
-      import('@modules/lodging/lodging.module').then((module) => module.LodgingModule),
+      import('modules/lodging/lodging.module').then((module) => module.LodgingModule),
     path: 'lodging',
   },
 ];
