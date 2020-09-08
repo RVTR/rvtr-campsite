@@ -35,7 +35,7 @@ export class RentalComponent implements OnInit, OnChanges {
   }
 
   // Whenever changes are made in the @Input, rerun setRentalTypes again to update the information
-  ngOnChanges(changes?: SimpleChanges): void{
+  ngOnChanges(changes?: SimpleChanges): void {
     this.setRentalTypes(this.rentals);
   }
 
@@ -61,5 +61,4 @@ export class RentalComponent implements OnInit, OnChanges {
       this.availabilityCount.set(rental.type, count);
     }
   }
-
 }

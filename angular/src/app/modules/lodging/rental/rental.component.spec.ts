@@ -112,5 +112,4 @@ describe('RentalComponent', () => {
     component.ngOnChanges();
     expect(component.availabilityCount.get('tent')).toEqual(1);
   });
-
 });
