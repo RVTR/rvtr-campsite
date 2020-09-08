@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { concatMap, map } from 'rxjs/operators';
 import { ConfigService } from '../config/config.service';
 import { Lodging } from '../../data/lodging.model';
+import { Filter } from 'data/filter.model';
 
 @Injectable({
   providedIn: 'root',
@@ -47,6 +48,30 @@ export class LodgingService {
   }
 
   /**
+   * Represents the _Lodging Service_ `get` method
+   *
+   * @param id string
+   */
+  get(filter?: Filter): Observable<Lodging[]> {
+    const opts = filter ? { params: new HttpParams()} : {};
+    if (filter){
+      if (opts.params){
+        if (filter.city){
+          opts.params.set('city', filter.city);
+        }
+        if (filter.occupancy){
+          opts.params.set('occupancy', filter.occupancy);
+        }
+      }
+    }
+    
+    return this.lodgingsUrl$.pipe(concatMap((url) => this.http.get<Lodging[]>(url, opts)));
+  }
+
+  /* const options = filter ? { params: new HttpParams().set('filter', filter) } : {};
+  return this.lodgingsUrl$.pipe(concatMap((url) => this.http.get<Lodging[]>(url, options))); */
+
+  /**
    * Represents the _Lodging Service_ `delete` method
    *
    * @param id string
@@ -55,16 +80,6 @@ export class LodgingService {
     return this.lodgingsUrl$.pipe(
       concatMap((url) => this.http.delete<boolean>(url, { params: { id } }))
     );
-  }
-
-  /**
-   * Represents the _Lodging Service_ `get` method
-   *
-   * @param id string
-   */
-  get(filter?: string): Observable<Lodging[]> {
-    const options = filter ? { params: new HttpParams().set('filter', filter) } : {};
-    return this.lodgingsUrl$.pipe(concatMap((url) => this.http.get<Lodging[]>(url, options)));
   }
 
   /**

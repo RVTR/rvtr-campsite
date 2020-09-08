@@ -4,6 +4,7 @@ import { forkJoin } from 'rxjs';
 import { BookingService } from 'src/app/services/booking/booking.service';
 import { Lodging } from '../../../data/lodging.model';
 import { LodgingService } from '../../../services/lodging/lodging.service';
+import { Filter } from 'data/filter.model';
 
 @Component({
   selector: 'uic-search-bar',
@@ -28,7 +29,9 @@ export class SearchBarComponent {
     const checkIn: string = form.value.checkin;
     const checkOut: string = form.value.checkout;
 
-    const lodgings$ = this.lodgingService.getAvailable(city, occupancy);
+    let filter: Filter = {city: city, occupancy: occupancy};
+
+    const lodgings$ = this.lodgingService.get(filter);
     const bookings$ = this.bookingService.getByDateRange(checkIn, checkOut);
 
     forkJoin([lodgings$, bookings$]).subscribe(([lodgings, bookings]) => {
