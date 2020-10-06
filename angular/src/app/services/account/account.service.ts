@@ -60,6 +60,18 @@ export class AccountService {
       concatMap((url) => this.http.get<Account>(url))
     );
   }
+  /**
+   * Represents the _Account Service_ `getbyemail` method
+   *
+   * @param email string
+   */
+  getByEmail(email: string): Observable<Account> {
+    return this.profilesUrl$.pipe(
+      map((url) => url.concat(`/email/${email}`)),
+      concatMap((url) => this.http.get<Account>(url))
+    );
+  }
+
 
   /**
    * Represents the _Account Service_ `post` method
