@@ -72,7 +72,6 @@ export class AccountService {
     );
   }
 
-
   /**
    * Represents the _Account Service_ `post` method
    *
