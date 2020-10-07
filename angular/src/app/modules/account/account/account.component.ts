@@ -34,9 +34,8 @@ export class AccountComponent {
     editingService: GenericEditingService<Partial<Account>>
   ) {
     this.account$ = this.accountService.get(this.id);
-
-    this.bookings$ = this.bookingService.get(this.id);
-
+    this.account$.subscribe(account => this.accountId = account.id);
+    this.bookings$ = this.bookingService.get(this.accountId);
     this.reviews$ = of([
       // Not yet implemented
     ]);
