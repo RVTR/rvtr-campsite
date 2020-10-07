@@ -1,4 +1,5 @@
 import { Component, Inject } from '@angular/core';
+import { EmailValidator } from '@angular/forms';
 import { Account } from 'data/account.model';
 import { Address } from 'data/address.model';
 import { Booking } from 'data/booking.model';
@@ -25,18 +26,22 @@ export class AccountComponent {
   reviews$: Observable<Review[]>;
 
   private readonly id = '-1';
-  accountId = this.id;
-
+  cookie = document.cookie.split("; ").find(row => row.startsWith("email"));
+  email = "";//this is the email taken from the token defaults to empty if it doesnt exist for now ask fred about it later
   constructor(
     private readonly accountService: AccountService,
     private readonly bookingService: BookingService,
     @Inject(ACCOUNT_EDITING_SERVICE)
     editingService: GenericEditingService<Partial<Account>>
   ) {
-    this.account$ = this.accountService.get(this.id);
-
+    if(this.cookie != null)
+    {
+      this.email = this.cookie.split("=")[1];
+    }
+    this.account$ = this.accountService.get(this.email);
     this.bookings$ = this.bookingService.get(this.id);
-
+    
+    
     this.reviews$ = of([
       // Not yet implemented
     ]);
@@ -48,6 +53,7 @@ export class AccountComponent {
     this.account$.subscribe((e) => editingService.update(e));
     // Register function for Payload release from editing service
     editingService.payloadEmitter.subscribe((val) => this.update(val as Account));
+    
   }
 
   /**

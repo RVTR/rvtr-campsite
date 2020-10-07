@@ -52,22 +52,11 @@ export class AccountService {
   /**
    * Represents the _Account Service_ `get` method
    *
-   * @param id string
-   */
-  get(id: string): Observable<Account> {
-    return this.accountsUrl$.pipe(
-      map((url) => url.concat(`/${id}`)),
-      concatMap((url) => this.http.get<Account>(url))
-    );
-  }
-  /**
-   * Represents the _Account Service_ `getbyemail` method
-   *
    * @param email string
    */
-  getByEmail(email: string): Observable<Account> {
-    return this.profilesUrl$.pipe(
-      map((url) => url.concat(`/email/${email}`)),
+  get(email: string): Observable<Account> {
+    return this.accountsUrl$.pipe(
+      map((url) => url.concat(`/${email}`)),
       concatMap((url) => this.http.get<Account>(url))
     );
   }

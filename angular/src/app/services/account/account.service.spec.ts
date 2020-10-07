@@ -15,6 +15,7 @@ import { PostPayment } from 'src/app/data/payment.model';
 describe('AccountService', () => {
   const accountMock: Account = {
     id: '0',
+    email: 'testemail@something.com',
     address: {
       id: 'string',
       city: 'string',
@@ -36,7 +37,7 @@ describe('AccountService', () => {
       {
         type: 'adult',
         id: 'string',
-        email: 'string',
+        email: 'testemail@something.com',
         familyName: 'string',
         givenName: 'string',
         phone: 'string',
@@ -108,13 +109,13 @@ describe('AccountService', () => {
   it('should make httpGet request', fakeAsync(() => {
     let req: TestRequest;
 
-    service.get('0').subscribe((res) => {
+    service.get('testemail@something.com').subscribe((res) => {
       expect(res).toEqual(accountMock);
     });
 
     tick();
 
-    req = httpTestingController.expectOne('test/0');
+    req = httpTestingController.expectOne('test/testemail@something.com');
     req.flush(accountMock);
   }));
 
