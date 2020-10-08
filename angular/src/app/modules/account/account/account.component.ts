@@ -1,3 +1,4 @@
+import { IfStmt } from '@angular/compiler';
 import { Component, Inject } from '@angular/core';
 import { Account } from 'data/account.model';
 import { Address } from 'data/address.model';
@@ -25,7 +26,7 @@ export class AccountComponent {
   reviews$: Observable<Review[]>;
 
   private readonly id = '-1';
-  accountId = this.id;
+  accountId = this.id;//this makes the default account id -1 so I can test this whether or not the account loads properly
 
   constructor(
     private readonly accountService: AccountService,
@@ -34,8 +35,8 @@ export class AccountComponent {
     editingService: GenericEditingService<Partial<Account>>
   ) {
     this.account$ = this.accountService.get(this.id);
-    this.account$.subscribe(account => this.accountId = account.id);
-    this.bookings$ = this.bookingService.get(this.accountId);
+    this.account$.subscribe(account => this.accountId = account.id);//this will cause a second http request since each subscribe on an observable will make a seperate call
+    this.bookings$ = this.bookingService.getAccountBookings(this.accountId);
     this.reviews$ = of([
       // Not yet implemented
     ]);
