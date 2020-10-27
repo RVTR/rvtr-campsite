@@ -17,6 +17,7 @@
     "@okta/okta-angular": "^2.2.1",
     "@sentry/angular": "^5.26.0",
     "bulma": "^0.9.1",
+    "ngx-toastr": "^13.1.0",
     "rxjs": "~6.6.2",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"
