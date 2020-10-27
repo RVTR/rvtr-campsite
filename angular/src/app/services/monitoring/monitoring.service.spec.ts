@@ -26,7 +26,6 @@ describe('MonitorService', () => {
     expect(() => {
       service.handleError(null);
     }).not.toThrow();
-
     tick();
   }));
 });
