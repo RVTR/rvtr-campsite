@@ -33,8 +33,8 @@
         <div class="dropdown-menu" id="this-dropdown-tooltip" role="menu">
           <div class="dropdown-content">
             <div class="dropdown-item">
-              <p *ngIf = "lotAvailableStringsByLodgingId.get(lodging.id).length == 0">No current lots</p>
-              <span *ngIf = "lotAvailableStringsByLodgingId.get(lodging.id).length > 0">
+              <p *ngIf = "lotAvailableStringsByLodgingId.get(lodging.id) == undefined">No current lots</p>
+              <span *ngIf = "lotAvailableStringsByLodgingId.get(lodging.id) != undefined">
                 Lot Availability:
                 <ul *ngFor = "let thisLotString of lotAvailableStringsByLodgingId.get(lodging.id)">
                   {{thisLotString}}
