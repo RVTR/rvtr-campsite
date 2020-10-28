@@ -33,11 +33,11 @@
         <div class="dropdown-menu" id="this-dropdown-tooltip" role="menu">
           <div class="dropdown-content">
             <div class="dropdown-item">
-              <p *ngIf = "lodging.rentals.length == 0">No current lots</p>
-              <span *ngIf = "lodging.rentals.length > 0">
-                Availability:
-                <ul *ngFor = "let thisRental of lodging.rentals">
-                  Lot {{thisRental.lotNumber}}: {{thisRental.status}}
+              <p *ngIf = "lotAvailableStringsByLodgingId.get(lodging.id).length == 0">No current lots</p>
+              <span *ngIf = "lotAvailableStringsByLodgingId.get(lodging.id).length > 0">
+                Lot Availability:
+                <ul *ngFor = "let thisLotString of lotAvailableStringsByLodgingId.get(lodging.id)">
+                  {{thisLotString}}
                 </ul>
               </span>
             </div>
