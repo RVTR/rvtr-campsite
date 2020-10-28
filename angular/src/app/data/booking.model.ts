@@ -17,7 +17,7 @@ import { Rental } from './rental.model';
 export interface Booking {
   id: string;
   /** account associated with the reservation */
-  accountId: string;
+  accountId: number;
   /** lodging that was reserved */
   lodgingId: number;
   /** people the account owner has reserved the site with */
