@@ -5,7 +5,7 @@ import { LodgingService } from '../../../services/lodging/lodging.service';
 import { Review } from 'data/review.model';
 import * as moment from 'moment';
 import { Profile } from 'data/profile.model';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'uic-lodging-details',
@@ -16,9 +16,9 @@ export class LodgingDetailsComponent implements OnInit {
    * fields used in this component
    */
   lodging: Lodging | null = null;
-  review: Review;
   profile: Profile;
   Comment: FormGroup;
+  moment = moment;
 
   /**
    * provide activated route to get route parameters and lodging service to get lodging
@@ -30,31 +30,20 @@ export class LodgingDetailsComponent implements OnInit {
     private readonly lodgingService: LodgingService
   ) {
 
-
     this.Comment = new FormGroup({
-      score: new FormControl(''),
-      message: new FormControl(''),
+      score: new FormControl('', [Validators.required]),
+      message: new FormControl('', [Validators.required]),
     })
 
     //Populating the profile with dummy data
     this.profile = {
-      id: "1",
+      id: 1,
       email: "Email@email.com",
       type: "adult",
       givenName: "Guy",
       familyName: "Ferri",
       phone: "111-111-1111"
     }
-    
-    //Populating the review with empty values
-    this.review = {
-      id: "",
-      name: "",
-      comment: "",
-      dateCreated: "",
-      rating: 0
-    };
-
   }
 
   /**
@@ -73,7 +62,6 @@ export class LodgingDetailsComponent implements OnInit {
       if (idString) {
         this.lodgingService.getById(idString).subscribe((data) => {
           this.lodging = data;
-          this.lodging.reviews = [];
           console.log(this.lodging)
           this.lodgingService.getImages(idString).subscribe((urls) => {
             if (this.lodging != null) {
@@ -89,19 +77,26 @@ export class LodgingDetailsComponent implements OnInit {
   * Posts the user's comment on the lodging details page
   */
   OnSubmit(){
-    this.review.id = this.profile.id;
-    this.review.comment = this.Comment.get('message')?.value;
-    this.review.dateCreated = moment().format('MMMM Do YYYY, h:mm:ss a');
-    this.review.rating = this.Comment.get('score')?.value;
+    //Make a new review obj
+    let review: Review;
 
     //Grabs the name from local storage
     let tempName = JSON.parse(localStorage.getItem("okta-token-storage") as string);
-    this.review.name = tempName.idToken.claims.name;
+
+    //Filling the review obj with user submitted data
+    review = {
+      accountId: this.profile.id,
+      comment: this.Comment.get('message')?.value,
+      dateCreated: moment().format(),
+      rating: this.Comment.get('score')?.value,
+      name: tempName.idToken.claims.name,
+      lodgingId: +this.lodging?.id!
+    }
 
     //Adds the review to lodging reviews array
-    this.lodging?.reviews.push(this.review);
+    this.lodging?.reviews.push(review);
 
     //Implementing adding the review to backend at a later date
-    // this.lodgingService.put();
+    this.lodgingService.postReview(review).subscribe((r) => console.log(r), (err) => console.log(err));
   }
 }

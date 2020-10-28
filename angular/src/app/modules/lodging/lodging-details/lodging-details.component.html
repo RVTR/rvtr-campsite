@@ -158,6 +158,9 @@
           <nav class="level">
             <div class="level-left">
               <div class="level-item">
+                <p>Rating:</p>
+              </div>
+              <div class="level-item">
               <select
                 id="inputScore"
                 formControlName="score"
@@ -175,7 +178,8 @@
               </select>
             </div>
               <div class="level-item">
-                <a class="button is-info" (click)='OnSubmit()'>Submit</a>
+                <a class="button is-info" *ngIf="Comment.invalid" disabled >Submit</a>
+                <a class="button is-info" *ngIf="!Comment.invalid" (click)='OnSubmit()'>Submit</a>
               </div>
             </div>
           </nav>
@@ -198,7 +202,7 @@
             <div class="content">
               <p>
                 <!-- profile name -->             <!-- Timestamp -->
-                <strong>{{c.name}} </strong> <small>{{c.dateCreated}}</small>
+                <strong>{{c.name}} </strong> <small>{{moment(c.dateCreated).format('MMMM Do YYYY, h:mm a')}}</small>
                 <br>
                 <!-- Review Message -->
                 {{c.comment}}
