@@ -35,7 +35,7 @@ export class LodgingComponent implements OnInit {
         if (this.lodgings != null) {
           this.lodgings?.forEach((lodging) => {
             this.lodgingService
-              .getImages(lodging.id)
+              .getImages(lodging.id.toString())
               .subscribe((urls) => (lodging.imageUrls = urls));
           });
         }
