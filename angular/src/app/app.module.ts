@@ -6,11 +6,20 @@ import { MonitoringService } from 'services/monitoring/monitoring.service';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LayoutModule } from './layout/layout.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   bootstrap: [AppComponent],
   declarations: [AppComponent],
-  imports: [AppRoutingModule, BrowserModule, LayoutModule, OktaAuthModule],
+  imports: [
+    AppRoutingModule,
+    BrowserModule,
+    LayoutModule,
+    OktaAuthModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+  ],
   providers: [
     {
       provide: ErrorHandler,
