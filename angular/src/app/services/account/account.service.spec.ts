@@ -15,6 +15,8 @@ import { PostPayment } from 'src/app/data/payment.model';
 describe('AccountService', () => {
   const accountMock: Account = {
     id: '0',
+    email: 'test',
+    name : '',
     address: {
       id: 'string',
       city: 'string',

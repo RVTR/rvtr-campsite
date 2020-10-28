@@ -37,6 +37,12 @@ export class AccountService {
     );
   }
 
+oktaToken(){
+
+}
+
+
+
   /**
    * Represents the _Account Service_ `delete` method
    *
@@ -61,12 +67,25 @@ export class AccountService {
     );
   }
 
+   /**
+   * Represents the _Account Service_ `getEmail` method
+   *
+   * @param email string
+   */
+  getEmail(email: string): Observable<Account> {
+    return this.accountsUrl$.pipe(
+      map((url) => url.concat(`/${email}`)),
+      concatMap((url) => this.http.get<Account>(url))
+    );
+  }
+
   /**
    * Represents the _Account Service_ `post` method
    *
    * @param account Account
    */
   post(account: Account): Observable<Account> {
+    console.log("posting..");
     return this.accountsUrl$.pipe(concatMap((url) => this.http.post<Account>(url, account)));
   }
 
@@ -76,7 +95,7 @@ export class AccountService {
    * @param account Account
    */
   put(account: Account): Observable<Account> {
-    return this.accountsUrl$.pipe(concatMap((url) => this.http.put<Account>(url, account)));
+    return this.accountsUrl$.pipe(map((url) => url.concat(`/${account.email}`)),concatMap((url) => this.http.put<Account>(url, account)));
   }
 
   /**

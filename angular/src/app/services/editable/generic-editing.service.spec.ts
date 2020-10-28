@@ -5,6 +5,8 @@ describe('AccountEditingService', () => {
   let service = new GenericEditingService<Partial<Account>>();
   const account: Account = {
     id: '',
+    email: '',
+    name : '',
     address: {
       id: '',
       city: '',
