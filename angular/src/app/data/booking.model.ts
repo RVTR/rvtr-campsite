@@ -19,7 +19,7 @@ export interface Booking {
   /** account associated with the reservation */
   accountId: string;
   /** lodging that was reserved */
-  lodgingId: string;
+  lodgingId: number;
   /** people the account owner has reserved the site with */
   guests: Profile[];
   /** sites that are reserved */
