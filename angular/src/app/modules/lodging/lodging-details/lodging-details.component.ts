@@ -77,6 +77,9 @@ export class LodgingDetailsComponent implements OnInit {
     });
   }
 
+  /**
+   * See if the account ID is the same as the lodging ID to allow the user to comment
+   */
   getBookingByAccountId(): void {
     this.bookingService.getByAccountId(this.profile.id).subscribe((i) => {
       for (let index = 0; index < i.length; index++) {
