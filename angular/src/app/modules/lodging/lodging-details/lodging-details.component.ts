@@ -6,6 +6,7 @@ import { Review } from 'data/review.model';
 import * as moment from 'moment';
 import { Profile } from 'data/profile.model';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { BookingService } from 'services/booking/booking.service';
 
 @Component({
   selector: 'uic-lodging-details',
@@ -19,6 +20,7 @@ export class LodgingDetailsComponent implements OnInit {
   profile: Profile;
   Comment: FormGroup;
   moment = moment;
+  hasBooked: boolean = false;
 
   /**
    * provide activated route to get route parameters and lodging service to get lodging
@@ -27,7 +29,8 @@ export class LodgingDetailsComponent implements OnInit {
    */
   constructor(
     private readonly route: ActivatedRoute,
-    private readonly lodgingService: LodgingService
+    private readonly lodgingService: LodgingService,
+    private readonly bookingService: BookingService
   ) {
 
     this.Comment = new FormGroup({
@@ -51,6 +54,7 @@ export class LodgingDetailsComponent implements OnInit {
    */
   ngOnInit(): void {
     this.getLodgingById();
+    this.getBookingByAccountId();
   }
 
   /**
@@ -71,6 +75,17 @@ export class LodgingDetailsComponent implements OnInit {
         });
       }
     });
+  }
+
+  getBookingByAccountId(): void {
+    this.bookingService.getByAccountId(this.profile.id).subscribe((i) => {
+      for (let index = 0; index < i.length; index++) {
+        if(i[index].accountId == i[index].lodgingId)
+        {
+          this.hasBooked = true;
+        }
+      }
+    }, (err) => console.log(err))
   }
 
   /*

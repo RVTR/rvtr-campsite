@@ -141,7 +141,7 @@
       </div>
       <div class="tile box is-child"> 
       <!-- Start of the comment creation HTML -->  
-      <article class="media">
+      <article *ngIf="hasBooked" class="media">
         <figure class="media-left">
           <!-- profile picture -->
           <p class="image is-64x64">
