@@ -40,7 +40,7 @@ export class SearchResultsComponent {
       id: '1',
       lodgingId: lodging.id,
       guests: [],
-      accountId: '1',
+      accountId: 1,
       rentals: [],
       checkIn: new Date().toDateString(),
       checkOut: new Date().toDateString(),

@@ -10,7 +10,7 @@
  * ```
  */
 export interface Profile {
-  id: string;
+  id: number;
   /** email */
   email: string;
   /** profile type: adult/child */

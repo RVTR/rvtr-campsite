@@ -139,6 +139,84 @@
           </div>
         </div>
       </div>
+      <div class="tile box is-child"> 
+      <!-- Start of the comment creation HTML -->  
+      <article *ngIf="hasBooked" class="media">
+        <figure class="media-left">
+          <!-- profile picture -->
+          <p class="image is-64x64">
+            <img src="https://bulma.io/images/placeholders/128x128.png">
+          </p>
+        </figure>
+        <form [formGroup]="Comment" novalidate style="width: 100%;">
+          <div class="media-content">
+            <div class="field">
+              <div class="control">
+                <textarea class="textarea" placeholder="Add a comment..." formControlName="message"></textarea>
+              </div>
+            </div>     
+          <nav class="level">
+            <div class="level-left">
+              <div class="level-item">
+                <p>Rating:</p>
+              </div>
+              <div class="level-item">
+              <select
+                id="inputScore"
+                formControlName="score"
+              >
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+              </select>
+            </div>
+              <div class="level-item">
+                <a class="button is-info" *ngIf="Comment.invalid" disabled >Submit</a>
+                <a class="button is-info" *ngIf="!Comment.invalid" (click)='OnSubmit()'>Submit</a>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </form>
+      </article>
+      <!-- End of comment creation HTML -->
+
+      <!-- Start of comment HTML -->
+      <div *ngFor="let c of lodging.reviews;">
+        <br/>
+        <article class="media">
+          <figure class="media-left">
+              <!-- profile picture -->
+            <p class="image is-64x64">
+              <img src="https://bulma.io/images/placeholders/128x128.png">
+            </p>
+          </figure>
+          <div class="media-content">
+            <div class="content">
+              <p>
+                <!-- profile name -->             <!-- Timestamp -->
+                <strong>{{c.name}} </strong> <small>{{moment(c.dateCreated).format('MMMM Do YYYY, h:mm a')}}</small>
+                <br>
+                <!-- Review Message -->
+                {{c.comment}}
+              </p>
+            </div>
+          </div>
+          <div class="media-right">
+            <!-- Review score -->
+            <span class="tag is-info is-large is-rounded">{{c.rating}}</span>
+          </div>
+      </article>
+    </div>
+      <!-- End of comment HTML -->
+    </div>
     </div>
   </div>
 </section>

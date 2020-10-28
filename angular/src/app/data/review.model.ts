@@ -9,11 +9,15 @@
  * ```
  */
 export interface Review {
-  id: string;
+  accountId: number;
+  /**profile name */
+  name?: string;
   /** text body */
   comment: string;
   /** date the review was posted */
   dateCreated: string;
   /** integer rating out of ten stars */
   rating: number;
+  /**lodging id to see what lodging the review belongs to */
+  lodgingId: number;
 }
