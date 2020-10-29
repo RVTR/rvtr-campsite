@@ -1,6 +1,7 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FeaturedLodgingComponent } from './featured-lodging.component';
 import { Lodging } from 'src/app/data/lodging.model';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('FeaturedLodgingComponent', () => {
   let component: FeaturedLodgingComponent;
@@ -45,24 +46,25 @@ describe('FeaturedLodgingComponent', () => {
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
+        imports: [ RouterTestingModule ],
         declarations: [FeaturedLodgingComponent],
       }).compileComponents();
+
+      fixture = TestBed.createComponent(FeaturedLodgingComponent);
+      component = fixture.componentInstance;
+      component.featuredLodgings = testLodgings;
+      fixture.detectChanges();
     })
   );
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(FeaturedLodgingComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  // beforeEach(() => {
+  // });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
   it('should update on change', () => {
-    component.featuredLodgings = testLodgings;
-    fixture.detectChanges();
     expect(component.displayLodgings).toBeTruthy();
     expect(component.displayLodgings.length).toBeLessThanOrEqual(6);
   });
