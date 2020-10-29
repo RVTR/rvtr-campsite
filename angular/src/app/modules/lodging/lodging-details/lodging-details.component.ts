@@ -3,7 +3,6 @@ import { Lodging } from '../../../data/lodging.model';
 import { ActivatedRoute } from '@angular/router';
 import { LodgingService } from '../../../services/lodging/lodging.service';
 import { Review } from 'data/review.model';
-import * as moment from 'moment';
 import { Profile } from 'data/profile.model';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BookingService } from 'services/booking/booking.service';
@@ -19,7 +18,6 @@ export class LodgingDetailsComponent implements OnInit {
   lodging: Lodging | null = null;
   profile: Profile;
   Comment: FormGroup;
-  moment = moment;
   hasBooked: boolean = false;
 
   /**
@@ -105,7 +103,7 @@ export class LodgingDetailsComponent implements OnInit {
     review = {
       accountId: this.profile.id,
       comment: this.Comment.get('message')?.value,
-      dateCreated: moment().format(),
+      dateCreated: "",
       rating: this.Comment.get('score')?.value,
       name: tempName.idToken.claims.name,
       lodgingId: +this.lodging?.id!
