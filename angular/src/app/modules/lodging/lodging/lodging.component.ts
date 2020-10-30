@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LodgingService } from '../../../services/lodging/lodging.service';
 import { Lodging } from '../../../data/lodging.model';
 import { ToastrService } from 'ngx-toastr'; // adding ngx-toastr for api service error notifications
+import { toastrError } from '../../../utils/toastr/toastrError';
 
 @Component({
   selector: 'uic-lodging',
@@ -42,10 +43,7 @@ export class LodgingComponent implements OnInit {
       },
       (err) => {
         console.log(err);
-        this.toastrService.error(`${err.message}`, 'Service Error', {
-          disableTimeOut: true,
-          positionClass: 'toast-top-center',
-        });
+        toastrError(err, 'Service Error', this.toastrService);
       }
     );
   }

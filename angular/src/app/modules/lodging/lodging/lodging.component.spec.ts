@@ -7,10 +7,15 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { ToastrModule } from 'ngx-toastr';
+import { toastrError } from 'src/app/utils/toastr/toastrError';
 
 describe('LodgingComponent', () => {
   let component: LodgingComponent;
   let fixture: ComponentFixture<LodgingComponent>;
+
+  let toastrServiceSpy: jasmine.Spy;
+  const toastrServiceStub = jasmine.createSpyObj('toastrServiceStub', ['error']);
+  toastrServiceSpy = toastrServiceStub.error.and.returnValue(of(''));
 
   const lodgings: Lodging[] = [
     {
@@ -74,7 +79,10 @@ describe('LodgingComponent', () => {
       TestBed.configureTestingModule({
         declarations: [LodgingComponent],
         imports: [HttpClientTestingModule, ToastrModule.forRoot()],
-        providers: [{ provide: LodgingService, useValue: lodgingServiceStub }, ToastrService],
+        providers: [
+          { provide: LodgingService, useValue: lodgingServiceStub },
+          { provide: ToastrService, useValue: toastrServiceStub },
+        ],
         schemas: [NO_ERRORS_SCHEMA],
       }).compileComponents();
 
@@ -110,5 +118,11 @@ describe('LodgingComponent', () => {
     expect(info[1].textContent).toContain('testStreet');
     expect(info[2].textContent).toContain('testCity, testState, testCountry');
     expect(info[3].textContent).toContain('testCode');
+  });
+
+  it('should be able to call toastr service method', () => {
+    toastrError('Error Message', 'Error title', toastrServiceStub);
+    expect(toastrServiceSpy.calls.any()).toBe(true);
+    expect(toastrServiceSpy.calls.count()).toBe(1);
   });
 });

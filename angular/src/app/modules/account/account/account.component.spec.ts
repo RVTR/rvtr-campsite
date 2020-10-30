@@ -7,11 +7,12 @@ import { Account } from '../../../data/account.model';
 import { AccountService } from '../../../services/account/account.service';
 import { ACCOUNT_EDITING_SERVICE } from '../account-editing.token';
 import { ToastrService, ToastrModule } from 'ngx-toastr';
+import { toastrError } from '../../../utils/toastr/toastrError';
 
 describe('AccountComponent', () => {
   let toastrServiceSpy: jasmine.Spy;
-  const toastrSetvices = jasmine.createSpyObj('toastrSetvices', ['error']);
-  toastrServiceSpy = toastrSetvices.error.and.returnValue(of(''));
+  const toastrServiceStub = jasmine.createSpyObj('toastrServiceStub', ['error']);
+  toastrServiceSpy = toastrServiceStub.error.and.returnValue(of(''));
 
   const accountServiceStub = {
     get(): Observable<Account> {
@@ -34,6 +35,7 @@ describe('AccountComponent', () => {
       return of(acct);
     },
   };
+
   const mockEditingService = {
     payloadEmitter: new Observable<Partial<Account>>(),
     update(): void {},
@@ -53,7 +55,7 @@ describe('AccountComponent', () => {
             useValue: mockEditingService,
           },
           { provide: AccountService, useValue: accountServiceStub },
-          { provide: ToastrService, useValue: toastrSetvices },
+          { provide: ToastrService, useValue: toastrServiceStub },
         ],
         schemas: [NO_ERRORS_SCHEMA],
       }).compileComponents();
@@ -71,9 +73,8 @@ describe('AccountComponent', () => {
   });
 
   it('should be able to call toastr service method', () => {
-    const toasterServiceInstance = fixture.componentInstance.toastrServiceProp;
-    fixture.detectChanges();
-    component.callToastrError('Error Message', 'Error title');
+    toastrError('Error Message', 'Error title', toastrServiceStub);
     expect(toastrServiceSpy.calls.any()).toBe(true);
+    expect(toastrServiceSpy.calls.count()).toBe(1);
   });
 });

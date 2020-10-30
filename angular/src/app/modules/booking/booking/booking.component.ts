@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { Lodging } from 'src/app/data/lodging.model';
 import { LodgingService } from 'src/app/services/lodging/lodging.service';
 import { ToastrService } from 'ngx-toastr'; // adding ngx-toastr for api service error notifications
+import { toastrError } from '../../../utils/toastr/toastrError';
 
 @Component({
   selector: 'uic-booking',
@@ -21,10 +22,7 @@ export class BookingComponent {
       (res) => console.log(res),
       (err) => {
         console.log(err);
-        this.toastrService.error(`${err.message}`, 'Service Error', {
-          disableTimeOut: true,
-          positionClass: 'toast-top-center',
-        });
+        toastrError(err, 'Service Error', this.toastrService);
       }
     );
   }

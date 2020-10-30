@@ -8,10 +8,15 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { Lodging } from 'src/app/data/lodging.model';
 import { ToastrService } from 'ngx-toastr';
 import { ToastrModule } from 'ngx-toastr';
+import { toastrError } from 'src/app/utils/toastr/toastrError';
 
 describe('BookingComponent', () => {
   let component: BookingComponent;
   let fixture: ComponentFixture<BookingComponent>;
+
+  let toastrServiceSpy: jasmine.Spy;
+  const toastrServiceStub = jasmine.createSpyObj('toastrServiceStub', ['error']);
+  toastrServiceSpy = toastrServiceStub.error.and.returnValue(of(''));
 
   const lodgingServiceStub = {
     get(): Observable<Lodging[]> {
@@ -67,7 +72,10 @@ describe('BookingComponent', () => {
       TestBed.configureTestingModule({
         declarations: [BookingComponent],
         imports: [HttpClientTestingModule, FormsModule, ToastrModule.forRoot()],
-        providers: [{ provide: LodgingService, useValue: lodgingServiceStub }, ToastrService],
+        providers: [
+          { provide: LodgingService, useValue: lodgingServiceStub },
+          { provide: ToastrService, useValue: toastrServiceStub },
+        ],
         schemas: [NO_ERRORS_SCHEMA],
       }).compileComponents();
     })
@@ -81,5 +89,11 @@ describe('BookingComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should be able to call toastr service method', () => {
+    toastrError('Error Message', 'Error title', toastrServiceStub);
+    expect(toastrServiceSpy.calls.any()).toBe(true);
+    expect(toastrServiceSpy.calls.count()).toBe(1);
   });
 });
