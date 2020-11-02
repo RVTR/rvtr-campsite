@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Lodging } from 'src/app/data/lodging.model';
 import { LodgingService } from 'src/app/services/lodging/lodging.service';
-import { ToastrService } from 'ngx-toastr'; // adding ngx-toastr for api service error notifications
-import { toastrError } from '../../../utils/toastr/toastrError';
+import { ToastService } from '../../../services/toast/toast.service';
 
 @Component({
   selector: 'uic-booking',
@@ -16,13 +15,13 @@ export class BookingComponent {
   searchQuery!: string;
   isSearched = false;
 
-  constructor(lodgingService: LodgingService, private readonly toastrService: ToastrService) {
+  constructor(lodgingService: LodgingService, private readonly toastService: ToastService) {
     this.lodgings$ = lodgingService.get();
     this.lodgings$.subscribe(
       (res) => console.log(res),
       (err) => {
         console.log(err);
-        toastrError(err, 'Service Error', this.toastrService);
+        this.toastService.toastError(err, 'Service Error');
       }
     );
   }

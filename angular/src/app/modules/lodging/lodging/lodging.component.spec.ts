@@ -5,17 +5,13 @@ import { Lodging } from 'src/app/data/lodging.model';
 import { LodgingService } from 'src/app/services/lodging/lodging.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
-import { ToastrModule } from 'ngx-toastr';
-import { toastrError } from 'src/app/utils/toastr/toastrError';
+import { ToastService } from 'services/toast/toast.service';
 
 describe('LodgingComponent', () => {
   let component: LodgingComponent;
   let fixture: ComponentFixture<LodgingComponent>;
 
-  let toastrServiceSpy: jasmine.Spy;
-  const toastrServiceStub = jasmine.createSpyObj('toastrServiceStub', ['error']);
-  toastrServiceSpy = toastrServiceStub.error.and.returnValue(of(''));
+  let toastServiceSpy: jasmine.SpyObj<ToastService>;
 
   const lodgings: Lodging[] = [
     {
@@ -76,15 +72,21 @@ describe('LodgingComponent', () => {
 
   beforeEach(
     waitForAsync(() => {
+      const spy = jasmine.createSpyObj('ToastService', ['toastError']);
+
       TestBed.configureTestingModule({
         declarations: [LodgingComponent],
-        imports: [HttpClientTestingModule, ToastrModule.forRoot()],
+        imports: [HttpClientTestingModule],
         providers: [
           { provide: LodgingService, useValue: lodgingServiceStub },
-          { provide: ToastrService, useValue: toastrServiceStub },
+          { provide: ToastService, useValue: spy },
         ],
         schemas: [NO_ERRORS_SCHEMA],
-      }).compileComponents();
+      })
+        .compileComponents()
+        .then(() => {
+          toastServiceSpy = TestBed.inject(ToastService) as jasmine.SpyObj<ToastService>;
+        });
 
       fixture = TestBed.createComponent(LodgingComponent);
       component = fixture.componentInstance;
@@ -120,9 +122,12 @@ describe('LodgingComponent', () => {
     expect(info[3].textContent).toContain('testCode');
   });
 
-  it('should be able to call toastr service method', () => {
-    toastrError('Error Message', 'Error title', toastrServiceStub);
-    expect(toastrServiceSpy.calls.any()).toBe(true);
-    expect(toastrServiceSpy.calls.count()).toBe(1);
+  /**
+   * tests if the toast service can be called
+   */
+  it('should be able to call toast service method', () => {
+    toastServiceSpy.toastError('error', 'error');
+    expect(toastServiceSpy.toastError.calls.any()).toBe(true);
+    expect(toastServiceSpy.toastError.calls.count()).toBe(1);
   });
 });

@@ -149,20 +149,26 @@ describe('LodgingDetailsComponent', () => {
   });
 
   /**
-   * tests the form validation
+   * tests the score form control validation
    */
-  it('should validate form input', () => {
+  it('should validate score form control', () => {
     const s = 'score';
-    const m = 'message';
-
     const score = component.Comment.controls[s];
-    const message = component.Comment.controls[m];
+
     score.setValue('');
     fixture.detectChanges();
     expect(score.valid).toBeFalse();
     score.setValue('1');
     fixture.detectChanges();
     expect(score.valid).toBeTrue();
+  });
+
+  /**
+   * tests the message form control validation
+   */
+  it('should validate score form control', () => {
+    const m = 'message';
+    const message = component.Comment.controls[m];
 
     message.setValue('');
     fixture.detectChanges();
