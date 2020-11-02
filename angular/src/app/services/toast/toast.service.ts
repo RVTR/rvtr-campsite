@@ -5,7 +5,7 @@ import { ToastrService } from 'ngx-toastr';
   providedIn: 'root',
 })
 export class ToastService {
-  constructor(private toastrService: ToastrService) {}
+  constructor(private readonly toastrService: ToastrService) {}
 
   toastError(msg: string, title: string): void {
     this.toastrService.error(msg, title, {
