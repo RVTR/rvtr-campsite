@@ -46,7 +46,7 @@ describe('FeaturedLodgingComponent', () => {
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [ RouterTestingModule ],
+        imports: [RouterTestingModule],
         declarations: [FeaturedLodgingComponent],
       }).compileComponents();
 

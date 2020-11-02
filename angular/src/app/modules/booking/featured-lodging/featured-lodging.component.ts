@@ -59,8 +59,8 @@ export class FeaturedLodgingComponent implements OnChanges {
       }
       let thisLodgingLotCountStrings: string[];
       thisLodgingLotCountStrings = [];
-      for (const thisLodgingLotType in lodgingLotTypes){
-        if (lodgingLotTypes[thisLodgingLotType] !== undefined){
+      for (const thisLodgingLotType in lodgingLotTypes) {
+        if (lodgingLotTypes[thisLodgingLotType] !== undefined) {
           const thisLodgingTypeCount = availableCountByType.get(thisLodgingLotType);
           const thisLodgingTypeTotalCount = totalCountByType.get(thisLodgingLotType);
           thisLodgingLotCountStrings.push(
