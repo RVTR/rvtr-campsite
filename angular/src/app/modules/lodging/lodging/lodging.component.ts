@@ -29,7 +29,7 @@ export class LodgingComponent implements OnInit {
 
       if (this.lodgings != null) {
         this.lodgings?.forEach((lodging) => {
-          this.lodgingService.getImages(lodging.id).subscribe((urls) => (lodging.imageUrls = urls));
+          this.lodgingService.getImages(""+ lodging.id).subscribe((urls) => (lodging.imageUrls = urls));
         });
       }
     });
