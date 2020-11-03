@@ -24,6 +24,7 @@ export class AccountComponent {
   payments$: Observable<Payment[]>;
   profiles$: Observable<Profile[]>;
   reviews$: Observable<Review[]>;
+  toastrServiceProp = this.toastrService;
 
   private readonly id = '-1';
   accountId = this.id;
@@ -52,14 +53,18 @@ export class AccountComponent {
       (e) => editingService.update(e),
       (err) => {
         console.log(err);
-        this.toastrService.error(`${err.message}`, 'Service Error', {
-          disableTimeOut: true,
-          positionClass: 'toast-top-center',
-        });
+        this.callToastrError(err, 'Service Error');
       }
     );
     // Register function for Payload release from editing service
     editingService.payloadEmitter.subscribe((val) => this.update(val as Account));
+  }
+
+  callToastrError(msg: string, kind: string): void {
+    this.toastrService.error(msg, kind, {
+      disableTimeOut: true,
+      positionClass: 'toast-top-center',
+    });
   }
 
   /**

@@ -16,6 +16,6 @@ export class MonitoringService implements ErrorHandler {
     });
 
     errorHandler.handleError(error);
-    this.router.navigate(['/error']);
+    // this.router.navigate(['/error']); disabled error page in favor of toast notifications
   }
 }

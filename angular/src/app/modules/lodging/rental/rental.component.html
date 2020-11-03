@@ -5,8 +5,8 @@
       <tr>
         <th id="room-type">Site <span class="fas fa-home"></span></th>
         <th id="lot-size">Lot Size <span class="fas fa-landmark"></span></th>
-        <th id="occupancy">Occupancy <span class="fas fa-users"></span></th>
-        <th id="rooms">Sites Available <span class="fas fa-user-check"></span></th>
+        <th id="occupancy">Capacity <span class="fas fa-users"></span></th>
+        <th id="rooms">Availability <span class="fas fa-user-check"></span></th>
         <th id="pricing">Prices <span class="fas fa-dollar-sign"></span></th>
       </tr>
     </thead>
@@ -18,8 +18,8 @@
           <span class="fas fa-bed"></span>
         </td>
         <td>Rental Lot Size: {{ rental.unit.size }}</td>
-        <td>Capacity: {{ rental.unit.capacity }}</td>
-        <td>{{ availabilityCount.get(rental.unit.name) }}</td>
+        <td>{{ rental.unit.capacity }}</td>
+        <td>{{ rental.status }}</td>
         <td>Price: {{ rental.price | currency }}</td>
       </tr>
     </tbody>

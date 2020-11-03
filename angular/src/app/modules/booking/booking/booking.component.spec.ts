@@ -6,6 +6,9 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { FormsModule } from '@angular/forms';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { Lodging } from 'src/app/data/lodging.model';
+import { ToastrService } from 'ngx-toastr';
+import { ToastrModule } from 'ngx-toastr';
+
 describe('BookingComponent', () => {
   let component: BookingComponent;
   let fixture: ComponentFixture<BookingComponent>;
@@ -63,8 +66,8 @@ describe('BookingComponent', () => {
     waitForAsync(() => {
       TestBed.configureTestingModule({
         declarations: [BookingComponent],
-        imports: [HttpClientTestingModule, FormsModule],
-        providers: [{ provide: LodgingService, useValue: lodgingServiceStub }],
+        imports: [HttpClientTestingModule, FormsModule, ToastrModule.forRoot()],
+        providers: [{ provide: LodgingService, useValue: lodgingServiceStub }, ToastrService],
         schemas: [NO_ERRORS_SCHEMA],
       }).compileComponents();
     })
