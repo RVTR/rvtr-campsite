@@ -16,7 +16,7 @@ import { Rental } from './rental.model';
  * ```
  */
 export interface Lodging {
-  id: string;
+  id: number;
   location: Location;
   /** name of the campground */
   name: string;

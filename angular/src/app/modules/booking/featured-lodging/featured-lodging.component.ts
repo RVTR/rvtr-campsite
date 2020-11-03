@@ -10,7 +10,7 @@ import { Rental } from '../../../data/rental.model';
 export class FeaturedLodgingComponent implements OnChanges {
   @Input() featuredLodgings!: Lodging[] | null;
   displayLodgings: Lodging[] = [];
-  lotAvailableStringsByLodgingId = new Map<string, string[]>();
+  lotAvailableStringsByLodgingId = new Map<number, string[]>();
 
   constructor(private router: Router) {}
 

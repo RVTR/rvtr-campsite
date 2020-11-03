@@ -37,7 +37,7 @@ export class SearchBarComponent {
     const bookings$ = this.bookingService.getByDateRange(checkIn, checkOut);
 
     forkJoin([lodgings$, bookings$]).subscribe(([lodgings, bookings]) => {
-      const bookedLodgingIds: string[] = bookings.map((booking) => booking.lodgingId);
+      const bookedLodgingIds: number[] = bookings.map((booking) => booking.lodgingId);
       const availableLodgings: Lodging[] = lodgings.filter(
         (lodging) => !bookedLodgingIds.includes(lodging.id)
       );
