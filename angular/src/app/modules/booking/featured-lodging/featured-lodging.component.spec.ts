@@ -9,7 +9,7 @@ describe('FeaturedLodgingComponent', () => {
 
   const testLodgings: Lodging[] = [
     {
-      id: '',
+      id: 0,
       location: {
         id: '',
         address: {
@@ -73,5 +73,10 @@ describe('FeaturedLodgingComponent', () => {
     component.featuredLodgings = null;
     fixture.detectChanges();
     expect(component.displayLodgings.length).toEqual(0);
+  });
+
+  it('should set available lodgings', () => {
+    component.setAvailableCountsByType();
+    expect(component.lotAvailableStringsByLodgingId).toBeTruthy();
   });
 });
