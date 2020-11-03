@@ -75,7 +75,7 @@ describe('FeaturedLodgingComponent', () => {
     expect(component.displayLodgings.length).toEqual(0);
   });
 
-  it('should set available lodgings', () => {
+  it('should set available lodgings', () => { 
     component.setAvailableCountsByType();
     expect(component.lotAvailableStringsByLodgingId).toBeTruthy();
   });
