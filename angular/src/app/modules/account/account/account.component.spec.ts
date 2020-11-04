@@ -1,32 +1,25 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { of, Observable } from 'rxjs';
+import { of, Observable, throwError } from 'rxjs';
 import { AccountComponent } from './account.component';
 import { Account } from '../../../data/account.model';
+import { mockAccount } from '../../../data/mocks/mockAccount';
 import { AccountService } from '../../../services/account/account.service';
 import { ACCOUNT_EDITING_SERVICE } from '../account-editing.token';
 import { ToastService } from '../../../services/toast/toast.service';
 
 describe('AccountComponent', () => {
-  let toastServiceSpy: jasmine.SpyObj<ToastService>;
+  const toastServiceSpy = jasmine.createSpyObj<ToastService>('ToastService', ['toastError']);
 
   const accountServiceStub = {
     get(): Observable<Account> {
-      const account: Account = {
-        id: '',
-        address: {
-          id: '',
-          city: '',
-          country: '',
-          postalCode: '',
-          stateProvince: '',
-          street: '',
-        },
-        payments: [],
-        profiles: [],
-      };
-      return of(account);
+      return of(mockAccount);
+    },
+    getWithError(): Observable<Account> {
+      const errorMsg = { error: 'Test error' };
+      toastServiceSpy.toastError(errorMsg.error, 'Test error');
+      return throwError(errorMsg);
     },
     put(acct: Account): Observable<Account> {
       return of(acct);
@@ -43,8 +36,6 @@ describe('AccountComponent', () => {
 
   beforeEach(
     waitForAsync(() => {
-      const spy = jasmine.createSpyObj('ToastService', ['toastError']);
-
       TestBed.configureTestingModule({
         declarations: [AccountComponent],
         imports: [HttpClientTestingModule],
@@ -54,14 +45,10 @@ describe('AccountComponent', () => {
             useValue: mockEditingService,
           },
           { provide: AccountService, useValue: accountServiceStub },
-          { provide: ToastService, useValue: spy },
+          { provide: ToastService, useValue: toastServiceSpy },
         ],
         schemas: [NO_ERRORS_SCHEMA],
-      })
-        .compileComponents()
-        .then(() => {
-          toastServiceSpy = TestBed.inject(ToastService) as jasmine.SpyObj<ToastService>;
-        });
+      }).compileComponents();
     })
   );
 
@@ -76,11 +63,25 @@ describe('AccountComponent', () => {
   });
 
   /**
-   * tests if the toast service can be called
+   * tests if ok request doesn't call toastservice
    */
-  it('should be able to call toast service method', () => {
-    toastServiceSpy.toastError('error', 'error');
-    expect(toastServiceSpy.toastError.calls.any()).toBe(true);
-    expect(toastServiceSpy.toastError.calls.count()).toBe(1);
+  it('should return account with no toast error', () => {
+    accountServiceStub.get().subscribe((res) => {
+      expect(res).toEqual(mockAccount);
+    });
+    expect(toastServiceSpy.toastError).not.toHaveBeenCalled();
+  });
+
+  /**
+   * tests if bad request calls toastservice
+   */
+  it('should throw error and call toast error', () => {
+    accountServiceStub.getWithError().subscribe({
+      error: (err) => {
+        expect(err).toEqual({ error: 'Test error' });
+      },
+    });
+    expect(toastServiceSpy.toastError).toHaveBeenCalled();
+    toastServiceSpy.toastError.calls.reset();
   });
 });

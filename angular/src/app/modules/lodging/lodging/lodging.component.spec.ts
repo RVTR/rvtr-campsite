@@ -1,7 +1,8 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { LodgingComponent } from './lodging.component';
-import { Observable, of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { Lodging } from 'src/app/data/lodging.model';
+import { mockLodgings } from '../../../data/mocks/mockLodgings';
 import { LodgingService } from 'src/app/services/lodging/lodging.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
@@ -11,60 +12,18 @@ describe('LodgingComponent', () => {
   let component: LodgingComponent;
   let fixture: ComponentFixture<LodgingComponent>;
 
-  let toastServiceSpy: jasmine.SpyObj<ToastService>;
-
-  const lodgings: Lodging[] = [
-    {
-      id: 1,
-      location: {
-        id: '1',
-        address: {
-          id: '1',
-          city: 'testCity',
-          country: 'testCountry',
-          postalCode: 'testCode',
-          stateProvince: 'testState',
-          street: 'testStreet',
-        },
-        latitude: 'testLat',
-        longitude: 'testLong',
-      },
-      name: 'test',
-      rentals: [],
-      reviews: [],
-      bathrooms: 1,
-      imageUrls: ['http://placecorgi.com/300'],
-    },
-    {
-      id: 2,
-      location: {
-        id: '2',
-        address: {
-          id: '2',
-          city: 'testCity',
-          country: 'testCountry',
-          postalCode: 'testCode',
-          stateProvince: 'testState',
-          street: 'testStreet',
-        },
-        latitude: 'testLat',
-        longitude: 'testLong',
-      },
-      name: 'test2',
-      rentals: [],
-      reviews: [],
-      bathrooms: 1,
-      imageUrls: ['http://placecorgi.com/300'],
-    },
-  ];
-
+  const toastServiceSpy = jasmine.createSpyObj<ToastService>('ToastService', ['toastError']);
   const imageUrlsMock = ['http://placecorgi.com/300'];
 
   const lodgingServiceStub = {
     get(): Observable<Lodging[]> {
-      return of(lodgings);
+      return of(mockLodgings);
     },
-
+    getWithError(): Observable<Account> {
+      const errorMsg = { error: 'Test error' };
+      toastServiceSpy.toastError(errorMsg.error, 'Test error');
+      return throwError(errorMsg);
+    },
     getImages(id: string): Observable<string[]> {
       return of(imageUrlsMock);
     },
@@ -72,26 +31,19 @@ describe('LodgingComponent', () => {
 
   beforeEach(
     waitForAsync(() => {
-      const spy = jasmine.createSpyObj('ToastService', ['toastError']);
-
       TestBed.configureTestingModule({
         declarations: [LodgingComponent],
         imports: [HttpClientTestingModule],
         providers: [
           { provide: LodgingService, useValue: lodgingServiceStub },
-          { provide: ToastService, useValue: spy },
+          { provide: ToastService, useValue: toastServiceSpy },
         ],
         schemas: [NO_ERRORS_SCHEMA],
-      })
-        .compileComponents()
-        .then(() => {
-          toastServiceSpy = TestBed.inject(ToastService) as jasmine.SpyObj<ToastService>;
-        });
+      }).compileComponents();
 
       fixture = TestBed.createComponent(LodgingComponent);
       component = fixture.componentInstance;
       fixture.detectChanges();
-
       TestBed.inject(HttpTestingController);
     })
   );
@@ -108,7 +60,7 @@ describe('LodgingComponent', () => {
    */
   it('should get lodgings on initialization', () => {
     expect(component.lodgings).toBeTruthy();
-    expect(component.lodgings).toEqual(lodgings);
+    expect(component.lodgings).toEqual(mockLodgings);
   });
 
   /**
@@ -123,11 +75,25 @@ describe('LodgingComponent', () => {
   });
 
   /**
-   * tests if the toast service can be called
+   * tests if ok request doesn't call toastservice
    */
-  it('should be able to call toast service method', () => {
-    toastServiceSpy.toastError('error', 'error');
-    expect(toastServiceSpy.toastError.calls.any()).toBe(true);
-    expect(toastServiceSpy.toastError.calls.count()).toBe(1);
+  it('should return lodgings with no toast error', () => {
+    lodgingServiceStub.get().subscribe((res) => {
+      expect(res).toEqual(mockLodgings);
+    });
+    expect(toastServiceSpy.toastError).not.toHaveBeenCalled();
+  });
+
+  /**
+   * tests if bad request calls toastservice
+   */
+  it('should throw error and call toast error', () => {
+    lodgingServiceStub.getWithError().subscribe({
+      error: (err) => {
+        expect(err).toEqual({ error: 'Test error' });
+      },
+    });
+    expect(toastServiceSpy.toastError).toHaveBeenCalled();
+    toastServiceSpy.toastError.calls.reset();
   });
 });

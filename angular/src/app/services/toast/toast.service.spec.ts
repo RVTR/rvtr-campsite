@@ -3,15 +3,13 @@ import { ToastService } from './toast.service';
 
 describe('ToastService', () => {
   let service: ToastService;
-  let toastServiceSpy: jasmine.SpyObj<ToastService>;
+  const toastServiceSpy = jasmine.createSpyObj<ToastService>('ToastService', ['toastError']);
 
   beforeEach(() => {
-    const spy = jasmine.createSpyObj('ToastService', ['toastError']);
     TestBed.configureTestingModule({
-      providers: [{ provide: ToastService, useValue: spy }],
+      providers: [{ provide: ToastService, useValue: toastServiceSpy }],
     });
     service = TestBed.inject(ToastService);
-    toastServiceSpy = TestBed.inject(ToastService) as jasmine.SpyObj<ToastService>;
   });
 
   it('should be created', () => {
