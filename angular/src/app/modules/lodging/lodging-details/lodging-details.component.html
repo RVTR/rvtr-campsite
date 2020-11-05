@@ -7,9 +7,18 @@
         <div class="tile is-6 is-parent is-vertical">
           <div class="tile is-child">
             <figure class="image is-16by9">
-              <ng-container *ngIf="((!lodging.imageUrls) || (lodging.imageUrls.length === 0)); then thenBlock else elseBlock"></ng-container>
+              <ng-container
+                *ngIf="
+                  !lodging.imageUrls || lodging.imageUrls.length === 0;
+                  then thenBlock;
+                  else elseBlock
+                "
+              ></ng-container>
               <ng-template #thenBlock>
-                <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image" />
+                <img
+                  src="https://bulma.io/images/placeholders/1280x960.png"
+                  alt="Placeholder image"
+                />
               </ng-template>
               <ng-template #elseBlock>
                 <img src="{{ lodging.imageUrls[0] }}" alt="Main campground image" />
@@ -22,9 +31,18 @@
             <div class="tile is-parent is-vertical">
               <div class="tile is-child">
                 <figure class="image is-5by3">
-                  <ng-container *ngIf="((!lodging.imageUrls) || (lodging.imageUrls.length < 2)); then thenBlock else elseBlock"></ng-container>
+                  <ng-container
+                    *ngIf="
+                      !lodging.imageUrls || lodging.imageUrls.length < 2;
+                      then thenBlock;
+                      else elseBlock
+                    "
+                  ></ng-container>
                   <ng-template #thenBlock>
-                    <img alt="placeholder image" src="https://bulma.io/images/placeholders/1280x960.png" />
+                    <img
+                      alt="placeholder image"
+                      src="https://bulma.io/images/placeholders/1280x960.png"
+                    />
                   </ng-template>
                   <ng-template #elseBlock>
                     <img src="{{ lodging.imageUrls[1] }}" alt="Extra campground image" />
@@ -33,9 +51,18 @@
               </div>
               <div class="tile is-child">
                 <figure class="image is-5by3">
-                  <ng-container *ngIf="((!lodging.imageUrls) || (lodging.imageUrls.length < 3)); then thenBlock else elseBlock"></ng-container>
+                  <ng-container
+                    *ngIf="
+                      !lodging.imageUrls || lodging.imageUrls.length < 3;
+                      then thenBlock;
+                      else elseBlock
+                    "
+                  ></ng-container>
                   <ng-template #thenBlock>
-                    <img alt="placeholder image" src="https://bulma.io/images/placeholders/1280x960.png" />
+                    <img
+                      alt="placeholder image"
+                      src="https://bulma.io/images/placeholders/1280x960.png"
+                    />
                   </ng-template>
                   <ng-template #elseBlock>
                     <img src="{{ lodging.imageUrls[2] }}" alt="Extra campground image" />
@@ -46,9 +73,18 @@
             <div class="tile is-parent is-vertical">
               <div class="tile is-child">
                 <figure class="image is-5by3">
-                  <ng-container *ngIf="((!lodging.imageUrls) || (lodging.imageUrls.length < 4)); then thenBlock else elseBlock"></ng-container>
+                  <ng-container
+                    *ngIf="
+                      !lodging.imageUrls || lodging.imageUrls.length < 4;
+                      then thenBlock;
+                      else elseBlock
+                    "
+                  ></ng-container>
                   <ng-template #thenBlock>
-                    <img alt="placeholder image" src="https://bulma.io/images/placeholders/1280x960.png" />
+                    <img
+                      alt="placeholder image"
+                      src="https://bulma.io/images/placeholders/1280x960.png"
+                    />
                   </ng-template>
                   <ng-template #elseBlock>
                     <img src="{{ lodging.imageUrls[3] }}" alt="Extra campground image" />
@@ -57,9 +93,18 @@
               </div>
               <div class="tile is-child">
                 <figure class="image is-5by3">
-                  <ng-container *ngIf="((!lodging.imageUrls) || (lodging.imageUrls.length < 5)); then thenBlock else elseBlock"></ng-container>
+                  <ng-container
+                    *ngIf="
+                      !lodging.imageUrls || lodging.imageUrls.length < 5;
+                      then thenBlock;
+                      else elseBlock
+                    "
+                  ></ng-container>
                   <ng-template #thenBlock>
-                    <img alt="placeholder image" src="https://bulma.io/images/placeholders/1280x960.png" />
+                    <img
+                      alt="placeholder image"
+                      src="https://bulma.io/images/placeholders/1280x960.png"
+                    />
                   </ng-template>
                   <ng-template #elseBlock>
                     <img src="{{ lodging.imageUrls[4] }}" alt="Extra campground image" />
@@ -70,9 +115,18 @@
             <div class="tile is-parent is-vertical">
               <div class="tile is-child">
                 <figure class="image is-5by3">
-                  <ng-container *ngIf="((!lodging.imageUrls) || (lodging.imageUrls.length < 6)); then thenBlock else elseBlock"></ng-container>
+                  <ng-container
+                    *ngIf="
+                      !lodging.imageUrls || lodging.imageUrls.length < 6;
+                      then thenBlock;
+                      else elseBlock
+                    "
+                  ></ng-container>
                   <ng-template #thenBlock>
-                    <img alt="placeholder image" src="https://bulma.io/images/placeholders/1280x960.png" />
+                    <img
+                      alt="placeholder image"
+                      src="https://bulma.io/images/placeholders/1280x960.png"
+                    />
                   </ng-template>
                   <ng-template #elseBlock>
                     <img src="{{ lodging.imageUrls[5] }}" alt="Extra campground image" />
@@ -81,9 +135,18 @@
               </div>
               <div class="tile is-child">
                 <figure class="image is-5by3">
-                  <ng-container *ngIf="((!lodging.imageUrls) || (lodging.imageUrls.length < 7)); then thenBlock else elseBlock"></ng-container>
+                  <ng-container
+                    *ngIf="
+                      !lodging.imageUrls || lodging.imageUrls.length < 7;
+                      then thenBlock;
+                      else elseBlock
+                    "
+                  ></ng-container>
                   <ng-template #thenBlock>
-                    <img alt="placeholder image" src="https://bulma.io/images/placeholders/1280x960.png" />
+                    <img
+                      alt="placeholder image"
+                      src="https://bulma.io/images/placeholders/1280x960.png"
+                    />
                   </ng-template>
                   <ng-template #elseBlock>
                     <img src="{{ lodging.imageUrls[6] }}" alt="Extra campground image" />
@@ -178,8 +241,8 @@
                 </select>
               </div>
                 <div class="level-item">
+                  <button class="button is-info" *ngIf="!Comment.invalid" (click)='OnSubmit()'>Submit</button>
                   <a class="button is-info" *ngIf="Comment.invalid" disabled >Submit</a>
-                  <a class="button is-info" *ngIf="!Comment.invalid" (click)='OnSubmit()'>Submit</a>
                 </div>
               </div>
             </nav>

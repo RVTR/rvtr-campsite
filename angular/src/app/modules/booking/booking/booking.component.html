@@ -6,10 +6,17 @@
 
       <div class="tile is-ancestor">
         <div class="tile is-vertical">
+          <uic-search-bar
+            (isSearched)="isSearched = $event"
+            (searchResults)="searchResults = $event"
+            (searchQuery)="searchQuery = $event"
+          ></uic-search-bar>
 
-          <uic-search-bar (isSearched)="isSearched = $event" (searchResults)="searchResults = $event" (searchQuery)="searchQuery = $event"></uic-search-bar>
-
-          <uic-search-results [lodgings]="searchResults" [query]="searchQuery" *ngIf="isSearched"></uic-search-results>
+          <uic-search-results
+            [lodgings]="searchResults"
+            [query]="searchQuery"
+            *ngIf="isSearched"
+          ></uic-search-results>
 
           <uic-featured-lodging [featuredLodgings]="lodgings$ | async"></uic-featured-lodging>
 

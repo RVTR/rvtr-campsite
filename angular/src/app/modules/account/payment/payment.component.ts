@@ -11,7 +11,8 @@ import { AccountService } from 'src/app/services/account/account.service';
  */
 export class PaymentComponent {
   @Input() payments!: Payment[];
-  @Input() accountId!: string;
+  // @Input() accountId! : string;
+  @Input() email!: string;
   @Output() paymentsEdited = new EventEmitter();
 
   /**
@@ -24,7 +25,8 @@ export class PaymentComponent {
    * @param card Payment
    */
   addCard(card: PostPayment): void {
-    card.accountId = this.accountId;
+    // card.accountId = this.accountId;
+    card.email = this.email;
     this.accountService.postPayment(card).subscribe(
       (newCard) =>
         this.payments.push({

@@ -1,3 +1,5 @@
+import { analyzeAndValidateNgModules } from '@angular/compiler';
+import { nullSafeIsEquivalent } from '@angular/compiler/src/output/output_ast';
 import { Component, Inject } from '@angular/core';
 import { Account } from 'data/account.model';
 import { Address } from 'data/address.model';
@@ -5,6 +7,7 @@ import { Booking } from 'data/booking.model';
 import { Payment } from 'data/payment.model';
 import { Profile } from 'data/profile.model';
 import { Review } from 'data/review.model';
+import { stringify } from 'querystring';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AccountService } from 'services/account/account.service';
@@ -25,9 +28,9 @@ export class AccountComponent {
   profiles$: Observable<Profile[]>;
   reviews$: Observable<Review[]>;
   toastrServiceProp = this.toastrService;
-
   private readonly id = '-1';
   accountId = this.id;
+  email: string;
 
   constructor(
     private readonly accountService: AccountService,
@@ -36,7 +39,10 @@ export class AccountComponent {
     editingService: GenericEditingService<Partial<Account>>,
     private readonly toastrService: ToastrService
   ) {
-    this.account$ = this.accountService.get(this.id);
+    // gets token from localstorage
+    // returns user associated with the email parsed from the token
+    this.email = this.accountService.getToken();
+    this.account$ = this.accountService.getEmail(this.email);
 
     // TODO: get only the bookings of this account
     this.bookings$ = this.bookingService.get();

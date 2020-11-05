@@ -6,7 +6,13 @@
       </div>
 
       <div class="level-right">
-        <a *ngFor="let link of navbarLinks$ | async" class="level-item has-text-primary" href="{{ link.url }}" rel="noopener noreferrer" target="_blank">
+        <a
+          *ngFor="let link of navbarLinks$ | async"
+          class="level-item has-text-primary"
+          href="{{ link.url }}"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
           <span class="icon">
             <i aria-hidden="true" class="{{ link.icon }}"></i>
           </span>

@@ -1,3 +1,4 @@
+  
 <div class="tile is-vertical">
   <div class="tile is-parent">
     <div class="tile is-child">
@@ -7,26 +8,45 @@
 
   <div class="tile">
     <div class="tile is-parent" *ngFor="let lodging of displayLodgings">
-      <div class="tile is-child">
-        <div class="card">
+      <div class="tile is-child dropdown is-hoverable" (click)="featureClick(lodging)">
+        <div class="card dropdown-trigger" aria-haspopup="true" aria-controls="this-dropdown-tooltip">
           <div class="card-image">
             <figure class="image is-4by3">
-              <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+              <img
+                src="https://bulma.io/images/placeholders/1280x960.png"
+                alt="Placeholder image"
+              />
             </figure>
           </div>
           <div class="card-content">
             <div class="media">
               <div class="media-content">
                 <p id="card-title" class="title is-4">{{ lodging.name }}</p>
-                <p id="card-subtitle" class="subtitle is-6">{{ lodging.location.address.street }},
-                  {{ lodging.location.address.city }}, {{ lodging.location.address.stateProvince }}</p>
+                <p id="card-subtitle" class="subtitle is-6">
+                  {{ lodging.location.address.street }}, {{ lodging.location.address.city }},
+                  {{ lodging.location.address.stateProvince }}
+                </p>
               </div>
             </div>
 
             <div class="content" *ngFor="let review of lodging.reviews">
-              <p id="card-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Phasellus nec iaculis mauris. {{ review.comment }}
+              <p id="card-content">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis
+                mauris. {{ review.comment }}
               </p>
+            </div>
+          </div>
+        </div>
+        <div class="dropdown-menu" id="this-dropdown-tooltip" role="menu">
+          <div class="dropdown-content">
+            <div class="dropdown-item">
+              <p *ngIf = "lotAvailableStringsByLodgingId.get(lodging.id) === undefined">No current lots</p>
+              <span *ngIf = "lotAvailableStringsByLodgingId.get(lodging.id) != undefined">
+                Lot Availability:
+                <ul *ngFor = "let thisLotString of lotAvailableStringsByLodgingId.get(lodging.id)">
+                  {{thisLotString}}
+                </ul>
+              </span>
             </div>
           </div>
         </div>

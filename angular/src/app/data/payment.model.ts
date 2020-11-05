@@ -20,5 +20,6 @@ export interface Payment {
 }
 
 export interface PostPayment extends Payment {
-  accountId: string;
+  email: string;
+  // accountId: string;
 }

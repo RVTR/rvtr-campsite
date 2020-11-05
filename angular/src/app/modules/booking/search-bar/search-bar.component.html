@@ -4,6 +4,7 @@
       <div class="field">
         <label for="location" class="label">location</label>
         <div class="control">
+
           <input class="input" formControlName="location" placeholder="Enter destination or leave empty to seach all" type="text" ngModel>
         </div>
       </div>
@@ -13,7 +14,7 @@
       <label for="check-in" class="label">check-in / check-out</label>
       <div class="field has-addons" formGroupName="staydates">
         <div class="control is-expanded">
-          <input class="input" formControlName="checkin" placeholder="Add the traveling date" type="date" ngModel>
+<input class="input" formControlName="checkin" placeholder="Add the traveling date" type="date" ngModel>
         </div>
         <div class="control is-expanded">
           <input class="input" formControlName="checkout" placeholder="Add the returning date" type="date" ngModel>
@@ -35,8 +36,12 @@
           <button class="button is-primary" type="submit" value="Send"  *ngIf="searchForm.invalid" disabled >Search</button>
         </div>
         <div class="control">
-          <button id="clearButton" class="button is-danger fa fa-window-close" type="button"
-            (click)="isSearched.emit(false)"></button>
+          <button
+            id="clearButton"
+            class="button is-danger fa fa-window-close"
+            type="button"
+            (click)="isSearched.emit(false)"
+          ></button>
         </div>
         <!-- <div class="control">
           <a class="button is-info" *ngIf="searchForm.invalid" disabled >Search</a>
