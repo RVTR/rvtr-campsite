@@ -51,7 +51,7 @@ export class LodgingDetailsComponent implements OnInit {
    */
   ngOnInit(): void {
     this.getLodgingById();
-    this.getBookingByAccountId();
+    this.getBookingByAccountEmail(this.profile.email);
   }
 
   /**
@@ -77,11 +77,11 @@ export class LodgingDetailsComponent implements OnInit {
   /**
    * See if the account ID is the same as the lodging ID to allow the user to comment
    */
-  getBookingByAccountId(): void {
-    this.bookingService.getByAccountId(this.profile.id).subscribe(
+  getBookingByAccountEmail(email: string): void {
+    this.bookingService.getByAccountEmail(email).subscribe(
       (i) => {
         for (const index of i) {
-          if (index.accountId === index.lodgingId) {
+          if (index.accountEmail === this.profile.email && this.lodging?.id === index.lodgingId) {
             this.hasBooked = true;
           }
         }

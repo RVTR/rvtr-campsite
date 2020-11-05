@@ -1,15 +1,11 @@
 <section class="hero is-bold is-dark is-fullheight-with-navbar">
   <div class="hero-body">
     <div class="container">
-      <p class="title is-1">
-        RVTR Campground
-      </p>
-      <p class="subtitle is-3 is-italic">
-        for your next adventure, camp with us!
-      </p>
+      <p class="title is-1">RVTR Campground</p>
+      <p class="subtitle is-3 is-italic">for your next adventure, camp with us!</p>
 
       <div>
-        <div *ngIf="(isAuthenticated$ | async) === false; then thenBlock else elseBlock"></div>
+        <div *ngIf="(isAuthenticated$ | async) === false; then thenBlock; else elseBlock"></div>
 
         <ng-template #thenBlock>
           <button (click)="signIn()" class="button">Sign In</button>

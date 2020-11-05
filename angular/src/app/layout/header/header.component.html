@@ -18,7 +18,11 @@
 
       <div class="navbar-menu" id="header-menu">
         <div class="navbar-start">
-          <a *ngFor="let link of navbarLinks$ | async" class="navbar-item has-text-primary" routerLink="{{ link.url }}">
+          <a
+            *ngFor="let link of navbarLinks$ | async"
+            class="navbar-item has-text-primary"
+            routerLink="{{ link.url }}"
+          >
             {{ link.text }}
           </a>
         </div>

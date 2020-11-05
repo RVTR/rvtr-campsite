@@ -48,6 +48,7 @@ describe('RentalComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  // The following 4 tests are for a method that is no longer used, but is left here in case someone wants to use it later
   // it('should set rentalTypes', () => {
   //   expect(component.rentalTypes).toBeTruthy();
   //   expect(component.rentalTypes.length).toEqual(2);

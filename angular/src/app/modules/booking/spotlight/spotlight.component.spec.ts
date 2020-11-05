@@ -1,10 +1,15 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { SpotlightComponent } from './spotlight.component';
 import { Lodging } from 'src/app/data/lodging.model';
+import { RouterTestingModule } from '@angular/router/testing';
+import { Router } from '@angular/router';
 
 describe('SpotlightComponent', () => {
   let component: SpotlightComponent;
   let fixture: ComponentFixture<SpotlightComponent>;
+  const mockRouter = {
+    navigate: jasmine.createSpy('navigate'),
+  };
 
   const testLodgings: Lodging[] = [
     {
@@ -66,7 +71,9 @@ describe('SpotlightComponent', () => {
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
+        imports: [RouterTestingModule.withRoutes([])],
         declarations: [SpotlightComponent],
+        providers: [{ provide: Router, useValue: mockRouter }],
       }).compileComponents();
     })
   );
@@ -96,5 +103,16 @@ describe('SpotlightComponent', () => {
     component.lodgings = testLodgings;
     component.ngOnChanges();
     expect(component.setSpotlight).toHaveBeenCalled();
+  });
+
+  it('lodging redirect should work', () => {
+    component.featureClick(testLodgings[0]);
+    expect(mockRouter.navigate).toHaveBeenCalledWith(['/lodging/details/1']);
+  });
+
+  it('img should be the placeholder', () => {
+    component.lodgings = testLodgings;
+    const img: HTMLElement = fixture.debugElement.nativeElement.querySelector('img');
+    expect(img.getAttribute('alt')).toMatch('Placeholder image');
   });
 });

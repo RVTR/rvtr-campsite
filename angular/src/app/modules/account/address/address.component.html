@@ -1,5 +1,5 @@
 <span class="icon has-text-info level-item">
-  <i class="fas fa-edit" aria-hidden="true" (click)="editMode=!editMode" [title]="titleEdit"></i>
+  <i class="fas fa-edit" aria-hidden="true" (click)="editMode = !editMode" [title]="titleEdit"></i>
 </span>
 
 <div class="level">
@@ -8,7 +8,12 @@
       <div>
         <p class="heading">street</p>
 
-        <uic-editable [(data)]="address.street" [(editMode)]="editMode" (dataChange)="edited()" type="street">
+        <uic-editable
+          [(data)]="address.street"
+          [(editMode)]="editMode"
+          (dataChange)="edited()"
+          type="street"
+        >
           <p class="title has-text-light is-6">{{ address?.street }}</p>
         </uic-editable>
       </div>
@@ -29,7 +34,12 @@
     <div class="level-item has-text-light">
       <div>
         <p class="heading">city</p>
-        <uic-editable [(data)]="address.city" [(editMode)]="editMode" (dataChange)="edited()" type="city">
+        <uic-editable
+          [(data)]="address.city"
+          [(editMode)]="editMode"
+          (dataChange)="edited()"
+          type="city"
+        >
           <p class="title has-text-light is-6">{{ address?.city }}</p>
         </uic-editable>
       </div>
@@ -38,7 +48,12 @@
     <div class="level-item has-text-light">
       <div>
         <p class="heading">state</p>
-        <uic-editable [(data)]="address.stateProvince" [(editMode)]="editMode" (dataChange)="edited()" type="state">
+        <uic-editable
+          [(data)]="address.stateProvince"
+          [(editMode)]="editMode"
+          (dataChange)="edited()"
+          type="state"
+        >
           <p class="title has-text-light is-6">{{ address?.stateProvince }}</p>
         </uic-editable>
       </div>
@@ -47,7 +62,12 @@
     <div class="level-item has-text-light">
       <div>
         <p class="heading">postal code</p>
-        <uic-editable [(data)]="address.postalCode" [(editMode)]="editMode" (dataChange)="edited()" type="postal">
+        <uic-editable
+          [(data)]="address.postalCode"
+          [(editMode)]="editMode"
+          (dataChange)="edited()"
+          type="postal"
+        >
           <p class="title has-text-light is-6">{{ address?.postalCode }}</p>
         </uic-editable>
       </div>
@@ -60,11 +80,15 @@
     <div class="level-item has-text-light">
       <div>
         <p class="heading">country</p>
-        <uic-editable [(data)]="address.country" [(editMode)]="editMode" (dataChange)="edited()" type="country">
+        <uic-editable
+          [(data)]="address.country"
+          [(editMode)]="editMode"
+          (dataChange)="edited()"
+          type="country"
+        >
           <p class="title has-text-light is-6">{{ address?.country }}</p>
         </uic-editable>
       </div>
     </div>
   </div>
 </div>
-

@@ -7,7 +7,7 @@
       <div class="tile is-ancestor">
         <div class="tile is-3">
           <div class="tile is-parent is-vertical">
-            <div class="tile box has-background-dark is-child is-relative" style="z-index: 1;">
+            <div class="tile box has-background-dark is-child is-relative" style="z-index: 1">
               <h2 class="title has-text-light is-4">address</h2>
               <uic-address *ngIf="address$ | async as address" [address]="address"> </uic-address>
             </div>
@@ -15,7 +15,7 @@
               <h2 class="title has-text-light is-4">payments</h2>
               <uic-payment
                 *ngIf="payments$ | async as payments"
-                [accountId]="accountId"
+                [email]="email"
                 [payments]="payments"
               >
               </uic-payment>

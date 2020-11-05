@@ -1,5 +1,5 @@
 <span class="icon has-text-info level-item">
-  <i class="fas fa-edit" aria-hidden="true" (click)="editMode=!editMode" [title]="titleEdit"></i>
+  <i class="fas fa-edit" aria-hidden="true" (click)="editMode = !editMode" [title]="titleEdit"></i>
 </span>
 
 <div class="level">
@@ -8,16 +8,30 @@
       <div class="card">
         <div class="card-content">
           <figure class="image is-128x128">
-            <img alt="placeholder image" class="is-rounded" src="https://bulma.io/images/placeholders/256x256.png">
+            <img
+              alt="placeholder image"
+              class="is-rounded"
+              src="https://bulma.io/images/placeholders/256x256.png"
+            />
           </figure>
-          <br>
+          <br />
           <div>
             <p class="heading">adult</p>
-            <uic-editable [(data)]="profile.givenName" [(editMode)]="editMode" (dataChange)="edited()" type="name">
-              <p class="title is-6 level-item"> {{ profile.givenName }} </p>
+            <uic-editable
+              [(data)]="profile.givenName"
+              [(editMode)]="editMode"
+              (dataChange)="edited()"
+              type="name"
+            >
+              <p class="title is-6 level-item">{{ profile.givenName }}</p>
             </uic-editable>
-            <uic-editable [(data)]="profile.familyName" [(editMode)]="editMode" (dataChange)="edited()" type="name">
-              <p class="title is-6 level-item"> {{ profile.familyName }} </p>
+            <uic-editable
+              [(data)]="profile.familyName"
+              [(editMode)]="editMode"
+              (dataChange)="edited()"
+              type="name"
+            >
+              <p class="title is-6 level-item">{{ profile.familyName }}</p>
             </uic-editable>
           </div>
         </div>

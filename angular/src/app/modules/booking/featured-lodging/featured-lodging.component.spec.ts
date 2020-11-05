@@ -1,10 +1,15 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
 import { FeaturedLodgingComponent } from './featured-lodging.component';
 import { Lodging } from 'src/app/data/lodging.model';
+import { RouterTestingModule } from '@angular/router/testing';
+import { Router } from '@angular/router';
 
 describe('FeaturedLodgingComponent', () => {
   let component: FeaturedLodgingComponent;
   let fixture: ComponentFixture<FeaturedLodgingComponent>;
+  const mockRouter = {
+    navigate: jasmine.createSpy('navigate'),
+  };
 
   const testLodgings: Lodging[] = [
     {
@@ -45,24 +50,26 @@ describe('FeaturedLodgingComponent', () => {
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
+        imports: [RouterTestingModule.withRoutes([])],
         declarations: [FeaturedLodgingComponent],
+        providers: [{ provide: Router, useValue: mockRouter }],
       }).compileComponents();
+
+      fixture = TestBed.createComponent(FeaturedLodgingComponent);
+      component = fixture.componentInstance;
+      component.featuredLodgings = testLodgings;
+      fixture.detectChanges();
     })
   );
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(FeaturedLodgingComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  // beforeEach(() => {
+  // });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
   it('should update on change', () => {
-    component.featuredLodgings = testLodgings;
-    fixture.detectChanges();
     expect(component.displayLodgings).toBeTruthy();
     expect(component.displayLodgings.length).toBeLessThanOrEqual(6);
   });
@@ -71,5 +78,27 @@ describe('FeaturedLodgingComponent', () => {
     component.featuredLodgings = null;
     fixture.detectChanges();
     expect(component.displayLodgings.length).toEqual(0);
+  });
+
+  it('should set available lodgings', () => {
+    component.displayLodgings = testLodgings;
+    component.setAvailableCountsByType();
+    expect(component.lotAvailableStringsByLodgingId).toBeTruthy();
+  });
+
+  it('lodging available string should match expectations', () => {
+    component.displayLodgings = testLodgings;
+    component.setAvailableCountsByType();
+    let outstr = '';
+    const stringArray1 = component.lotAvailableStringsByLodgingId.get(1);
+    if (stringArray1 !== undefined) {
+      outstr = stringArray1[0];
+    }
+    expect(outstr).toEqual('tent: 1 of 1 Available');
+  });
+
+  it('lodging redirect should work', () => {
+    component.featureClick(testLodgings[0]);
+    expect(mockRouter.navigate).toHaveBeenCalledWith(['/lodging/details/1']);
   });
 });

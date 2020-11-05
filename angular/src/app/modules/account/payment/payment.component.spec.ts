@@ -53,7 +53,7 @@ describe('PaymentComponent', () => {
 
   it('should add new card', () => {
     const mockPostPayment: PostPayment = {
-      accountId: '',
+      email: '',
       id: mockPayment.id,
       cardName: mockPayment.cardName,
       cardNumber: mockPayment.cardNumber,

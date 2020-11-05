@@ -50,13 +50,14 @@ export class AccountService {
   }
 
   /**
-   * Represents the _Account Service_ `get` method
+   * Represents the _Account Service_ `getEmail` method
    *
-   * @param id string
+   * @param email string
    */
-  get(id: string): Observable<Account> {
+
+  getEmail(email: string): Observable<Account> {
     return this.accountsUrl$.pipe(
-      map((url) => url.concat(`/${id}`)),
+      map((url) => url.concat(`/${email}`)),
       concatMap((url) => this.http.get<Account>(url))
     );
   }
@@ -86,5 +87,10 @@ export class AccountService {
    */
   postPayment(payment: PostPayment): Observable<PostPayment> {
     return this.paymentsUrl$.pipe(concatMap((url) => this.http.post<PostPayment>(url, payment)));
+  }
+  getToken(): string {
+    const OktaToken = localStorage.getItem('okta-token-storage');
+    const OkTokenObj = JSON.parse(OktaToken as string);
+    return OkTokenObj.idToken.claims.email;
   }
 }

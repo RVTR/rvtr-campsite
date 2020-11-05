@@ -35,8 +35,12 @@
           <button class="button is-primary" type="submit" value="Send"  *ngIf="searchForm.invalid" disabled >Search</button>
         </div>
         <div class="control">
-          <button id="clearButton" class="button is-danger fa fa-window-close" type="button"
-            (click)="isSearched.emit(false)"></button>
+          <button
+            id="clearButton"
+            class="button is-danger fa fa-window-close"
+            type="button"
+            (click)="isSearched.emit(false)"
+          ></button>
         </div>
         <!-- <div class="control">
           <a class="button is-info" *ngIf="searchForm.invalid" disabled >Search</a>

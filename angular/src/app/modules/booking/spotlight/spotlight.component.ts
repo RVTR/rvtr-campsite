@@ -1,4 +1,5 @@
 import { Component, Input, OnChanges } from '@angular/core';
+import { Router } from '@angular/router';
 import { Lodging } from 'src/app/data/lodging.model';
 
 @Component({
@@ -8,7 +9,9 @@ import { Lodging } from 'src/app/data/lodging.model';
 export class SpotlightComponent implements OnChanges {
   @Input() lodgings!: Lodging[] | null;
   selectedLodging: Lodging | null = null;
-  spotlight = false;
+  spotlight = true;
+
+  constructor(private router: Router) {}
 
   ngOnChanges(): void {
     this.setSpotlight(this.lodgings);
@@ -24,5 +27,10 @@ export class SpotlightComponent implements OnChanges {
         }
       }
     }
+  }
+
+  featureClick(thisLodging: Lodging): void {
+    console.log('Going to lodging details for' + thisLodging.name);
+    this.router.navigate(['/lodging/details/' + thisLodging.id]);
   }
 }
