@@ -16,6 +16,7 @@ describe('ProfileComponent', () => {
       familyName: '',
       phone: '',
       type: '',
+      editMode : false
     },
   ];
 
@@ -24,6 +25,8 @@ describe('ProfileComponent', () => {
       return of(e);
     },
   };
+
+
 
   @Component({ selector: 'uic-editable', template: '' })
   class EditableStubComponent {
@@ -60,4 +63,15 @@ describe('ProfileComponent', () => {
     });
     component.edited();
   });
+
+  it('should add', () => {
+    expect(component.add(1)).toBeTruthy();
+  });
+
+  
+  it('should remove', () => {
+    expect(component.remove(1)).toBeTruthy();
+  });
+
+
 });

@@ -76,6 +76,7 @@ describe('LodgingDetailsComponent', () => {
     givenName: 'Guy',
     familyName: 'Ferri',
     phone: '111-111-1111',
+    editMode : false
   };
 
   const onSubmitStub = {

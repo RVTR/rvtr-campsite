@@ -76,15 +76,15 @@ export class EditableComponent implements OnInit {
     const reg = new RegExp(this.pattern);
     const target = e.target as HTMLInputElement;
     const valid = reg.test(target.value);
-    if (!valid) {
-      this.error = true;
-      this.valid = false;
-    } else {
+    // if (!valid) {
+    //   this.error = true;
+    //   this.valid = false;
+    // } else {
       this.error = false;
       this.valid = true;
       this.editMode = false;
       this.data = target.value;
       this.dataChange.emit(this.data);
     }
-  }
+  //}
 }

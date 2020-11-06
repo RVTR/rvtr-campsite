@@ -1,14 +1,15 @@
 <span class="icon has-text-info level-item">
-  <i class="fas fa-user-plus" aria-hidden="true" (click)="add()" [title]="titleAdd"></i>
+  <i class="fas fa-user-plus" aria-hidden="true" (click)="add(profiles.length)" [title]="titleAdd"></i>
 </span>
 
 <div class="level">
   <div class="level-left">
-    <div class="level-item has-text-centered" *ngFor="let profile of profiles| slice:0:5; let i=index">
-      
+    <div class="level-item has-text-centered" *ngFor="let profile of profiles,let i=index">
+    
       <div class="card">
         <div class="card-content">
-          <i class="fas fa-edit" aria-hidden="true" (click)="editMode = !editMode" [title]="titleEdit"></i>
+          <i class="fas fa-edit" aria-hidden="true" (click)="profile.editMode = !profile.editMode" [title]="titleEdit"></i>
+          <i class="fas fa-user-minus" aria-hidden="true" (click)="remove(i)" [title]="titleDelete"></i>
           <figure class="image is-128x128">
             <img
               alt="placeholder image"
@@ -21,7 +22,7 @@
             <p class="heading">adult</p>
             <uic-editable
               [(data)]="profile.givenName"
-              [(editMode)]="editMode"
+              [(editMode)]="profile.editMode"
               (dataChange)="edited()"
               type="name"
             >
@@ -29,7 +30,7 @@
             </uic-editable>
             <uic-editable
               [(data)]="profile.familyName"
-              [(editMode)]="editMode"
+              [(editMode)]="profile.editMode"
               (dataChange)="edited()"
               type="name"
             >

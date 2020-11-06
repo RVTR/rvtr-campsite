@@ -16,6 +16,7 @@ describe('AccountBookingComponent', () => {
         familyName: '',
         givenName: '',
         phone: 'string',
+        editMode : false
       },
     ],
     rentals: [

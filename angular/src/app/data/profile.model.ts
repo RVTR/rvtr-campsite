@@ -21,4 +21,6 @@ export interface Profile {
   familyName: string;
   /** phone number */
   phone: string;
+
+  editMode: boolean
 }
