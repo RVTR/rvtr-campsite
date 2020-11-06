@@ -1,12 +1,14 @@
 <span class="icon has-text-info level-item">
-  <i class="fas fa-edit" aria-hidden="true" (click)="editMode = !editMode" [title]="titleEdit"></i>
+  <i class="fas fa-user-plus" aria-hidden="true" (click)="add()" [title]="titleAdd"></i>
 </span>
 
 <div class="level">
   <div class="level-left">
-    <div class="level-item has-text-centered" *ngFor="let profile of profiles">
+    <div class="level-item has-text-centered" *ngFor="let profile of profiles| slice:0:5; let i=index">
+      
       <div class="card">
         <div class="card-content">
+          <i class="fas fa-edit" aria-hidden="true" (click)="editMode = !editMode" [title]="titleEdit"></i>
           <figure class="image is-128x128">
             <img
               alt="placeholder image"

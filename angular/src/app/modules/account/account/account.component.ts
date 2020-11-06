@@ -42,7 +42,7 @@ export class AccountComponent {
     // gets token from localstorage
     // returns user associated with the email parsed from the token
     this.email = this.accountService.getToken();
-    this.account$ = this.accountService.getEmail(this.email);
+    this.account$ = this.accountService.getEmail("Test@test.com");
 
     // TODO: get only the bookings of this account
     this.bookings$ = this.bookingService.get();

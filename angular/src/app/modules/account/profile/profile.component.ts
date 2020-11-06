@@ -16,6 +16,7 @@ export class ProfileComponent {
 
   editMode = false;
   titleEdit = 'Click To Edit Your Profile';
+  titleAdd = 'Click To Add Profile';
 
   /**
    * Represents the _Profile Component_ 'constructor' method
@@ -31,5 +32,19 @@ export class ProfileComponent {
    */
   edited(): void {
     this.editingService.update({ profiles: this.profiles });
+  }
+  add(): void {
+    let profile : Profile = {
+      id : 0,
+      email : " ",
+      givenName : " ",
+      familyName: " ",
+      type : "adult",
+      phone: " "
+
+
+    }
+    this.profiles.push(profile);
+    
   }
 }

@@ -14,7 +14,7 @@
             <div class="tile box has-background-dark is-child">
               <h2 class="title has-text-light is-4">payments</h2>
               <uic-payment
-                *ngIf="payments$ | async as payments"
+                *ngIf= "payments$ | async as payments"
                 [email]="email"
                 [payments]="payments"
               >
