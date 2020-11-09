@@ -80,11 +80,11 @@ export class EditableComponent implements OnInit {
     //   this.error = true;
     //   this.valid = false;
     // } else {
-      this.error = false;
-      this.valid = true;
-      this.editMode = false;
-      this.data = target.value;
-      this.dataChange.emit(this.data);
-    }
-  //}
+    this.error = false;
+    this.valid = true;
+    this.editMode = false;
+    this.data = target.value;
+    this.dataChange.emit(this.data);
+  }
+  // }
 }

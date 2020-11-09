@@ -9,7 +9,7 @@
       <div class="card">
         <div class="card-content">
           <i class="fas fa-edit" aria-hidden="true" (click)="profile.editMode = !profile.editMode" [title]="titleEdit"></i>
-          <i class="fas fa-user-minus" aria-hidden="true" (click)="remove(i)" [title]="titleDelete"></i>
+          <i class="fas fa-user-minus" aria-hidden="true" (click)="remove(i, profiles[i].id)" [title]="titleDelete"></i>
           <figure class="image is-128x128">
             <img
               alt="placeholder image"
@@ -26,7 +26,7 @@
               (dataChange)="edited()"
               type="name"
             >
-              <p class="title is-6 level-item">{{ profile.givenName }}</p>
+            <p class="title is-6 level-item">{{ profile.givenName }}</p>
             </uic-editable>
             <uic-editable
               [(data)]="profile.familyName"

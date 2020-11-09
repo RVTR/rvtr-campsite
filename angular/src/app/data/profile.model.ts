@@ -22,5 +22,5 @@ export interface Profile {
   /** phone number */
   phone: string;
 
-  editMode: boolean
+  editMode: boolean;
 }

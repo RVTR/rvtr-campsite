@@ -4,6 +4,7 @@ import { of, Observable } from 'rxjs';
 import { Account } from '../../../data/account.model';
 import { ProfileComponent } from './profile.component';
 import { ACCOUNT_EDITING_SERVICE } from '../account-editing.token';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('ProfileComponent', () => {
   let component: ProfileComponent;
@@ -16,7 +17,7 @@ describe('ProfileComponent', () => {
       familyName: '',
       phone: '',
       type: '',
-      editMode : false
+      editMode: false,
     },
   ];
 
@@ -25,8 +26,6 @@ describe('ProfileComponent', () => {
       return of(e);
     },
   };
-
-
 
   @Component({ selector: 'uic-editable', template: '' })
   class EditableStubComponent {
@@ -37,6 +36,7 @@ describe('ProfileComponent', () => {
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
+        imports: [HttpClientTestingModule],
         declarations: [ProfileComponent, EditableStubComponent],
         providers: [{ provide: ACCOUNT_EDITING_SERVICE, useValue: editingService }],
         schemas: [NO_ERRORS_SCHEMA],
@@ -68,10 +68,7 @@ describe('ProfileComponent', () => {
     expect(component.add(1)).toBeTruthy();
   });
 
-  
   it('should remove', () => {
-    expect(component.remove(1)).toBeTruthy();
+    expect(component.remove(1, 1)).toBeTruthy();
   });
-
-
 });

@@ -39,16 +39,9 @@ export class AccountComponent {
     public editingService: GenericEditingService<Partial<Account>>,
     private readonly toastrService: ToastrService
   ) {
-<<<<<<< HEAD
-    // gets token from localstorage
-    // returns user associated with the email parsed from the token
-    this.email = this.accountService.getToken();
-    this.account$ = this.accountService.getEmail("Test@test.com");
-=======
     this.email = '';
     this.init();
   }
->>>>>>> 6edbd293832e887776a67e479889d7bf6bf015c8
 
   async init(): Promise<void> {
     const userClaims = await this.oktaAuth.getUser();

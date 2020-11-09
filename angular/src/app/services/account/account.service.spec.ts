@@ -12,45 +12,9 @@ import { Account } from '../../data/account.model';
 import { Config } from '../../data/config.model';
 import { PostPayment } from 'src/app/data/payment.model';
 import { accountMock } from '../../data/Mocks/account.mock';
+import { Profile } from 'data/profile.model';
 
 describe('AccountService', () => {
-<<<<<<< HEAD
-  const accountMock: Account = {
-    id: '0',
-    email: 'test',
-    name: 'test',
-    address: {
-      id: 'string',
-      city: 'string',
-      country: 'string',
-      postalCode: 'string',
-      stateProvince: 'string',
-      street: 'string',
-    },
-    payments: [
-      {
-        id: 'string',
-        cardExpirationDate: '2020-08-01',
-        cardName: 'string',
-        cardNumber: 'string',
-        securityCode: '111',
-      },
-    ],
-    profiles: [
-      {
-        type: 'adult',
-        id: 1,
-        email: 'string',
-        familyName: 'string',
-        givenName: 'string',
-        phone: 'string',
-        editMode : false
-      },
-    ],
-  };
-
-=======
->>>>>>> 6edbd293832e887776a67e479889d7bf6bf015c8
   const configServiceStub = {
     get(): Observable<Config> {
       const config: Config = {
@@ -94,6 +58,7 @@ describe('AccountService', () => {
       },
     };
     spyOn(Storage.prototype, 'getItem').and.callFake(mockLocalStorage.getItem);
+
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
       providers: [{ provide: ConfigService, useValue: configServiceStub }],
@@ -181,5 +146,25 @@ describe('AccountService', () => {
 
     req = httpTestingController.expectOne('test');
     req.flush(mockPayment);
+  }));
+
+  it('should make httpDelete request for profile', fakeAsync(() => {
+    let req: TestRequest;
+    const mockProfile: Profile = {
+      email: 'string',
+      id: 1,
+      givenName: 'T',
+      familyName: 'T',
+      phone: '123-123-1233',
+      type: 'Adult',
+      editMode: false,
+    };
+    service.deleteProfile(1).subscribe((res) => {
+      expect(res).toEqual(mockProfile);
+    });
+    tick();
+
+    req = httpTestingController.expectOne('test/1');
+    req.flush(mockProfile);
   }));
 });

@@ -46,6 +46,7 @@ export const accountMock: Account = {
       familyName: 'string',
       givenName: 'string',
       phone: 'string',
+      editMode: false,
     },
   ],
 };

@@ -14,6 +14,7 @@ export const booking: Booking = {
       familyName: '',
       givenName: '',
       phone: 'string',
+      editMode: false,
     },
   ],
   rentals: [
