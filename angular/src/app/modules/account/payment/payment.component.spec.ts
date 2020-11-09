@@ -4,6 +4,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Observable, of } from 'rxjs';
 import { Payment, PostPayment } from '../../../data/payment.model';
 import { AccountService } from '../../../services/account/account.service';
+import { mockPayment } from '../../../data/Mocks/payment.mock';
 
 describe('PaymentComponent', () => {
   const payments = [
@@ -15,13 +16,6 @@ describe('PaymentComponent', () => {
       securityCode: '',
     },
   ];
-  const mockPayment: Payment = {
-    id: 'string',
-    cardExpirationDate: '2020-08-01',
-    cardName: 'string',
-    cardNumber: 'string',
-    securityCode: '111',
-  };
   const accountServiceStub = {
     postPayment(payment: PostPayment): Observable<PostPayment> {
       return of(payment);

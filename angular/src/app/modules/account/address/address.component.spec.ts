@@ -3,38 +3,16 @@ import { async, ComponentFixture, TestBed, waitForAsync } from '@angular/core/te
 import { AddressComponent } from './address.component';
 import { ACCOUNT_EDITING_SERVICE } from '../account-editing.token';
 import { Account } from '../../../data/account.model';
+import { account } from '../../../data/Mocks/account.mock';
+import { address } from '../../../data/Mocks/address.mock';
 
 import { Component, Input } from '@angular/core';
 
 describe('AddressComponent', () => {
   const accountServiceStub = {
     get(): Observable<Account> {
-      const account: Account = {
-        id: '',
-        email: '',
-        name: '',
-        address: {
-          id: '',
-          city: '',
-          country: '',
-          postalCode: '',
-          stateProvince: '',
-          street: '',
-        },
-        payments: [],
-        profiles: [],
-      };
-
       return of(account);
     },
-  };
-  const address = {
-    id: '',
-    city: '',
-    country: '',
-    postalCode: '',
-    stateProvince: '',
-    street: '',
   };
   let component: AddressComponent;
   let fixture: ComponentFixture<AddressComponent>;

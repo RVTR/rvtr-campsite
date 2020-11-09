@@ -1,72 +1,23 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { SpotlightComponent } from './spotlight.component';
 import { Lodging } from 'src/app/data/lodging.model';
+import { RouterTestingModule } from '@angular/router/testing';
+import { Router } from '@angular/router';
+import { testLodgings } from '../../../data/Mocks/lodging.mock';
 
 describe('SpotlightComponent', () => {
   let component: SpotlightComponent;
   let fixture: ComponentFixture<SpotlightComponent>;
-
-  const testLodgings: Lodging[] = [
-    {
-      id: 1,
-      location: {
-        id: '',
-        address: {
-          id: '',
-          city: '',
-          postalCode: '',
-          country: '',
-          stateProvince: '',
-          street: '',
-        },
-        latitude: '',
-        longitude: '',
-      },
-      name: '',
-      bathrooms: 1,
-      rentals: [
-        {
-          id: '1',
-          lotNumber: '1',
-          unit: {
-            size: '5x5',
-            capacity: 2,
-            name: 'tent',
-          },
-          status: 'available',
-          price: 100,
-        },
-      ],
-      reviews: [],
-      imageUrls: [],
-    },
-    {
-      id: 1,
-      location: {
-        id: '',
-        address: {
-          id: '',
-          city: '',
-          postalCode: '',
-          country: '',
-          stateProvince: '',
-          street: '',
-        },
-        latitude: '',
-        longitude: '',
-      },
-      name: '',
-      bathrooms: 1,
-      rentals: [],
-      reviews: [],
-      imageUrls: [],
-    },
-  ];
+  const mockRouter = {
+    navigate: jasmine.createSpy('navigate'),
+  };
 
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
+        imports: [RouterTestingModule.withRoutes([])],
         declarations: [SpotlightComponent],
+        providers: [{ provide: Router, useValue: mockRouter }],
       }).compileComponents();
     })
   );
@@ -96,5 +47,16 @@ describe('SpotlightComponent', () => {
     component.lodgings = testLodgings;
     component.ngOnChanges();
     expect(component.setSpotlight).toHaveBeenCalled();
+  });
+
+  it('lodging redirect should work', () => {
+    component.featureClick(testLodgings[0]);
+    expect(mockRouter.navigate).toHaveBeenCalledWith(['/lodging/details/1']);
+  });
+
+  it('img should be the placeholder', () => {
+    component.lodgings = testLodgings;
+    const img: HTMLElement = fixture.debugElement.nativeElement.querySelector('img');
+    expect(img.getAttribute('alt')).toMatch('Placeholder image');
   });
 });

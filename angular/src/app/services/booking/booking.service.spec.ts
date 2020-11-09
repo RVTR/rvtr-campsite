@@ -10,20 +10,9 @@ import { BookingService } from './booking.service';
 import { ConfigService } from '../config/config.service';
 import { Booking } from '../../data/booking.model';
 import { Config } from '../../data/config.model';
+import { bookingMock } from '../../data/Mocks/booking.mock';
 
 describe('BookingService', () => {
-  const bookingMock: Booking[] = [
-    {
-      id: '0',
-      accountEmail: '',
-      lodgingId: 0,
-      guests: [],
-      rentals: [],
-      checkIn: '2020-08-01',
-      checkOut: '2020-08-03',
-    },
-  ];
-
   const configServiceStub = {
     get(): Observable<Config> {
       const config: Config = {

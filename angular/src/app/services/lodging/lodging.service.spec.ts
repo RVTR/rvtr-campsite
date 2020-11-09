@@ -11,32 +11,9 @@ import { ConfigService } from '../config/config.service';
 import { Config } from '../../data/config.model';
 import { Lodging } from '../../data/lodging.model';
 import { Filter } from 'src/app/data/filter.model';
+import { lodgingMock } from '../../data/Mocks/lodging.mock';
 
 describe('LodgingService', () => {
-  const lodgingMock: Lodging[] = [
-    {
-      id: 1,
-      location: {
-        id: 'string',
-        address: {
-          id: 'string',
-          city: 'string',
-          country: 'string',
-          postalCode: 'string',
-          stateProvince: 'string',
-          street: 'string',
-        },
-        latitude: 'string',
-        longitude: 'string',
-      },
-      name: 'string',
-      bathrooms: 1,
-      rentals: [],
-      reviews: [],
-      imageUrls: [],
-    },
-  ];
-
   const configServiceStub = {
     get(): Observable<Config> {
       const config: Config = {

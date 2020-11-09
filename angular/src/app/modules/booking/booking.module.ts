@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BookingComponent } from './booking/booking.component';
 import { BookingRoutingModule } from './booking-routing.module';
@@ -16,6 +16,6 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
     SearchResultsComponent,
     FeaturedLodgingComponent,
   ],
-  imports: [BookingRoutingModule, CommonModule, FormsModule],
+  imports: [BookingRoutingModule, CommonModule, ReactiveFormsModule],
 })
 export class BookingModule {}

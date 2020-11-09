@@ -1,23 +1,9 @@
 import { GenericEditingService } from './generic-editing.service';
 import { Account } from '../../data/account.model';
+import { account } from '../../data/Mocks/account.mock';
 
 describe('AccountEditingService', () => {
   let service = new GenericEditingService<Partial<Account>>();
-  const account: Account = {
-    id: '',
-    email: '',
-    name: '',
-    address: {
-      id: '',
-      city: '',
-      country: '',
-      postalCode: '',
-      stateProvince: '',
-      street: '',
-    },
-    payments: [],
-    profiles: [],
-  };
   const partial = { id: '4' };
 
   beforeEach(() => {

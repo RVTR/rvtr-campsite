@@ -11,8 +11,10 @@ import { ConfigService } from '../config/config.service';
 import { Account } from '../../data/account.model';
 import { Config } from '../../data/config.model';
 import { PostPayment } from 'src/app/data/payment.model';
+import { accountMock } from '../../data/Mocks/account.mock';
 
 describe('AccountService', () => {
+<<<<<<< HEAD
   const accountMock: Account = {
     id: '0',
     email: 'test',
@@ -47,6 +49,8 @@ describe('AccountService', () => {
     ],
   };
 
+=======
+>>>>>>> 6edbd293832e887776a67e479889d7bf6bf015c8
   const configServiceStub = {
     get(): Observable<Config> {
       const config: Config = {

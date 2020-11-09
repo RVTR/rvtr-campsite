@@ -53,6 +53,7 @@
   "scripts": {
     "audit": "prettier --config ../.prettierrc.yaml --ignore-path ../.prettierignore --check ./",
     "build": "ng build",
+    "pree2e" : "node ./node_modules/protractor/bin/webdriver-manager update --versions.chrome=86.0.4240.22 --gecko false --standalone false",
     "e2e": "ng e2e",
     "format": "prettier --config ../.prettierrc.yaml --ignore-path ../.prettierignore --write ./",
     "lint": "ng lint",

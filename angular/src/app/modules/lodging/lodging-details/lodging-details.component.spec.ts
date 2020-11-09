@@ -11,61 +11,13 @@ import { BookingService } from '../../../services/booking/booking.service';
 import { Review } from 'data/review.model';
 import { Booking } from 'data/booking.model';
 import { By } from '@angular/platform-browser';
+import { lodging } from '../../../data/Mocks/lodging.mock';
+import { review } from '../../../data/Mocks/review.mock';
+import { bookings } from '../../../data/Mocks/booking.mock';
 
 describe('LodgingDetailsComponent', () => {
   let component: LodgingDetailsComponent;
   let fixture: ComponentFixture<LodgingDetailsComponent>;
-  const lodging: Lodging = {
-    id: 1,
-    location: {
-      id: '1',
-      address: {
-        id: '1',
-        city: 'testCity',
-        country: 'testCountry',
-        postalCode: 'testCode',
-        stateProvince: 'testState',
-        street: 'testStreet',
-      },
-      latitude: 'testLat',
-      longitude: 'testLong',
-    },
-    name: 'test',
-    rentals: [],
-    reviews: [],
-    bathrooms: 1,
-    imageUrls: [],
-  };
-
-  const review: Review = {
-    accountId: 0,
-    name: '',
-    comment: '',
-    dateCreated: '',
-    rating: 0,
-    lodgingId: 0,
-  };
-
-  const bookings: Booking[] = [
-    {
-      id: '0',
-      accountEmail: '',
-      lodgingId: 1,
-      guests: [],
-      rentals: [],
-      checkIn: '2020-08-01',
-      checkOut: '2020-08-03',
-    },
-    {
-      id: '0',
-      accountEmail: '',
-      lodgingId: 2,
-      guests: [],
-      rentals: [],
-      checkIn: '2020-08-01',
-      checkOut: '2020-08-03',
-    },
-  ];
 
   const imageUrlsMock = ['https://bulma.io/images/placeholders/1280x960.png'];
 

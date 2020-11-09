@@ -44,8 +44,8 @@ export class AccountService {
    */
   delete(id: string): Observable<void> {
     return this.accountsUrl$.pipe(
-      map((url) => url.concat(`/${id}`)),
-      concatMap((url) => this.http.delete<void>(url))
+      map((url1) => url1.concat(`/${id}`)),
+      concatMap((url1) => this.http.delete<void>(url1))
     );
   }
 
@@ -57,8 +57,8 @@ export class AccountService {
 
   getEmail(email: string): Observable<Account> {
     return this.accountsUrl$.pipe(
-      map((url) => url.concat(`/${email}`)),
-      concatMap((url) => this.http.get<Account>(url))
+      map((url1) => url1.concat(`/${email}`)),
+      concatMap((url1) => this.http.get<Account>(url1))
     );
   }
 
@@ -68,7 +68,7 @@ export class AccountService {
    * @param account Account
    */
   post(account: Account): Observable<Account> {
-    return this.accountsUrl$.pipe(concatMap((url) => this.http.post<Account>(url, account)));
+    return this.accountsUrl$.pipe(concatMap((url1) => this.http.post<Account>(url1, account)));
   }
 
   /**
@@ -77,7 +77,7 @@ export class AccountService {
    * @param account Account
    */
   put(account: Account): Observable<Account> {
-    return this.accountsUrl$.pipe(concatMap((url) => this.http.put<Account>(url, account)));
+    return this.accountsUrl$.pipe(concatMap((url1) => this.http.put<Account>(url1, account)));
   }
 
   /**
@@ -86,11 +86,6 @@ export class AccountService {
    * Represents the _Account Service_ 'post' method for payments
    */
   postPayment(payment: PostPayment): Observable<PostPayment> {
-    return this.paymentsUrl$.pipe(concatMap((url) => this.http.post<PostPayment>(url, payment)));
-  }
-  getToken(): string {
-    const OktaToken = localStorage.getItem('okta-token-storage');
-    const OkTokenObj = JSON.parse(OktaToken as string);
-    return OkTokenObj.idToken.claims.email;
+    return this.paymentsUrl$.pipe(concatMap((url1) => this.http.post<PostPayment>(url1, payment)));
   }
 }

@@ -1,43 +1,22 @@
-<form #searchForm="ngForm" (ngSubmit)="onSubmit(searchForm)">
+<form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
   <div class="tile is-parent">
     <div class="tile is-child">
       <div class="field">
         <label for="location" class="label">location</label>
         <div class="control">
-          <input
-            class="input"
-            id="location"
-            name="location"
-            placeholder="Add the destination"
-            type="text"
-            ngModel
-          />
+          <input class="input" formControlName="location" placeholder="Enter destination or leave empty to seach all" type="text" ngModel>
         </div>
       </div>
     </div>
 
     <div class="tile is-child">
       <label for="check-in" class="label">check-in / check-out</label>
-      <div class="field has-addons">
+      <div class="field has-addons" formGroupName="staydates">
         <div class="control is-expanded">
-          <input
-            class="input"
-            id="checkin"
-            name="checkin"
-            placeholder="Add the traveling date"
-            type="date"
-            ngModel
-          />
+          <input class="input" formControlName="checkin" placeholder="Add the traveling date" type="date" ngModel>
         </div>
         <div class="control is-expanded">
-          <input
-            class="input"
-            id="checkout"
-            name="checkout"
-            placeholder="Add the returning date"
-            type="date"
-            ngModel
-          />
+          <input class="input" formControlName="checkout" placeholder="Add the returning date" type="date" ngModel>
         </div>
       </div>
     </div>
@@ -46,27 +25,14 @@
       <label for="adults" class="label">guests</label>
       <div class="field has-addons">
         <div class="control">
-          <input
-            class="input"
-            id="adults"
-            name="adults"
-            placeholder="Adults"
-            type="number"
-            ngModel
-          />
+          <input class="input" formControlName="adults" placeholder="Adults" type="number" ngModel>
         </div>
         <div class="control">
-          <input
-            class="input"
-            id="children"
-            name="children"
-            placeholder="Children"
-            type="number"
-            ngModel
-          />
+          <input class="input" formControlName="children" placeholder="Children" type="number" ngModel>
         </div>
         <div class="control">
-          <button class="button is-primary" type="submit" value="Send">Search</button>
+          <button class="button is-primary" type="submit" value="Send"  *ngIf="!searchForm.invalid" >Search</button>
+          <button class="button is-primary" type="submit" value="Send"  *ngIf="searchForm.invalid" disabled >Search</button>
         </div>
         <div class="control">
           <button
@@ -76,7 +42,30 @@
             (click)="isSearched.emit(false)"
           ></button>
         </div>
+        <!-- <div class="control">
+          <a class="button is-info" *ngIf="searchForm.invalid" disabled >Search</a>
+          <a class="button is-info" *ngIf="!searchForm.invalid" (click)='OnSubmit()'>Search</a>
+        </div> -->
       </div>
     </div>
+  </div>
+  <div>
+    <span *ngIf="searchForm.get('staydates')!.touched"> 
+      <div class="text-danger" *ngIf="searchForm.get('staydates')!.errors?.emptyDates">Check-in/check-out dates are required</div>
+      <div class="text-danger" *ngIf="searchForm.get('staydates')!.errors?.incompleteDates">Check-in/check-out must both be selected</div>
+      <div class="text-danger" *ngIf="searchForm.get('staydates')!.errors?.beforeNow">Search date cannot be before today's date</div>
+      <div class="text-danger" *ngIf="searchForm.get('staydates')!.errors?.outBeforeIn">Check-out cannot be before check-in</div>
+    </span>
+    <!-- <span *ngIf="searchForm.get('staydates.checkin')!.touched">
+      <div class="text-danger" *ngIf="searchForm.get('staydates.checkin')!.errors?.noDate">Check-in date required</div>
+    </span>
+    <div class="text-danger" *ngIf="searchForm.get('staydates.checkin')!.errors?.pastDate">
+      Check-in date cannot be before current date</div>
+      
+    <span *ngIf="searchForm.get('staydates.checkout')!.touched">
+      <div class="text-danger" *ngIf="searchForm.get('staydates.checkout')!.errors?.noDate">Check-out date required</div>
+    </span>
+    <div class="text-danger" *ngIf="searchForm.get('staydates.checkout')!.errors?.pastDate">
+      Check-out date cannot be before current date</div> -->
   </div>
 </form>
