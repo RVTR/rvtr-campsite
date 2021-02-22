@@ -1,3 +1,6 @@
+<span class="icon has-text-info level-item">
+  <i class="fas fa-edit" aria-hidden="true" (click)="editMode = !editMode" [title]="titleEdit"></i>
+</span>
 <div class="level" *ngFor="let payment of payments">
   <div class="level-left">
     <div class="level-item has-text-centered">
@@ -6,23 +9,44 @@
           <div class="level-item has-text-light">
             <div>
               <p class="heading">bank</p>
-              <p class="title has-text-light is-6">{{ payment.cardName }}</p>
+              <uic-editable
+                [(data)]="payment.cardName"
+                [(editMode)]="editMode"
+                (dataChange)="edited()"
+                type="cardName"
+              >
+                <p class="title has-text-light is-6">{{ payment.cardName }}</p>
+              </uic-editable>
             </div>
           </div>
 
           <div class="level-item has-text-light">
             <div>
               <p class="heading">number</p>
-              <p class="title has-text-light is-6">{{ payment.cardNumber }}</p>
+              <uic-editable
+                [(data)]="payment.cardNumber"
+                [(editMode)]="editMode"
+                (dataChange)="edited()"
+                type="cardNumber"
+              >
+                <p class="title has-text-light is-6">{{ payment.cardNumber }}</p>
+              </uic-editable>
             </div>
           </div>
 
           <div class="level-item has-text-light">
             <div>
               <p class="heading">expiry</p>
-              <p class="title has-text-light is-6">
-                {{ payment.cardExpirationDate | date: 'MM/yy' }}
-              </p>
+              <uic-editable
+                [(data)]="payment.cardExpirationDate"
+                [(editMode)]="editMode"
+                (dataChange)="edited()"
+                type="cardExpirationDate"
+              >
+                <p class="title has-text-light is-6">
+                  {{ payment.cardExpirationDate | date: 'MM/yy' }}
+                </p>
+              </uic-editable>
             </div>
           </div>
         </div>

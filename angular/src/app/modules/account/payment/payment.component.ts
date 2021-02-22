@@ -1,6 +1,9 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, Inject } from '@angular/core';
 import { Payment, PostPayment } from '../../../data/payment.model';
+import { Account } from '../../../data/account.model';
 import { AccountService } from 'src/app/services/account/account.service';
+import { GenericEditingService } from '../../../services/editable/generic-editing.service';
+import { ACCOUNT_EDITING_SERVICE } from '../../account/account-editing.token';
 
 @Component({
   selector: 'uic-payment',
@@ -15,10 +18,17 @@ export class PaymentComponent {
   @Input() email!: string;
   @Output() paymentsEdited = new EventEmitter();
 
+  editMode = false;
+  titleEdit = 'Click To Edit Your Payment Information'
+
   /**
    * Represents the _Payment Component_ 'constructor' method
    */
-  constructor(private readonly accountService: AccountService) {}
+  constructor(
+    private readonly accountService: AccountService,
+    @Inject(ACCOUNT_EDITING_SERVICE)
+    private readonly editingService: GenericEditingService<Partial<Account>>
+  ) {}
 
   /**
    * Adds a new set of payment information
@@ -39,4 +49,8 @@ export class PaymentComponent {
       (e) => console.error(e)
     );
   }
+  edited(): void {
+    this.editingService.update({ payments: this.payments })
+  }
+
 }
