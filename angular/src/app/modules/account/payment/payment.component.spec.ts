@@ -80,5 +80,5 @@ describe('PaymentComponent', () => {
       expect(e.payments).toBeTruthy();
     });
     component.edited();
-  })
+  });
 });

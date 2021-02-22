@@ -19,7 +19,7 @@ export class PaymentComponent {
   @Output() paymentsEdited = new EventEmitter();
 
   editMode = false;
-  titleEdit = 'Click To Edit Your Payment Information'
+  titleEdit = 'Click To Edit Your Payment Information';
 
   /**
    * Represents the _Payment Component_ 'constructor' method
@@ -50,7 +50,7 @@ export class PaymentComponent {
     );
   }
   edited(): void {
-    this.editingService.update({ payments: this.payments })
+    this.editingService.update({ payments: this.payments });
   }
 
 }
