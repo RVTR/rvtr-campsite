@@ -23,11 +23,12 @@ export class PaymentComponent {
 
   /**
    * Represents the _Payment Component_ 'constructor' method
+   * @param editingService AccountEditingService
    */
   constructor(
-    private readonly accountService: AccountService,
     @Inject(ACCOUNT_EDITING_SERVICE)
-    private readonly editingService: GenericEditingService<Partial<Account>>
+    private readonly editingService: GenericEditingService<Partial<Account>>,
+    private readonly accountService: AccountService
   ) {}
 
   /**
@@ -49,8 +50,11 @@ export class PaymentComponent {
       (e) => console.error(e)
     );
   }
+
+  /**
+   *  Updates the _Editing Service_ with the new payment information
+   */
   edited(): void {
     this.editingService.update({ payments: this.payments });
   }
-
 }

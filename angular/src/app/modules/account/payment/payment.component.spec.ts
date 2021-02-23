@@ -38,8 +38,8 @@ describe('PaymentComponent', () => {
       TestBed.configureTestingModule({
         imports: [HttpClientTestingModule],
         providers: [
-        { provide: AccountService, useValue: accountServiceStub },
-        { provide: ACCOUNT_EDITING_SERVICE, useValue: editingService }
+          { provide: AccountService, useValue: accountServiceStub },
+          { provide: ACCOUNT_EDITING_SERVICE, useValue: editingService },
         ],
         declarations: [PaymentComponent],
       }).compileComponents();
