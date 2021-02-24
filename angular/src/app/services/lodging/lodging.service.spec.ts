@@ -83,7 +83,7 @@ describe('LodgingService', () => {
 
     tick();
 
-    req = httpTestingController.expectOne('test/available?city=string&occupancy=string');
+    req = httpTestingController.expectOne('test/available?city=string&stateProvince=string&country=string&occupancy=string');
     req.flush(JSON.stringify(lodgingMock));
   }));
 
@@ -119,7 +119,7 @@ describe('LodgingService', () => {
     tick();
 
     req = httpTestingController.expectOne('test');
-    reqOne = httpTestingController.expectOne('test/available?city=string&occupancy=string');
+    reqOne = httpTestingController.expectOne('test/available?city=string&stateProvince=string&country=string&occupancy=string');
 
     req.flush(lodgingMock);
     reqOne.flush(lodgingMock);
