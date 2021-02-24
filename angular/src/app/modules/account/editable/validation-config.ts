@@ -43,6 +43,6 @@ validationConfig.cardNumber = {
 validationConfig.cardExpirationDate = {
   pattern: /^(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/,
   errorMessage: 'Please enter a valid expiration date in the fomration mm/yyyy',
-}
+};
 
 export default validationConfig;
