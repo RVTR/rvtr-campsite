@@ -11,7 +11,7 @@ import { BookingService } from 'services/booking/booking.service';
 })
 export class ReservationComponent implements OnInit {
   id?: string | null;
-  confirmationNumb: string | any;
+  confirmationNumb?: string | null;
   Booking$: Observable<Booking[]>;
   constructor(private route: ActivatedRoute, bookingService: BookingService) {
     this.id = this.route.snapshot.paramMap.get('id');

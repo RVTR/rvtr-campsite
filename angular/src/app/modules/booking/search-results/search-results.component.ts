@@ -102,9 +102,9 @@ export class SearchResultsComponent implements OnChanges {
           checkOut: dateRes[1],
           bookingNumber: '',
         };
-        this.bookingService.post(this.reservation).subscribe((res) => {
-          if (res && res.id) {
-            location.href = '/booking/reservation/' + res.id;
+        this.bookingService.post(this.reservation).subscribe((r) => {
+          if (r && r.id) {
+            location.href = `/booking/reservation/${r.id}`;
           }
         });
       });
