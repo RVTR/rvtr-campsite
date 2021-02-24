@@ -2,9 +2,9 @@
   <div class="tile is-parent">
     <div class="tile is-child">
       <div class="field">
-        <label for="location" class="label">location</label>
+        <label for="location" class="label">location (City, State/Province)</label>
         <div class="control">
-          <input class="input" formControlName="location" placeholder="Enter destination or leave empty to seach all" type="text" ngModel>
+          <input class="input" formControlName="location" placeholder="Baltimore, MD" type="text" ngModel>
         </div>
       </div>
     </div>
@@ -50,7 +50,7 @@
     </div>
   </div>
   <div class="has-text-centered has-text-weight-bold" style="height: 24px">
-    <span *ngIf="searchForm.get('staydates')!.touched"> 
+    <span *ngIf="searchForm.get('staydates')!.touched">
       <div class="has-text-danger" *ngIf="searchForm.get('staydates')!.errors?.emptyDates">Check-in/check-out dates are required</div>
       <div class="has-text-danger" *ngIf="searchForm.get('staydates')!.errors?.incompleteDates">Check-in/check-out must both be selected</div>
       <div class="has-text-danger" *ngIf="searchForm.get('staydates')!.errors?.beforeNow">Search date cannot be before today's date</div>
@@ -61,7 +61,7 @@
     </span>
     <div class="text-danger" *ngIf="searchForm.get('staydates.checkin')!.errors?.pastDate">
       Check-in date cannot be before current date</div>
-      
+
     <span *ngIf="searchForm.get('staydates.checkout')!.touched">
       <div class="text-danger" *ngIf="searchForm.get('staydates.checkout')!.errors?.noDate">Check-out date required</div>
     </span>

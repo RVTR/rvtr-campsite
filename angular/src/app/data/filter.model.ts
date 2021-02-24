@@ -9,5 +9,7 @@
 
 export interface Filter {
   city: string;
+  state: string;
+  country: string;
   occupancy: string;
 }
