@@ -69,7 +69,12 @@ describe('LodgingService', () => {
 
   it('should make httpGet request for available', fakeAsync(() => {
     let req: TestRequest;
-    const filter: Filter = { city: 'string', stateProvince: 'string', country: 'string', occupancy: 'string' };
+    const filter: Filter = {
+      city: 'string',
+      stateProvince: 'string',
+      country: 'string',
+      occupancy: 'string',
+    };
 
     service.get(filter).subscribe((res) => {
       const lodgings: Lodging[] = JSON.parse(res.toString());
@@ -96,7 +101,12 @@ describe('LodgingService', () => {
   it('should make httpGet request with get', fakeAsync(() => {
     let req: TestRequest;
     let reqOne: TestRequest;
-    const filter: Filter = { city: 'string', stateProvince: 'string', country: 'string',  occupancy: 'string' };
+    const filter: Filter = {
+      city: 'string',
+      stateProvince: 'string',
+      country: 'string',
+      occupancy: 'string',
+    };
 
     service.get().subscribe((res) => {
       expect(res.length).toEqual(lodgingMock.length);
