@@ -33,7 +33,6 @@ export class SearchResultsComponent implements OnChanges {
   }
 
   setRentalsList(): void {
-    // Sets list of rentals from list of lodgings, for total rental count summary
     if (this.lodgings !== null) {
       this.lodgings.forEach((thisLodging) => {
         if (thisLodging.rentals !== null) {
@@ -102,12 +101,9 @@ export class SearchResultsComponent implements OnChanges {
           checkIn: dateRes[0],
           checkOut: dateRes[1],
           bookingNumber: '',
-        }; //needs futher teting for  2lines below this. and if
+        };
         this.bookingService.post(this.reservation).subscribe((res) => {
           if (res && res.id) {
-            //go to booking/reservation -> NEW COMP with 1 BUG
-            //GO TO HTML AND COMPONET ->
-            //Tested on Booking component in the constructor
             location.href = '/booking/reservation/' + res.id;
           }
         });
