@@ -36,5 +36,13 @@ validationConfig.country = {
   pattern: /^([A-Z]{2,})+$/,
   errorMessage: 'Please enter a valid country ex. USA',
 };
+validationConfig.cardNumber = {
+  pattern: /\d{16}/,
+  errorMessage: 'Please enter a valid credit card number ex: 1234123412341234',
+};
+validationConfig.cardExpirationDate = {
+  pattern: /^(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/,
+  errorMessage: 'Please enter a valid expiration date in the fomration mm/yyyy',
+}
 
 export default validationConfig;
