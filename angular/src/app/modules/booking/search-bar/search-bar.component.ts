@@ -56,8 +56,6 @@ export class SearchBarComponent {
     });
   }
 
-
-
   datesValidator(dateNow: string): ValidatorFn {
     // Factory function to return a control function based on parameters
     return (thisControl: AbstractControl): ValidationErrors | null => {
@@ -90,12 +88,12 @@ export class SearchBarComponent {
     const adults = form.value.adults ? parseInt(form.value.adults, 10) : 0;
     const children = form.value.children ? parseInt(form.value.children, 10) : 0;
     const occupancy = `${adults + children}`;
-    const splitLocation = form.value.location.split(', ',2);
+    const splitLocation = form.value.location.split(', ', 2);
     const searchCity = splitLocation[0];
     const searchState = splitLocation[1];
     const city: string = searchCity;
     const state: string = searchState;
-    const country: string = "USA";
+    const country: string = 'USA';
     const checkIn: string = form.value.staydates.checkin;
     const checkOut: string = form.value.staydates.checkout;
 
@@ -132,8 +130,8 @@ export class SearchBarComponent {
       } else {
         searchResultString += 'City: ' + city;
       }
-        searchResultString += 'State: ' + state;
-        searchResultString += 'Country: ' + country;
+      searchResultString += 'State: ' + state;
+      searchResultString += 'Country: ' + country;
 
       if (occupancy === undefined || occupancy === '' || occupancy === '0') {
         searchResultString += ', Occupancy: (Any)';
