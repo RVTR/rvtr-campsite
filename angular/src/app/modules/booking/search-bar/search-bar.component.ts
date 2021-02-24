@@ -92,12 +92,12 @@ export class SearchBarComponent {
     const searchCity = splitLocation[0];
     const searchState = splitLocation[1];
     const city: string = searchCity;
-    const state: string = searchState;
+    const stateProvince: string = searchState;
     const country = 'USA';
     const checkIn: string = form.value.staydates.checkin;
     const checkOut: string = form.value.staydates.checkout;
 
-    const filter: Filter = { city, state, country, occupancy };
+    const filter: Filter = { city, stateProvince, country, occupancy };
 
     const lodgings$ = this.lodgingService.get(filter);
     const bookings$ = this.bookingService.getByDateRange(checkIn, checkOut);
@@ -130,7 +130,7 @@ export class SearchBarComponent {
       } else {
         searchResultString += 'City: ' + city;
       }
-      searchResultString += 'State: ' + state;
+      searchResultString += 'State: ' + stateProvince;
       searchResultString += 'Country: ' + country;
 
       if (occupancy === undefined || occupancy === '' || occupancy === '0') {

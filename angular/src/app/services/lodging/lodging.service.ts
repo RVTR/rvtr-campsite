@@ -76,7 +76,7 @@ export class LodgingService {
     } else {
       const params = new HttpParams()
         .set('city', filter.city)
-        .set('stateProvince', filter.state)
+        .set('stateProvince', filter.stateProvince)
         .set('country', filter.country)
         .set('occupancy', filter.occupancy);
       return this.lodgingsUrl$.pipe(

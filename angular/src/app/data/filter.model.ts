@@ -9,7 +9,7 @@
 
 export interface Filter {
   city: string;
-  state: string;
+  stateProvince: string;
   country: string;
   occupancy: string;
 }
