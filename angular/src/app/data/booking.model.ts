@@ -30,4 +30,6 @@ export interface Booking {
   checkIn: string;
   /** check-out date and time */
   checkOut: string;
+  /** Confirmation number after*/
+  bookingNumber: any;
 }

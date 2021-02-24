@@ -101,9 +101,19 @@ export class SearchResultsComponent implements OnChanges {
           ],
           checkIn: dateRes[0],
           checkOut: dateRes[1],
-        };
-        this.bookingService.post(this.reservation).subscribe();
+          bookingNumber:""
+        }; //needs futher teting for  2lines below this. and if
+        this.bookingService.post(this.reservation).subscribe(res => {
+
+          if(res && res.id)
+          {
+            //go to booking/reservation -> NEW COMP with 1 BUG
+            //GO TO HTML AND COMPONET ->
+            //Tested on Booking component in the constructor
+            location.href = "/booking/reservation/" + res.id;
+          }
       });
+    });
     }
   }
 }

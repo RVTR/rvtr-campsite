@@ -57,7 +57,7 @@ export class BookingService {
    */
   get(id?: string): Observable<Booking[]> {
     return this.bookingsUrl$.pipe(
-      map((url) => (id ? url.concat(`/Account/${id}`) : url)),
+      map((url) => (id ? url.concat(`/${id}`) : url)),
       concatMap((url) => this.http.get<Booking[]>(url))
     );
   }

@@ -7,6 +7,7 @@ import { SpotlightComponent } from './spotlight/spotlight.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
 import { FeaturedLodgingComponent } from './featured-lodging/featured-lodging.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
+import { ReservationComponent } from './reservation/reservation.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
     SpotlightComponent,
     SearchResultsComponent,
     FeaturedLodgingComponent,
+    ReservationComponent,
   ],
   imports: [BookingRoutingModule, CommonModule, ReactiveFormsModule],
 })

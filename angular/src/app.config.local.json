@@ -1,7 +1,7 @@
 {
   "api": {
     "account": {
-      "base": "http://localhost:8000/rest/account/0/",
+      "base": "https://campgroundaccountapi.azurewebsites.net/rest/account/0/",
       "uri": {
         "account": "account",
         "address": "address",
@@ -10,13 +10,13 @@
       }
     },
     "booking": {
-      "base": "http://localhost:8001/rest/booking/0/",
+      "base": "https://campgroundbookingapi.azurewebsites.net/rest/booking/0/",
       "uri": {
         "booking": "booking"
       }
     },
     "lodging": {
-      "base": "http://localhost:8002/rest/lodging/0/",
+      "base": "https://campgroundlodgingapi.azurewebsites.net/rest/lodging/0/",
       "uri": {
         "lodging": "lodging",
         "rental": "rental",
