@@ -11,6 +11,7 @@ import { BookingRental } from './bookingrental.model';
  * rentals: Rental[];
  * checkIn: string;
  * checkOut: string;
+ * bookingNumber: any
  * ```
  */
 export interface Booking {

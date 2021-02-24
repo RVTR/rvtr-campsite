@@ -6,6 +6,7 @@ export const booking: Booking = {
   lodgingId: 1,
   checkIn: '',
   checkOut: '',
+  bookingNumber:"",
   guests: [
     {
       id: 1,
@@ -34,6 +35,7 @@ export const bookings: Booking[] = [
     rentals: [],
     checkIn: '2020-08-01',
     checkOut: '2020-08-03',
+    bookingNumber:""
   },
   {
     id: '0',
@@ -43,6 +45,7 @@ export const bookings: Booking[] = [
     rentals: [],
     checkIn: '2020-08-01',
     checkOut: '2020-08-03',
+    bookingNumber:""
   },
   {
     id: '0',
@@ -52,6 +55,7 @@ export const bookings: Booking[] = [
     rentals: [],
     checkIn: '2020-08-01',
     checkOut: '2020-08-03',
+    bookingNumber:""
   },
   {
     id: '0',
@@ -61,6 +65,7 @@ export const bookings: Booking[] = [
     rentals: [],
     checkIn: '2020-08-01',
     checkOut: '2020-08-03',
+    bookingNumber:""
   },
 ];
 
@@ -73,5 +78,6 @@ export const bookingMock: Booking[] = [
     rentals: [],
     checkIn: '2020-08-01',
     checkOut: '2020-08-03',
+    bookingNumber:""
   },
 ];
