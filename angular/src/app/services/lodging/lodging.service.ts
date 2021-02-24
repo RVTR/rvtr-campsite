@@ -74,7 +74,7 @@ export class LodgingService {
     if (!filter) {
       return this.lodgingsUrl$.pipe(concatMap((url) => this.http.get<Lodging[]>(url)));
     } else {
-      const params = new HttpParams().set('city', filter.city).set('StateProvince', filter.state).set('country', filter.country).set('occupancy', filter.occupancy);
+      const params = new HttpParams().set('city', filter.city).set('stateProvince', filter.state).set('country', filter.country).set('occupancy', filter.occupancy);
       return this.lodgingsUrl$.pipe(
         concatMap((url) => this.http.get<Lodging[]>(`${url}/available`, { params }))
       );
