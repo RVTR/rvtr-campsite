@@ -95,14 +95,14 @@ describe('BookingService', () => {
       expect(res.length).toEqual(bookingMock.length);
     });
 
-    // service.get('0').subscribe((res) => {
-    //   expect(res[0]).toEqual(bookingMock[0]);
-    // });
+    service.get('0').subscribe((res) => {
+      expect(res[0]).toEqual(bookingMock[0]);
+    });
 
     tick();
 
     req = httpTestingController.expectOne('test');
-    reqOne = httpTestingController.expectOne('test/Account/0');
+    reqOne = httpTestingController.expectOne('test/0');
 
     req.flush(bookingMock);
     reqOne.flush(bookingMock);
