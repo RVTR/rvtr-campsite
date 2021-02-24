@@ -9,7 +9,7 @@ describe('ReservationComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ReservationComponent],
-      providers:[]
+      providers: [],
     }).compileComponents();
   });
 
@@ -18,6 +18,4 @@ describe('ReservationComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-
-
 });
