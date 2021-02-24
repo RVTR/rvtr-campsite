@@ -93,7 +93,7 @@ export class SearchBarComponent {
     const searchState = splitLocation[1];
     const city: string = searchCity;
     const state: string = searchState;
-    const country: string = 'USA';
+    const country = 'USA';
     const checkIn: string = form.value.staydates.checkin;
     const checkOut: string = form.value.staydates.checkout;
 
