@@ -32,5 +32,6 @@ export interface Booking {
   /** check-out date and time */
   checkOut: string;
   /** confirmation number after */
-  bookingNumber: string;
+  bookingNumber?: string;
+  entityId?: number;
 }

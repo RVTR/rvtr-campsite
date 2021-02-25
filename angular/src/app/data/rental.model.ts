@@ -20,4 +20,6 @@ export interface Rental {
   size: string;
   status: string;
   lodgingRentalId?: number;
+  entityId: number;
+  bookingModelId: number;
 }

@@ -50,7 +50,7 @@ export class AccountComponent {
     this.account$ = this.accountService.getEmail(this.email);
     // gets only the bookings of this account
     this.accountService.getEmail(this.email).subscribe((account) => {
-      this.bookings$ = this.bookingService.get(account.id);
+      this.bookings$ = this.bookingService.get(account.entityId);
     });
 
     this.reviews$ = of([

@@ -111,7 +111,7 @@ export class LodgingDetailsComponent implements OnInit {
       this.profile.givenName = p.profiles[0].givenName;
       this.profile.phone = p.profiles[0].phone;
       this.profile.type = p.profiles[0].type;
-      this.accountId = p.id;
+      this.accountId = p.entityId;
     });
   }
 

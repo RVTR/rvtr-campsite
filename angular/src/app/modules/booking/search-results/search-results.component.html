@@ -45,7 +45,7 @@
                       {{ rental.siteName }} • Occupancy: {{ rental.capacity }} Persons
                       <button
                         class="button is-primary"
-                        (click)="makeReservation(lodging.entityId, +rental.id)"
+                        (click)="makeReservation(lodging.entityId, +rental.entityId)"
                       >
                         Reserve Now!
                       </button>
