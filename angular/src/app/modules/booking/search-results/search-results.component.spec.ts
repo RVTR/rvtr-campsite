@@ -91,6 +91,4 @@ describe('SearchResultsComponent', () => {
   it('should have rating of', () => {
     expect(component.averageRating(lodgings[0])).toEqual(rating);
   });
-
-
 });
