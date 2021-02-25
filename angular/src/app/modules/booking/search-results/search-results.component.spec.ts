@@ -92,14 +92,5 @@ describe('SearchResultsComponent', () => {
     expect(component.averageRating(lodgings[0])).toEqual(rating);
   });
 
-  it('should make reservation', () => {
-    component.email = 'bob@gmail.com';
-    component.query = 'City: Palm Bay, Occupancy: 4, Dates: 2020-11-09 - 2020-11-12';
-    fixture.detectChanges();
-    component.getUserInfo();
-    fixture.detectChanges();
-    component.makeReservation(1, 1);
-    expect(accountService.getEmail).toHaveBeenCalled();
-    expect(bookingService.post).toHaveBeenCalled();
-  });
+
 });
