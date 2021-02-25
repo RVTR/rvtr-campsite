@@ -101,7 +101,7 @@ export class SearchResultsComponent implements OnChanges {
         this.reservation = {
           entityId: 0,
           accountId: Number(res.entityId),
-          lodgingId: lodgingId,
+          lodgingId,
           guests: guestsArr,
           rentals: [
             {
@@ -112,7 +112,7 @@ export class SearchResultsComponent implements OnChanges {
           ],
           checkIn: dateRes[0],
           checkOut: dateRes[1],
-          bookingNumber: '3fa85f64-5717-4562-b3fc-2c963f66afa6', //this is a placeholder
+          bookingNumber: '3fa85f64-5717-4562-b3fc-2c963f66afa6', // this is a placeholder
         };
 
         console.log(this.reservation);

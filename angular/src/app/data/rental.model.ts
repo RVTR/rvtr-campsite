@@ -3,6 +3,7 @@
  *
  * ```yaml
  * id: string;
+ * entityId?: number;
  * lotNumber: string;
  * unit: RentalUnit;
  * status: string;
@@ -12,6 +13,7 @@
  */
 export interface Rental {
   id: string;
+  entityId: number;
   capacity: number;
   discountedPrice?: number;
   lotNumber: string;
@@ -20,6 +22,5 @@ export interface Rental {
   size: string;
   status: string;
   lodgingRentalId?: number;
-  entityId: number;
-  bookingModelId: number;
+  bookingModelId?: number;
 }

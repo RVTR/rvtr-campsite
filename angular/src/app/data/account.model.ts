@@ -6,6 +6,7 @@ import { Profile } from './profile.model';
  * Represents the _Account_ model
  *
  * ```yaml
+ * id?: string;
  * entityId: string;
  * email: string;
  * address: Address;
@@ -14,8 +15,10 @@ import { Profile } from './profile.model';
  * ```
  */
 export interface Account {
-  entityId: string;
+  id: string;
   /** address for the owner of the account */
+  entityId: string;
+
   address: Address;
 
   name: string;

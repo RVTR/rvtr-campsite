@@ -8,6 +8,7 @@ import { Address } from './address.model';
  *
  * ```yaml
  * id: string;
+ * entityId?: number;
  * location: Location;
  * name: string;
  * bathrooms: number;
@@ -17,6 +18,7 @@ import { Address } from './address.model';
  * ```
  */
 export interface Lodging {
+  id: string;
   entityId: number;
   address: Address;
   name: string;
