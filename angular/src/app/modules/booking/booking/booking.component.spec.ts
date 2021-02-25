@@ -25,6 +25,9 @@ describe('BookingComponent', () => {
             postalCode: '',
             stateProvince: '',
             street: '',
+            latitude: '',
+            locale: '',
+            longitude: '',
           },
           name: '',
           rentals: [

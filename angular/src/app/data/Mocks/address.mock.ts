@@ -4,6 +4,8 @@ export const address = {
   entityId: '',
   city: '',
   country: '',
+  latitude: '',
+  longitude: '',
   postalCode: '',
   stateProvince: '',
   street: '',

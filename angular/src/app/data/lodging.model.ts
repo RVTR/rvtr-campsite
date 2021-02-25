@@ -8,7 +8,7 @@ import { Address } from './address.model';
  *
  * ```yaml
  * id: string;
- * location: Location;
+ * address: address;
  * name: string;
  * bathrooms: number;
  * rentals: Rental[];
