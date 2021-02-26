@@ -24,3 +24,8 @@ export interface Profile {
   /** profile image uri/url */
   imageUri: string;
 }
+
+export interface PostProfile extends Profile {
+  email: string;
+  // accountId: string;
+}
