@@ -87,7 +87,7 @@ export class SearchBarComponent {
     console.log(form);
     const adults = form.value.adults ? parseInt(form.value.adults, 10) : 0;
     const children = form.value.children ? parseInt(form.value.children, 10) : 0;
-    const occupancy = `${adults + children}`;
+    const occupancy = adults + children;
     const splitLocation = form.value.location.split(', ', 2);
     const searchCity = splitLocation[0];
     const searchState = splitLocation[1];
@@ -133,7 +133,7 @@ export class SearchBarComponent {
       searchResultString += 'State: ' + stateProvince;
       searchResultString += 'Country: ' + country;
 
-      if (occupancy === undefined || occupancy === '' || occupancy === '0') {
+      if (occupancy === undefined || occupancy === 0) {
         searchResultString += ', Occupancy: (Any)';
       } else {
         searchResultString += ', Occupancy: ' + occupancy;
