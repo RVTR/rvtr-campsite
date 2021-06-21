@@ -77,8 +77,7 @@ export class LodgingService {
       const params = new HttpParams()
         .set('city', filter.city)
         .set('stateProvince', filter.stateProvince)
-        .set('country', filter.country)
-        .set('occupancy', filter.occupancy);
+        .set('country', filter.country);
       return this.lodgingsUrl$.pipe(
         concatMap((url) => this.http.get<Lodging[]>(`${url}/available`, { params }))
       );
