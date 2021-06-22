@@ -1,5 +1,3 @@
-import { analyzeAndValidateNgModules } from '@angular/compiler';
-import { nullSafeIsEquivalent } from '@angular/compiler/src/output/output_ast';
 import { Component, Inject } from '@angular/core';
 import { Account } from 'data/account.model';
 import { Address } from 'data/address.model';
@@ -7,15 +5,13 @@ import { Booking } from 'data/booking.model';
 import { Payment } from 'data/payment.model';
 import { Profile } from 'data/profile.model';
 import { Review } from 'data/review.model';
-import { stringify } from 'querystring';
 import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { AccountService } from 'services/account/account.service';
 import { BookingService } from 'services/booking/booking.service';
 import { GenericEditingService } from 'services/editable/generic-editing.service';
 import { ACCOUNT_EDITING_SERVICE } from '../account-editing.token';
-import { ToastrService } from 'ngx-toastr'; // adding ngx-toastr for api service error notifications
-import { OktaAuthService, UserClaims } from '@okta/okta-angular';
+import { ToastrService } from 'ngx-toastr';
+import { OktaAuthService } from '@okta/okta-angular';
 
 @Component({
   selector: 'uic-account',
@@ -45,32 +41,70 @@ export class AccountComponent {
 
   async init(): Promise<void> {
     const userClaims = await this.oktaAuth.getUser();
-    this.email = userClaims.email as string;
-    console.log(this.email);
-    this.account$ = this.accountService.getEmail(this.email);
-    // gets only the bookings of this account
-    this.accountService.getEmail(this.email).subscribe((account) => {
-      this.bookings$ = this.bookingService.get(account.entityId);
-    });
 
-    this.reviews$ = of([
-      // Not yet implemented
-    ]);
-    this.address$ = this.account$.pipe(map((account) => account.address));
-    this.payments$ = this.account$.pipe(map((account) => account.payments));
-    this.profiles$ = this.account$.pipe(map((account) => account.profiles));
+    this.account$ = this.accountService.get(userClaims.email as string);
+    this.account$.subscribe((account) => {
+      this.address$ = of(account.address);
+      this.bookings$ = this.bookingService.get(account.entityId);
+      this.payments$ = of(account.payments);
+      this.profiles$ = of(account.profiles);
+      this.reviews$ = of([]);
+    }, () => {
+      this.account$ = this.accountService.post({
+        "entityId": '0',
+        "id": '',
+        "address": {
+          "entityId": '0',
+          "city": "Austin",
+          "country": "USA",
+          "postalCode": "73300",
+          "stateProvince": "TX",
+          "street": "123 Middle St",
+        },
+        "email": userClaims.email as string,
+        "name": '',
+        "payments": [
+          {
+            "id": '',
+            "cardExpirationDate": "2022-06-22",
+            "cardNumber": "1234123412341234",
+            "securityCode": "123",
+            "cardName": "Visa",
+          }
+        ],
+        "profiles": [
+          {
+            "id": 0,
+            "email": userClaims.email as string,
+            "familyName": "Parker",
+            "givenName": "Dave",
+            "phone": "219721234",
+            "type": "string",
+            "imageUri": ""
+          }
+        ]
+      });
+
+      this.account$.subscribe((account) => {
+        this.address$ = of(account.address);
+        this.bookings$ = this.bookingService.get(account.entityId);
+        this.payments$ = of(account.payments);
+        this.profiles$ = of(account.profiles);
+        this.reviews$ = of([]);
+      });
+    });
 
     // Pass initial model to editingService which acts as model for overwriting data coming in
     this.account$.subscribe(
       (e) => this.editingService.update(e),
       (err) => {
-        console.log(err);
-        this.toastrService.error(`${err.message}`, 'Service Error', {
+        this.toastrService.info(`${err.message}`, 'Service Info', {
           disableTimeOut: true,
           positionClass: 'toast-top-center',
         });
       }
     );
+
     // Register function for Payload release from editing service
     this.editingService.payloadEmitter.subscribe((val) => this.update(val as Account));
   }
