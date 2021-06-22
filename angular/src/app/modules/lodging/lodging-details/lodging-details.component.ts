@@ -42,13 +42,13 @@ export class LodgingDetailsComponent implements OnInit {
 
     // Populating the profile with dummy data
     this.profile = {
-      id: 1,
-      email: 'ddowd97@gmail.com',
-      type: 'adult',
-      givenName: 'Guy',
-      familyName: 'Ferri',
-      phone: '111-111-1111',
-      imageUri: 'https://bulma.io/images/placeholders/256x256.png',
+      id: 0,
+      email: '',
+      type: '',
+      givenName: '',
+      familyName: '',
+      phone: '',
+      imageUri: '',
     };
   }
 
