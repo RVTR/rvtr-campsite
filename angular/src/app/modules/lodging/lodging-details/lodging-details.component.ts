@@ -105,7 +105,7 @@ export class LodgingDetailsComponent implements OnInit {
   getProfileByEmail(email: string): void {
     // This assumes that the first profile is the profile the user is currently logged in as
     // This will need to be changed later
-    this.accountService.getEmail(email).subscribe((p) => {
+    this.accountService.get(email).subscribe((p) => {
       this.profile.id = p.profiles[0].id;
       this.profile.familyName = p.profiles[0].familyName;
       this.profile.givenName = p.profiles[0].givenName;

@@ -28,7 +28,7 @@ describe('AccountComponent', () => {
   };
 
   const accountServiceStub = {
-    getEmail(): Observable<Account> {
+    get(): Observable<Account> {
       return of(account);
     },
 

@@ -95,7 +95,7 @@ export class SearchResultsComponent implements OnChanges {
     }
 
     if (this.email) {
-      this.accountService.getEmail(this.email).subscribe((res) => {
+      this.accountService.get(this.email).subscribe((res) => {
         console.log(res);
 
         this.reservation = {
