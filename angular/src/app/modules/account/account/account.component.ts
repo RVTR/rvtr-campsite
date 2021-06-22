@@ -43,56 +43,59 @@ export class AccountComponent {
     const userClaims = await this.oktaAuth.getUser();
 
     this.account$ = this.accountService.get(userClaims.email as string);
-    this.account$.subscribe((account) => {
-      this.address$ = of(account.address);
-      this.bookings$ = this.bookingService.get(account.entityId);
-      this.payments$ = of(account.payments);
-      this.profiles$ = of(account.profiles);
-      this.reviews$ = of([]);
-    }, () => {
-      this.account$ = this.accountService.post({
-        "entityId": '0',
-        "id": '',
-        "address": {
-          "entityId": '0',
-          "city": "Austin",
-          "country": "USA",
-          "postalCode": "73300",
-          "stateProvince": "TX",
-          "street": "123 Middle St",
-        },
-        "email": userClaims.email as string,
-        "name": '',
-        "payments": [
-          {
-            "id": '',
-            "cardExpirationDate": "2022-06-22",
-            "cardNumber": "1234123412341234",
-            "securityCode": "123",
-            "cardName": "Visa",
-          }
-        ],
-        "profiles": [
-          {
-            "id": 0,
-            "email": userClaims.email as string,
-            "familyName": "Parker",
-            "givenName": "Dave",
-            "phone": "219721234",
-            "type": "string",
-            "imageUri": ""
-          }
-        ]
-      });
-
-      this.account$.subscribe((account) => {
+    this.account$.subscribe(
+      (account) => {
         this.address$ = of(account.address);
         this.bookings$ = this.bookingService.get(account.entityId);
         this.payments$ = of(account.payments);
         this.profiles$ = of(account.profiles);
         this.reviews$ = of([]);
-      });
-    });
+      },
+      () => {
+        this.account$ = this.accountService.post({
+          entityId: '0',
+          id: '',
+          address: {
+            entityId: '0',
+            city: 'Austin',
+            country: 'USA',
+            postalCode: '73300',
+            stateProvince: 'TX',
+            street: '123 Middle St',
+          },
+          email: userClaims.email as string,
+          name: '',
+          payments: [
+            {
+              id: '',
+              cardExpirationDate: '2022-06-22',
+              cardNumber: '1234123412341234',
+              securityCode: '123',
+              cardName: 'Visa',
+            },
+          ],
+          profiles: [
+            {
+              id: 0,
+              email: userClaims.email as string,
+              familyName: 'Parker',
+              givenName: 'Dave',
+              phone: '219721234',
+              type: 'string',
+              imageUri: '',
+            },
+          ],
+        });
+
+        this.account$.subscribe((account) => {
+          this.address$ = of(account.address);
+          this.bookings$ = this.bookingService.get(account.entityId);
+          this.payments$ = of(account.payments);
+          this.profiles$ = of(account.profiles);
+          this.reviews$ = of([]);
+        });
+      }
+    );
 
     // Pass initial model to editingService which acts as model for overwriting data coming in
     this.account$.subscribe(
