@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { FormBuilder, FormsModule } from '@angular/forms';
 import { AccountReviewComponent } from './account-review.component';
 
 describe('AccountReviewComponent', () => {
@@ -16,6 +17,7 @@ describe('AccountReviewComponent', () => {
     waitForAsync(() => {
       TestBed.configureTestingModule({
         declarations: [AccountReviewComponent],
+        providers: [FormBuilder],
       }).compileComponents();
     })
   );

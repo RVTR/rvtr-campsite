@@ -1,5 +1,3 @@
-import { analyzeAndValidateNgModules } from '@angular/compiler';
-import { nullSafeIsEquivalent } from '@angular/compiler/src/output/output_ast';
 import { Component, Inject } from '@angular/core';
 import { Account } from 'data/account.model';
 import { Address } from 'data/address.model';
@@ -7,7 +5,6 @@ import { Booking } from 'data/booking.model';
 import { Payment } from 'data/payment.model';
 import { Profile } from 'data/profile.model';
 import { Review } from 'data/review.model';
-import { stringify } from 'querystring';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AccountService } from 'services/account/account.service';
@@ -30,6 +27,7 @@ export class AccountComponent {
   reviews$: Observable<Review[]> | undefined;
   toastrServiceProp = this.toastrService;
   email: string;
+  newaccount?: Account;
 
   constructor(
     public oktaAuth: OktaAuthService,
@@ -46,8 +44,8 @@ export class AccountComponent {
   async init(): Promise<void> {
     const userClaims = await this.oktaAuth.getUser();
     this.email = userClaims.email as string;
-    console.log(this.email);
     this.account$ = this.accountService.getEmail(this.email);
+
     // gets only the bookings of this account
     this.accountService.getEmail(this.email).subscribe((account) => {
       this.bookings$ = this.bookingService.get(account.entityId);
@@ -60,18 +58,6 @@ export class AccountComponent {
     this.payments$ = this.account$.pipe(map((account) => account.payments));
     this.profiles$ = this.account$.pipe(map((account) => account.profiles));
 
-    // Pass initial model to editingService which acts as model for overwriting data coming in
-    this.account$.subscribe(
-      (e) => this.editingService.update(e),
-      (err) => {
-        console.log(err);
-        this.toastrService.error(`${err.message}`, 'Service Error', {
-          disableTimeOut: true,
-          positionClass: 'toast-top-center',
-        });
-      }
-    );
-    // Register function for Payload release from editing service
     this.editingService.payloadEmitter.subscribe((val) => this.update(val as Account));
   }
 
@@ -82,9 +68,6 @@ export class AccountComponent {
     });
   }
 
-  /**
-   * Function registered to the editing service
-   */
   private update(payload: Account): void {
     this.accountService.put(payload).subscribe({
       next: (e) => console.log(e),

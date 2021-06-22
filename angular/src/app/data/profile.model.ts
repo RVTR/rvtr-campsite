@@ -7,10 +7,11 @@
  * givenName: string;
  * familyName: string;
  * phone: string;
+ * active: boolean
  * ```
  */
 export interface Profile {
-  id: number;
+  id: string;
   /** email */
   email: string;
   /** profile type: adult/child */
@@ -23,4 +24,8 @@ export interface Profile {
   phone: string;
   /** profile image uri/url */
   imageUri: string;
+  /** profile active or not */
+  active: boolean;
+
+  dateofbirth: string;
 }

@@ -1,5 +1,6 @@
 <section class="hero is-fullheight-with-navbar">
-  <div class="hero-head">
+
+  <div *ngIf="account$ | async as Account" class="hero-head" ngCloak>
     <div class="container">
       <br />
       <h1 class="title is-2">account</h1>
@@ -13,11 +14,7 @@
             </div>
             <div class="tile box has-background-dark is-child">
               <h2 class="title has-text-light is-4">payments</h2>
-              <uic-payment
-                *ngIf="payments$ | async as payments"
-                [email]="email"
-                [payments]="payments"
-              >
+              <uic-payment *ngIf="payments$ | async as payments" [email]="email" [payments]="payments">
               </uic-payment>
             </div>
           </div>
@@ -37,10 +34,7 @@
               <div class="tile is-parent">
                 <div class="tile box is-child">
                   <h2 class="title is-4">bookings</h2>
-                  <uic-account-booking
-                    *ngFor="let booking of bookings$ | async"
-                    [booking]="booking"
-                  >
+                  <uic-account-booking *ngFor="let booking of bookings$ | async" [booking]="booking">
                   </uic-account-booking>
                 </div>
               </div>
@@ -48,10 +42,7 @@
               <div class="tile is-parent">
                 <div class="tile box is-child">
                   <h2 class="title is-4">reviews</h2>
-                  <uic-account-review
-                    *ngFor="let review of reviews$ | async"
-                    [review]="review"
-                  ></uic-account-review>
+                  <uic-account-review *ngFor="let review of reviews$ | async" [review]="review"></uic-account-review>
                 </div>
               </div>
             </div>
@@ -59,5 +50,10 @@
         </div>
       </div>
     </div>
+  </div>
+
+  <div *ngIf="(account$ | async) == undefined">
+    <uic-account-register>
+    </uic-account-register>
   </div>
 </section>

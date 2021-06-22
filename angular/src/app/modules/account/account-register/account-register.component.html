@@ -1,0 +1,89 @@
+  <div class="container is-max-desktop">
+    <form [formGroup]="AccountForm" (ngSubmit)="create()">
+      <div class="columns">
+        <div formGroupName="address" class="column">
+          <label class="label is-size-3">Address</label>
+          <label class="label">Street <input type="text" formControlName="street" class="input" placeholder="123 Wood Street"> </label>
+
+          <small class="has-text-danger" *ngIf="AccountForm.get(['address','street'])?.invalid && (AccountForm.get(['address','street'])?.touched || AccountForm.get(['address','city'])?.dirty)">
+            Street is required
+          </small>
+          
+          <label class="label">City <input type="text" formControlName="city" class="input" placeholder="Austin"> </label>
+          <small class="has-text-danger" *ngIf="AccountForm.get(['address','city'])?.invalid && (AccountForm.get(['address','city'])?.touched || AccountForm.get(['address','city'])?.dirty)">
+            City is required
+          </small>
+          <label class="label">
+            State 
+          <select type="text" formControlName="state" class="select is-fullwidth">
+            <option *ngFor="let state of listofstate" value = {{state}}>{{state}}</option>
+          </select>
+        </label>
+        <small class="has-text-danger" *ngIf="AccountForm.get(['address','state'])?.invalid && (AccountForm.get(['address','state'])?.touched || AccountForm.get(['address','state'])?.dirty)">
+          State is required
+        </small>
+          <label class="label">Zip code <input type="text" formControlName="zipcode" class="input" placeholder="12345"> </label>
+          <small class="has-text-danger" *ngIf="AccountForm.get(['address','zipcode'])?.errors?.pattern && AccountForm.get(['address','zipcode'])?.touched ">
+            Invalid Zip Code
+          </small>  
+          <small class="has-text-danger" *ngIf="AccountForm.get(['address','zipcode'])?.errors?.required && (AccountForm.get(['address','zipcode'])?.touched || AccountForm.get(['address','zipcode'])?.dirty)">
+            Zipcode is required
+          </small>  
+        </div>
+        <div formGroupName="profile" class="column">
+          <label class="label is-size-3">Profile</label>
+          <label class="label">Firstname <input type="text" formControlName="firstname" class="input" placeholder="John"> </label>
+          <small class="has-text-danger" *ngIf="AccountForm.get(['profile','firstname'])?.invalid && (AccountForm.get(['profile','firstname'])?.touched || AccountForm.get(['profile','firstname'])?.dirty)">
+            First Name is required
+          </small>
+          <label class="label">Lastname <input type="text" formControlName="lastname" class="input" placeholder="Smith"> </label>
+          <small class="has-text-danger" *ngIf="AccountForm.get(['profile','lastname'])?.invalid && (AccountForm.get(['profile','lastname'])?.touched || AccountForm.get(['profile','lastname'])?.dirty)">
+            Last Name is required
+          </small>
+          <label class="label">Phone <input type="text" formControlName="phone" class="input" placeholder="1234567890"> </label>
+          <small class="has-text-danger" *ngIf="AccountForm.get(['profile','phone'])?.errors?.required && (AccountForm.get(['profile','phone'])?.touched || AccountForm.get(['profile','phone'])?.dirty)">
+            Phone Number is required
+          </small>
+          <small class="has-text-danger" *ngIf="AccountForm.get(['profile','phone'])?.errors?.pattern && AccountForm.get(['profile','phone'])?.touched ">
+            Invalid Phone Number
+          </small>  
+          <label class="label">Date of Birth <input type="date" formControlName="dateofbirth" class="input"> </label>
+          <small class="has-text-danger" *ngIf="AccountForm.get(['profile','dateofbirth'])?.invalid && (AccountForm.get(['profile','dateofbirth'])?.touched || AccountForm.get(['profile','dateofbirth'])?.dirty)">
+            Date of Birth is required
+          </small>
+        </div>
+        <div formGroupName="payment" class="column">
+          <label class="label is-size-3">Payment</label>
+          <label class="label">Card Provider <input type="text" formControlName="cardname" class="input" placeholder="MasterCard"> </label>
+          <small class="has-text-danger" *ngIf="AccountForm.get(['payment','cardname'])?.invalid && (AccountForm.get(['payment','cardname'])?.touched || AccountForm.get(['payment','cardname'])?.dirty)">
+            Card Provider is required
+          </small>
+          <label class="label">Card Number <input type="text" formControlName="cardnumber" class="input" placeholder="1111222233334444"> </label>
+          <small class="has-text-danger" *ngIf="AccountForm.get(['payment','cardnumber'])?.errors?.required && (AccountForm.get(['payment','cardnumber'])?.touched || AccountForm.get(['payment','cardnumber'])?.dirty)">
+            Card Number is required
+          </small>
+          <small class="has-text-danger" *ngIf="AccountForm.get(['payment','cardnumber'])?.errors?.pattern && AccountForm.get(['payment','cardnumber'])?.touched">
+            Invalid Card Number
+          </small>  
+          <label class="label">Exp Date <input type="text" formControlName="expdate" class="input" placeholder="10/21"> </label>
+          <small class="has-text-danger" *ngIf="AccountForm.get(['payment','expdate'])?.errors?.required && (AccountForm.get(['payment','expdate'])?.touched || AccountForm.get(['payment','expdate'])?.dirty)">
+            Expiration Date is required
+          </small>
+          <small class="has-text-danger" *ngIf="AccountForm.get(['payment','expdate'])?.errors?.pattern && AccountForm.get(['payment','expdate'])?.touched">
+            Invalid Expiration Date [MM/YY]
+          </small> 
+          <label class="label">Security Code <input type="text" formControlName="securitycode" class="input" placeholder="123"> </label>
+          <small class="has-text-danger" *ngIf="AccountForm.get(['payment','securitycode'])?.errors?.required && (AccountForm.get(['payment','securitycode'])?.touched || AccountForm.get(['payment','securitycode'])?.dirty)">
+            Security Code is required
+          </small>
+          <small class="has-text-danger" *ngIf="AccountForm.get(['payment','securitycode'])?.errors?.pattern && AccountForm.get(['payment','securitycode'])?.touched ">
+            Invalid Security Code
+          </small> 
+        </div>
+      </div>
+      <br>
+      <button class="button is-primary" [disabled]="AccountForm.invalid" type="submit">Save</button>
+
+    </form>
+    
+  </div>

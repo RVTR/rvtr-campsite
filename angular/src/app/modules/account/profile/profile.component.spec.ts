@@ -4,19 +4,22 @@ import { of, Observable } from 'rxjs';
 import { Account } from '../../../data/account.model';
 import { ProfileComponent } from './profile.component';
 import { ACCOUNT_EDITING_SERVICE } from '../account-editing.token';
+import { flatten } from '@angular/compiler';
 
 describe('ProfileComponent', () => {
   let component: ProfileComponent;
   let fixture: ComponentFixture<ProfileComponent>;
   const profiles = [
     {
-      id: 1,
+      id: '1',
       email: '',
       givenName: '',
       familyName: '',
       phone: '',
       type: '',
       imageUri: '',
+      active: false,
+      dateofbirth: '',
     },
   ];
 

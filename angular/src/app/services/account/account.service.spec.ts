@@ -81,7 +81,7 @@ describe('AccountService', () => {
 
     tick();
 
-    req = httpTestingController.expectOne('test/test');
+    req = httpTestingController.expectOne('test/DeleteAccount/test');
     req.flush(null);
   }));
 
@@ -94,7 +94,7 @@ describe('AccountService', () => {
 
     tick();
 
-    req = httpTestingController.expectOne('test/test');
+    req = httpTestingController.expectOne('test/GetAccountByEmail/test');
     req.flush(accountMock);
   }));
 
@@ -107,7 +107,7 @@ describe('AccountService', () => {
 
     tick();
 
-    req = httpTestingController.expectOne('test');
+    req = httpTestingController.expectOne('test/AddAccount');
     req.flush(accountMock);
   }));
 
@@ -120,7 +120,7 @@ describe('AccountService', () => {
 
     tick();
 
-    req = httpTestingController.expectOne('test');
+    req = httpTestingController.expectOne('test/UpdateAccount');
     req.flush(accountMock);
   }));
 

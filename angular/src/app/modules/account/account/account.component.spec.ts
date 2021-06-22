@@ -40,6 +40,7 @@ describe('AccountComponent', () => {
       return 'test';
     },
   };
+
   const mockEditingService = {
     payloadEmitter: new Observable<Partial<Account>>(),
     update(): void {},

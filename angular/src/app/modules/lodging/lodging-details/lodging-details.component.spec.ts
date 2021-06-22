@@ -34,6 +34,8 @@ describe('LodgingDetailsComponent', () => {
     familyName: 'Ferri',
     phone: '111-111-1111',
     imageUri: 'https://bulma.io/images/placeholders/256x256.png',
+    active: true,
+    dateofbirth: '10/10/1890',
   };
 
   const onSubmitStub = {
@@ -156,7 +158,7 @@ describe('LodgingDetailsComponent', () => {
     spyOn(component, 'getProfileByEmail');
 
     component.getProfileByEmail(accountMock.email);
-    expect(component.profile.id).toEqual(1);
+    expect(component.profile.id).toEqual('1');
     expect(component.profile.familyName).toEqual('string');
     expect(component.profile.givenName).toEqual('string');
     expect(component.profile.phone).toEqual('string');

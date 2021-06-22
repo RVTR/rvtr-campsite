@@ -42,13 +42,15 @@ export class LodgingDetailsComponent implements OnInit {
 
     // Populating the profile with dummy data
     this.profile = {
-      id: 1,
+      id: '1',
       email: 'ddowd97@gmail.com',
       type: 'adult',
       givenName: 'Guy',
       familyName: 'Ferri',
       phone: '111-111-1111',
+      active: true,
       imageUri: 'https://bulma.io/images/placeholders/256x256.png',
+      dateofbirth: '',
     };
   }
 
@@ -140,7 +142,7 @@ export class LodgingDetailsComponent implements OnInit {
     // Filling the review obj with user submitted data
     if (this.lodging?.entityId) {
       review = {
-        accountId: this.profile.id,
+        accountId: Number(this.profile.id),
         comment: this.Comment.get('message')?.value,
         dateCreated: new Date().toUTCString(),
         rating: this.Comment.get('score')?.value,
