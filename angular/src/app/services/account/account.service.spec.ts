@@ -88,7 +88,7 @@ describe('AccountService', () => {
   it('should make httpGet request', fakeAsync(() => {
     let req: TestRequest;
 
-    service.getEmail('test').subscribe((res) => {
+    service.get('test').subscribe((res) => {
       expect(res).toEqual(accountMock);
     });
 

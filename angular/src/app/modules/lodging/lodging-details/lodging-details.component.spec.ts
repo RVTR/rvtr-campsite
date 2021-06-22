@@ -78,7 +78,7 @@ describe('LodgingDetailsComponent', () => {
       };
 
       const accountServiceStub = {
-        getEmail(email: string): Observable<Account> {
+        get(email: string): Observable<Account> {
           return of(accountMock);
         },
       };

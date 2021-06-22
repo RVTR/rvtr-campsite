@@ -75,12 +75,9 @@ export class FeaturedLodgingComponent implements OnChanges {
       }
       this.lotAvailableStringsByLodgingId.set(thisLodgingId, thisLodgingLotCountStrings);
     }
-    console.log('Lodging count strings:');
-    console.log(this.lotAvailableStringsByLodgingId);
   }
 
   featureClick(thisLodging: Lodging): void {
-    console.log('Going to lodging details for' + thisLodging.name);
     this.router.navigate(['/lodging/details/' + thisLodging.entityId]);
   }
 }

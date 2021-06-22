@@ -13,8 +13,8 @@ import { environment } from 'environment';
 import { AccountService } from 'services/account/account.service';
 
 describe('SearchResultsComponent', () => {
-  const accountService = jasmine.createSpyObj<AccountService>('AccountService', ['getEmail']);
-  accountService.getEmail.and.callFake(() => {
+  const accountService = jasmine.createSpyObj<AccountService>('AccountService', ['get']);
+  accountService.get.and.callFake(() => {
     return of(account);
   });
 

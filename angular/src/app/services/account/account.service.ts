@@ -50,7 +50,7 @@ export class AccountService {
   }
 
   /**
-   * Represents the _Account Service_ `getEmail` method
+   * Represents the _Account Service_ `get` method
    *
    * @param email string
    */
