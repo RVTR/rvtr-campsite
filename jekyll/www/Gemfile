@@ -1,0 +1,5 @@
+# frozen_string_literal: true
+
+gem "jekyll", "~>4.2.0"
+
+source "https://rubygems.org"
